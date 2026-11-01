@@ -5,10 +5,10 @@ import datetime
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from soundevent.data import AnnotationState
-from sqlalchemy import delete, select
+from sqlalchemy import delete, func, select
 
 from whombat import api, models, schemas
 from whombat.filters.annotation_tasks import AnnotationTaskFilter
@@ -35,6 +35,19 @@ class Claim(BaseModel):
     done_by_me: int
     remaining: int
     total: int
+
+
+ANSWER_KEY = "jawaban"
+ANSWER_VALUES = ("ya", "tidak", "tidak yakin")
+
+
+class Progress(BaseModel):
+    """Answered clips per annotator, and what is left."""
+
+    done_by_me: int
+    remaining: int
+    total: int
+    by_user: dict[str, int]
 
 
 def _naive_utc(t: datetime.datetime) -> datetime.datetime:
@@ -210,6 +223,73 @@ def get_annotation_tasks_router(settings: WhombatSettings) -> APIRouter:
         )
         await session.commit()
         return updated
+
+    @annotation_tasks_router.get("/progress/", response_model=Progress)
+    async def project_progress(
+        session: Session,
+        annotation_project_uuid: UUID,
+        user: Annotated[schemas.SimpleUser, Depends(active_user)],
+    ):
+        """Way Canguk fork: answered clips per annotator in a project."""
+        T, B, U = models.AnnotationTask, models.AnnotationStatusBadge, models.User
+        project = await api.annotation_projects.get(session, annotation_project_uuid)
+        total = await session.scalar(
+            select(func.count(T.id)).where(T.annotation_project_id == project.id))
+        rows = (await session.execute(
+            select(U.username, func.count(func.distinct(B.annotation_task_id)))
+            .join(T, T.id == B.annotation_task_id).join(U, U.id == B.user_id)
+            .where(T.annotation_project_id == project.id,
+                   B.state == AnnotationState.completed)
+            .group_by(U.username)
+        )).all()
+        answered = await session.scalar(
+            select(func.count(func.distinct(B.annotation_task_id)))
+            .join(T, T.id == B.annotation_task_id)
+            .where(T.annotation_project_id == project.id,
+                   B.state == AnnotationState.completed))
+        by_user = {name: n for name, n in rows}
+        return Progress(done_by_me=by_user.get(user.username, 0),
+                        remaining=total - answered, total=total, by_user=by_user)
+
+    @annotation_tasks_router.post("/answer/", response_model=schemas.AnnotationTask)
+    async def answer_task(
+        session: Session,
+        annotation_task_uuid: UUID,
+        value: str,
+        user: Annotated[schemas.SimpleUser, Depends(active_user)],
+    ):
+        """Way Canguk fork: store the annotator's answer and mark the clip done.
+
+        Only the annotator who holds the clip (latest "assigned" badge, lease not
+        taken over) or who already answered it may answer; otherwise 409, so a
+        clip that went back to the queue cannot be answered twice.
+        """
+        if value not in ANSWER_VALUES:
+            raise HTTPException(422, f"value must be one of {ANSWER_VALUES}")
+        B = models.AnnotationStatusBadge
+        async with CLAIM_LOCK:
+            api.annotation_tasks._cache.clear()
+            task = await api.annotation_tasks.get(session, annotation_task_uuid)
+            rows = (await session.execute(
+                select(B.user_id, B.state, B.created_on).where(B.annotation_task_id == task.id)
+            )).all()
+            done_by = {u for u, st, _ in rows if st == AnnotationState.completed}
+            held = [(c, u) for u, st, c in rows if st == AnnotationState.assigned]
+            holder = max(held, key=lambda x: x[0])[1] if held else None
+            if user.id not in done_by and (done_by or holder != user.id):
+                raise HTTPException(409, "Klip ini sudah dialihkan ke anotator lain.")
+            clip_annotation = await api.annotation_tasks.get_clip_annotation(session, task)
+            for old in clip_annotation.tags:
+                if old.key == ANSWER_KEY and old.value != value:
+                    clip_annotation = await api.clip_annotations.remove_tag(session, clip_annotation, old)
+            if not any(t.key == ANSWER_KEY and t.value == value for t in clip_annotation.tags):
+                tag = await api.tags.get_or_create(session, key=ANSWER_KEY, value=value)
+                await api.clip_annotations.add_tag(session, clip_annotation, tag, user)
+            if user.id not in done_by:
+                task = await api.annotation_tasks.add_status_badge(
+                    session, task, AnnotationState.completed, user)
+            await session.commit()
+            return task
 
     @annotation_tasks_router.post("/claim/", response_model=Claim)
     async def claim_task(

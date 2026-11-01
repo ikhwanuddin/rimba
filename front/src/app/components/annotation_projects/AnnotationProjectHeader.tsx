@@ -77,7 +77,7 @@ export default function AnnotationProjectHeader({
           <TagsIcon className="w-5 h-5 align-middle" />
           Tags
         </Tab>,
-      ].filter((tab) => isAdmin || tab.key === "annotate")}
+      ].filter(() => isAdmin)}
     />
   );
 }

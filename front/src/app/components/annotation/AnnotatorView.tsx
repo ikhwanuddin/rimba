@@ -9,15 +9,9 @@
  * box label can be changed to another species of the project before answering. Box editing stays available but in
  * small controls; metadata, filters, maps and settings are hidden. */
 import { useQuery } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import classNames from "classnames";
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useHotkeys } from "react-hotkeys-hook";
 
@@ -27,7 +21,6 @@ import useSpectrogramSettings from "@/app/hooks/settings/useSpectrogramSettings"
 import useViewSettings from "@/app/hooks/settings/useViewSettings";
 
 import api from "@/app/api";
-import UserContext from "@/app/contexts/user";
 
 import useAnnotationTagPallete from "@/lib/hooks/annotation/useAnnotationTagPalette";
 
@@ -135,6 +128,15 @@ export default function AnnotatorView({
     [],
   );
 
+  const dropTask = useCallback(
+    (t: AnnotationTask) =>
+      setQ((s) => {
+        const stack = s.stack.filter((x) => x.uuid !== t.uuid);
+        return { ...s, stack, pos: Math.min(s.pos, stack.length - 1) };
+      }),
+    [],
+  );
+
   const annotations = useQuery<ClipAnnotation>({
     // the task object only changes its badges; the uuid identifies the clip
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
@@ -221,6 +223,10 @@ export default function AnnotatorView({
               replaceTask(t);
               goNext();
             }}
+            onSkip={() => {
+              dropTask(task);
+              claimNext();
+            }}
           />
         </>
       )}
@@ -233,17 +239,17 @@ function AnswerPanel({
   task,
   clipAnnotation,
   onDone,
+  onSkip,
 }: {
   annotationProject: AnnotationProject;
   task: AnnotationTask;
   clipAnnotation: ClipAnnotation;
   onDone: (task: AnnotationTask) => void;
+  onSkip: () => void;
 }) {
-  const user = useContext(UserContext);
   const {
     data = clipAnnotation,
-    addClipAnnotationTag,
-    removeClipAnnotationTag,
+    refetch,
     addSoundEventTag,
     removeSoundEventTag,
   } = useClipAnnotation({ uuid: clipAnnotation.uuid, clipAnnotation });
@@ -259,10 +265,6 @@ function AnswerPanel({
     return Array.from(vals);
   }, [soundEvents]);
   const answer = data.tags?.find((t) => t.key === ANSWER_KEY)?.value;
-  const answerTags = useMemo(
-    () => (annotationProject.tags ?? []).filter((t) => t.key === ANSWER_KEY),
-    [annotationProject.tags],
-  );
   const speciesTags = useMemo(
     () => (annotationProject.tags ?? []).filter((t) => t.key === SPECIES_KEY),
     [annotationProject.tags],
@@ -271,44 +273,25 @@ function AnswerPanel({
   const handleAnswer = useCallback(
     async (value: string) => {
       if (busy) return;
-      const tag = answerTags.find((t) => t.value === value);
-      if (tag == null) {
-        toast.error(`Tag "${ANSWER_KEY}: ${value}" belum ada di proyek ini.`);
-        return;
-      }
       setBusy(true);
       try {
-        for (const old of data.tags ?? []) {
-          if (old.key === ANSWER_KEY && old.value !== value) {
-            await removeClipAnnotationTag.mutateAsync(old);
-          }
+        const updated = await api.annotationTasks.answer(task, value);
+        await refetch();
+        onDone(updated);
+      } catch (e) {
+        if (isAxiosError(e) && e.response?.status === 409) {
+          toast.error(
+            "Klip ini sudah dialihkan ke anotator lain karena terlalu lama dibuka. Lanjut ke klip berikutnya.",
+          );
+          onSkip();
+        } else {
+          toast.error("Gagal menyimpan jawaban. Coba lagi.");
         }
-        if (answer !== value) await addClipAnnotationTag.mutateAsync(tag);
-        const alreadyDone = task.status_badges?.some(
-          (b) => b.state === "completed" && b.user?.id === user?.id,
-        );
-        onDone(
-          alreadyDone
-            ? task
-            : await api.annotationTasks.addBadge(task, "completed"),
-        );
-      } catch {
-        toast.error("Gagal menyimpan jawaban. Coba lagi.");
       } finally {
         setBusy(false);
       }
     },
-    [
-      busy,
-      answerTags,
-      data.tags,
-      answer,
-      addClipAnnotationTag,
-      removeClipAnnotationTag,
-      task,
-      user,
-      onDone,
-    ],
+    [busy, task, refetch, onDone, onSkip],
   );
 
   const handleRelabel = useCallback(

@@ -10,9 +10,7 @@ import useActiveUser from "@/app/hooks/api/useActiveUser";
 import Loading from "@/app/loading";
 
 import { WhombatIcon } from "@/lib/components/icons";
-import { Footer } from "@/lib/components/navigation/Footer";
 import { NavBar } from "@/lib/components/navigation/NavBar";
-import { SideMenu } from "@/lib/components/navigation/SideMenu";
 
 import UserContext from "../contexts/user";
 
@@ -69,16 +67,14 @@ function Contents({ children }: { children: ReactNode }) {
     router.push("/login");
   }, [router]);
 
+  // Way Canguk fork: one top bar, no icon side menu; licence and credit are on
+  // the login and About pages instead of a footer on every page.
   return (
-    <div className="flex flex-row w-full max-w-full h-full min-h-screen">
-      <SideMenu user={user} onLogout={handleLogout} />
-      <div className="flex flex-col w-full max-w-full min-h-screen">
-        <main className="flex-grow w-full max-w-full h-full overflow-x-clip">
-          <NavBar user={user} onLogout={handleLogout} />
-          {children}
-        </main>
-        <Footer />
-      </div>
+    <div className="flex flex-col w-full max-w-full min-h-screen">
+      <NavBar user={user} onLogout={handleLogout} />
+      <main className="flex-grow w-full max-w-full h-full overflow-x-clip">
+        {children}
+      </main>
     </div>
   );
 }

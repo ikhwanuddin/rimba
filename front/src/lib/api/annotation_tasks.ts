@@ -14,7 +14,17 @@ const DEFAULT_ENDPOINTS = {
   addBadge: "/api/v1/annotation_tasks/detail/badges/",
   removeBadge: "/api/v1/annotation_tasks/detail/badges/",
   claim: "/api/v1/annotation_tasks/claim/",
+  answer: "/api/v1/annotation_tasks/answer/",
+  progress: "/api/v1/annotation_tasks/progress/",
 };
+
+export const ProgressSchema = z.object({
+  done_by_me: z.number(),
+  remaining: z.number(),
+  total: z.number(),
+  by_user: z.record(z.number()),
+});
+export type Progress = z.infer<typeof ProgressSchema>;
 
 /* Way Canguk fork: clip given by the shared queue, with progress numbers. */
 export const ClaimSchema = z.object({
@@ -145,8 +155,31 @@ export function registerAnnotationTasksAPI(
     return ClaimSchema.parse(response.data);
   }
 
+  async function answer(
+    annotationTask: types.AnnotationTask,
+    value: string,
+  ): Promise<types.AnnotationTask> {
+    const response = await instance.post(
+      endpoints.answer,
+      {},
+      { params: { annotation_task_uuid: annotationTask.uuid, value } },
+    );
+    return schemas.AnnotationTaskSchema.parse(response.data);
+  }
+
+  async function progress(
+    annotationProject: types.AnnotationProject,
+  ): Promise<Progress> {
+    const response = await instance.get(endpoints.progress, {
+      params: { annotation_project_uuid: annotationProject.uuid },
+    });
+    return ProgressSchema.parse(response.data);
+  }
+
   return {
     claim,
+    answer,
+    progress,
     createMany,
     getMany,
     get: getAnnotationTask,
