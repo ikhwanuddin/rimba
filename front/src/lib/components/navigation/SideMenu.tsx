@@ -91,18 +91,26 @@ function SideMenuButton({
   );
 }
 
-function MainNavigation({ pathname }: { pathname?: string }) {
+function MainNavigation({
+  pathname,
+  isAdmin,
+}: {
+  pathname?: string;
+  isAdmin: boolean;
+}) {
   return (
     <ul className="flex flex-col space-y-3 py-4 text-stone-400">
-      <li className="px-3">
-        <SideMenuLink
-          isActive={pathname?.startsWith("/datasets")}
-          tooltip={"Datasets"}
-          href="/datasets"
-        >
-          <DatasetsIcon className="w-6 h-6" />
-        </SideMenuLink>
-      </li>
+      {isAdmin && (
+        <li className="px-3">
+          <SideMenuLink
+            isActive={pathname?.startsWith("/datasets")}
+            tooltip={"Datasets"}
+            href="/datasets"
+          >
+            <DatasetsIcon className="w-6 h-6" />
+          </SideMenuLink>
+        </li>
+      )}
       <li className="px-3">
         <SideMenuLink
           isActive={pathname?.startsWith("/annotation_projects")}
@@ -112,24 +120,28 @@ function MainNavigation({ pathname }: { pathname?: string }) {
           <AnnotationProjectIcon className="w-6 h-6" />
         </SideMenuLink>
       </li>
-      <li className="px-3">
-        <SideMenuLink
-          isActive={pathname?.startsWith("/evaluation")}
-          tooltip={"Evaluation"}
-          href="/evaluation"
-        >
-          <EvaluationIcon className="w-6 h-6" />
-        </SideMenuLink>
-      </li>
-      <li className="px-3">
-        <SideMenuLink
-          isActive={pathname?.startsWith("/exploration")}
-          tooltip={"Exploration"}
-          href="/exploration"
-        >
-          <ExplorationIcon className="w-6 h-6" />
-        </SideMenuLink>
-      </li>
+      {isAdmin && (
+        <li className="px-3">
+          <SideMenuLink
+            isActive={pathname?.startsWith("/evaluation")}
+            tooltip={"Evaluation"}
+            href="/evaluation"
+          >
+            <EvaluationIcon className="w-6 h-6" />
+          </SideMenuLink>
+        </li>
+      )}
+      {isAdmin && (
+        <li className="px-3">
+          <SideMenuLink
+            isActive={pathname?.startsWith("/exploration")}
+            tooltip={"Exploration"}
+            href="/exploration"
+          >
+            <ExplorationIcon className="w-6 h-6" />
+          </SideMenuLink>
+        </li>
+      )}
     </ul>
   );
 }
@@ -149,12 +161,6 @@ function SecondaryNavigation({
 
   return (
     <ul className="flex flex-col space-y-3 py-4 text-stone-400">
-      <HorizontalDivider />
-      <li className="px-3">
-        <SideMenuLink isActive={pathname === "/"} tooltip={"Home"} href="/">
-          <HomeIcon className="w-6 h-6" />
-        </SideMenuLink>
-      </li>
       <HorizontalDivider />
       <li className="px-3">
         <SideMenuButton tooltip={"Log Out"}>
@@ -181,10 +187,13 @@ export function SideMenu({
     >
       <div className="flex flex-grow flex-col justify-between overflow-y-auto overflow-x-hidden bg-stone-50 dark:bg-stone-800">
         <div className="flex flex-col items-center">
-          <div className="px-2 py-4">
+          <a href="/" className="px-2 py-4" title="Anotasi Way Canguk">
             <WhombatIcon width={46} height={46} />
-          </div>
-          <MainNavigation pathname={pathname} />
+          </a>
+          <MainNavigation
+            pathname={pathname}
+            isAdmin={user?.is_superuser === true}
+          />
         </div>
         <SecondaryNavigation
           pathname={pathname}

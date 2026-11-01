@@ -14,7 +14,12 @@ import type {
 } from "@/lib/types";
 import { isGeometryInWindow } from "@/lib/utils/geometry";
 import { getLabelPosition, getTagKey } from "@/lib/utils/tags";
-import { type Color, type TagElement, getTagColor } from "@/lib/utils/tags";
+import {
+  type Color,
+  type TagElement,
+  getTagClassNames,
+  getTagColor,
+} from "@/lib/utils/tags";
 
 import AddTagButton from "../tags/AddTagButton";
 
@@ -86,7 +91,7 @@ export function SoundEventSpectrogramTagsBase({
         top: y,
       }}
     >
-      <div className="flex relative right-0 flex-col hover:gap-2 -ms-2">
+      <div className="flex relative right-0 flex-col gap-1 -ms-2">
         {soundEvent.tags?.map((tag) => (
           <SpectrogramTag
             key={getTagKey(tag)}
@@ -102,6 +107,9 @@ export function SoundEventSpectrogramTagsBase({
   );
 }
 
+/* Way Canguk fork: the label of a box is always visible (upstream shows a small
+ * dot and the name only on hover), in the same high-contrast colours as other
+ * tags. Removing a tag needs a click on the small cross, not on the label. */
 export function SpectrogramTag({
   tag,
   onClick,
@@ -109,27 +117,28 @@ export function SpectrogramTag({
   disabled = false,
 }: TagElement & { disabled?: boolean; tagColorFn: (tag: TagType) => Color }) {
   const color = tagColorFn(tag);
-  const className = useMemo(() => {
-    return `bg-${color.color}-500`;
-  }, [color]);
+  const cls = getTagClassNames(color.color, color.level);
   return (
-    <span className="flex flex-row gap-1 items-center px-2 -my-2 rounded-full transition-all group bg-stone-200/0 dark:bg-stone-800/0 hover:bg-stone-200 hover:dark:bg-stone-800">
-      <span
-        className={`inline-block my-2 w-2 h-2 rounded-full ${className} ring-1 ring-stone-900 opacity-100`}
-      ></span>
-      <button
-        type="button"
-        className="hidden flex-row gap-1 items-center opacity-0 transition-all group-hover:flex group-hover:opacity-100 hover:text-red-500 text-stone-800 dark:text-stone-400"
-        onClick={onClick}
-      >
-        <span className="hidden text-xs font-thin whitespace-nowrap opacity-0 transition-all group-hover:inline-block group-hover:opacity-100">
-          {tag.key}
-        </span>
-        <span className="hidden text-sm font-medium whitespace-nowrap opacity-0 transition-all group-hover:inline-block group-hover:opacity-100">
-          {tag.value}
-        </span>
-        {!disabled && <CloseIcon className="inline-block w-3 h-3 stroke-2" />}
-      </button>
+    <span
+      title={`${tag.key}: ${tag.value}`}
+      className={classNames(
+        "flex flex-row gap-1 items-center w-fit px-1.5 py-0.5 rounded-md border text-xs font-semibold whitespace-nowrap shadow",
+        cls.background,
+        cls.text,
+        cls.border,
+      )}
+    >
+      {tag.value}
+      {!disabled && (
+        <button
+          type="button"
+          aria-label={`Remove ${tag.value}`}
+          className="hover:text-red-600"
+          onClick={onClick}
+        >
+          <CloseIcon className="inline-block w-3 h-3 stroke-2" />
+        </button>
+      )}
     </span>
   );
 }

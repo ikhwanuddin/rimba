@@ -301,40 +301,115 @@ export function getLabelPosition(
   }
 }
 
-const COLOR_STORE: Record<string, Color> = {};
-
 export function getTagKey(tag: Tag): string {
   return `${tag.key}-${tag.value}`;
 }
 
+/* Way Canguk fork: fixed, high-contrast tag palette.
+ * Each tag gets a colour from a hash of its key and value, so a species has the
+ * same colour in every browser and for every annotator. Text is the 900 shade on
+ * the 100 shade (contrast at least 7:1, WCAG AAA). Class names are written out in
+ * full so that Tailwind keeps them in the build. */
+const TAG_PALETTE: Record<
+  string,
+  { background: string; border: string; text: string }
+> = {
+  red: {
+    background: "bg-red-100 dark:bg-red-900",
+    border: "border-red-500 dark:border-red-400",
+    text: "text-red-900 dark:text-red-100",
+  },
+  orange: {
+    background: "bg-orange-100 dark:bg-orange-900",
+    border: "border-orange-500 dark:border-orange-400",
+    text: "text-orange-900 dark:text-orange-100",
+  },
+  amber: {
+    background: "bg-amber-100 dark:bg-amber-900",
+    border: "border-amber-500 dark:border-amber-400",
+    text: "text-amber-900 dark:text-amber-100",
+  },
+  lime: {
+    background: "bg-lime-100 dark:bg-lime-900",
+    border: "border-lime-600 dark:border-lime-400",
+    text: "text-lime-900 dark:text-lime-100",
+  },
+  teal: {
+    background: "bg-teal-100 dark:bg-teal-900",
+    border: "border-teal-500 dark:border-teal-400",
+    text: "text-teal-900 dark:text-teal-100",
+  },
+  cyan: {
+    background: "bg-cyan-100 dark:bg-cyan-900",
+    border: "border-cyan-500 dark:border-cyan-400",
+    text: "text-cyan-900 dark:text-cyan-100",
+  },
+  sky: {
+    background: "bg-sky-100 dark:bg-sky-900",
+    border: "border-sky-500 dark:border-sky-400",
+    text: "text-sky-900 dark:text-sky-100",
+  },
+  blue: {
+    background: "bg-blue-100 dark:bg-blue-900",
+    border: "border-blue-500 dark:border-blue-400",
+    text: "text-blue-900 dark:text-blue-100",
+  },
+  indigo: {
+    background: "bg-indigo-100 dark:bg-indigo-900",
+    border: "border-indigo-500 dark:border-indigo-400",
+    text: "text-indigo-900 dark:text-indigo-100",
+  },
+  violet: {
+    background: "bg-violet-100 dark:bg-violet-900",
+    border: "border-violet-500 dark:border-violet-400",
+    text: "text-violet-900 dark:text-violet-100",
+  },
+  fuchsia: {
+    background: "bg-fuchsia-100 dark:bg-fuchsia-900",
+    border: "border-fuchsia-500 dark:border-fuchsia-400",
+    text: "text-fuchsia-900 dark:text-fuchsia-100",
+  },
+  rose: {
+    background: "bg-rose-100 dark:bg-rose-900",
+    border: "border-rose-500 dark:border-rose-400",
+    text: "text-rose-900 dark:text-rose-100",
+  },
+  stone: {
+    background: "bg-stone-200 dark:bg-stone-700",
+    border: "border-stone-500 dark:border-stone-400",
+    text: "text-stone-900 dark:text-stone-50",
+  },
+};
+const HUES = Object.keys(TAG_PALETTE).filter((c) => c !== "stone");
+/* Answers that are not a species keep a neutral colour. */
+const NEUTRAL_VALUES = new Set(["tidak dikenal", "bukan burung"]);
+
+function hashString(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  // final mixing so that similar names still spread over the palette
+  h ^= h >>> 16;
+  h = Math.imul(h, 0x85ebca6b);
+  h ^= h >>> 13;
+  h = Math.imul(h, 0xc2b2ae35);
+  h ^= h >>> 16;
+  return h >>> 0;
+}
+
 export function getRandomColor(): Color {
-  const name = COLOR_NAMES[Math.floor(Math.random() * COLOR_NAMES.length)];
-  const level = LEVELS[Math.floor(Math.random() * LEVELS.length)];
-  return { color: name, level };
+  return { color: HUES[Math.floor(Math.random() * HUES.length)], level: 1 };
 }
 
 export function getTagColor(tag: Tag): Color {
-  const key = getTagKey(tag);
-  if (COLOR_STORE[key]) {
-    return COLOR_STORE[key];
+  if (NEUTRAL_VALUES.has(tag.value.trim().toLowerCase())) {
+    return { color: "stone", level: 1 };
   }
-
-  const color = getRandomColor();
-  COLOR_STORE[key] = color;
-  return color;
+  return { color: HUES[hashString(getTagKey(tag)) % HUES.length], level: 1 };
 }
 
-export function getTagClassNames(color: string, level: number) {
-  const background = `bg-${color}-${level}00 dark:bg-${color}-${10 - level}00`;
-  const border = `border-${color}-${level + 2}00 dark:border-${color}-${
-    10 - level - 2
-  }00`;
-  const text = `text-${color}-${level + 3}00 dark:text-${color}-${
-    10 - level - 3
-  }00`;
-  return {
-    background,
-    border,
-    text,
-  };
+export function getTagClassNames(color: string, _level: number) {
+  return TAG_PALETTE[color] ?? TAG_PALETTE.stone;
 }

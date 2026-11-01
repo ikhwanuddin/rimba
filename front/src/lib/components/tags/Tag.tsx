@@ -36,7 +36,7 @@ export default function Tag({
   return (
     <div
       className={classnames(
-        "border rounded-md px-1 whitespace-nowrap tracking-tighter inline-flex w-fit max-w-full flex-nowrap",
+        "border rounded-md px-1.5 whitespace-nowrap inline-flex w-fit max-w-full flex-nowrap",
         classNames.background,
         classNames.text,
         classNames.border,
@@ -54,7 +54,9 @@ export default function Tag({
         className="flex flex-row items-center max-w-full group"
         onClick={onClick}
       >
-        <span className="font-thin min-w-fit shrink">{tag.key}</span>
+        <span className="font-normal opacity-75 min-w-fit shrink">
+          {tag.key}
+        </span>
         <span className="flex-1 ml-1 font-bold group-hover:underline grow truncate group-hover:decoration-2 group-hover:underline-offset-2">
           {tag.value}
         </span>

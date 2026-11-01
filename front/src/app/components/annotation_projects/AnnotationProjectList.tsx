@@ -3,6 +3,7 @@ import AnnotationProjectCreate from "@/app/components/annotation_projects/Annota
 import AnnotationProjectImport from "@/app/components/annotation_projects/AnnotationProjectImport";
 
 import useAnnotationProjects from "@/app/hooks/api/useAnnotationProjects";
+import useIsAdmin from "@/app/hooks/useIsAdmin";
 
 import AnnotationProjectListBase from "@/lib/components/annotation_projects/AnnotationProjectList";
 import { DatasetIcon } from "@/lib/components/icons";
@@ -17,6 +18,7 @@ export default function AnnotationProjectList({
   onCreateAnnotationProject?: (annotationProject: AnnotationProject) => void;
   onClickAnnotationProject?: (annotationProject: AnnotationProject) => void;
 }) {
+  const isAdmin = useIsAdmin();
   const { items, pagination, isLoading, filter } = useAnnotationProjects({
     onCreateAnnotationProject,
   });
@@ -26,14 +28,18 @@ export default function AnnotationProjectList({
       isLoading={isLoading}
       onClickAnnotationProject={onClickAnnotationProject}
       AnnotationProjectImport={
-        <AnnotationProjectImport
-          onImportAnnotationProject={onCreateAnnotationProject}
-        />
+        isAdmin ? (
+          <AnnotationProjectImport
+            onImportAnnotationProject={onCreateAnnotationProject}
+          />
+        ) : null
       }
       AnnotationProjectCreate={
-        <AnnotationProjectCreate
-          onCreateAnnotationProject={onCreateAnnotationProject}
-        />
+        isAdmin ? (
+          <AnnotationProjectCreate
+            onCreateAnnotationProject={onCreateAnnotationProject}
+          />
+        ) : null
       }
       AnnotationProjectSearch={
         <Search

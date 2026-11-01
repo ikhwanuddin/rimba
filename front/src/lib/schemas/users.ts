@@ -5,6 +5,8 @@ export const UserSchema = z.object({
   username: z.string(),
   email: z.string().email().optional(),
   name: z.string().nullable().optional(),
+  // Way Canguk fork: used to show admin-only menus
+  is_superuser: z.boolean().optional(),
 });
 
 export const UserCreateSchema = z

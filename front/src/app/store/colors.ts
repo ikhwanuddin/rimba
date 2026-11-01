@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
 
 import type { Tag } from "@/lib/types";
-import { type Color, getRandomColor, getTagKey } from "@/lib/utils/tags";
+import { type Color, getTagColor, getTagKey } from "@/lib/utils/tags";
 
 export type ColorsSlice = {
   colors: {
@@ -26,24 +26,9 @@ export const createColorsSlice: StateCreator<ColorsSlice> = (set, get) => ({
       },
     }));
   },
-  getTagColor: (tag: Tag) => {
-    const { tags } = get().colors;
-    const key = getTagKey(tag);
-    if (tags[key]) {
-      return tags[key];
-    } else {
-      const color = getRandomColor();
-      set((state) => ({
-        colors: {
-          tags: {
-            ...state.colors.tags,
-            [key]: color,
-          },
-        },
-      }));
-      return color;
-    }
-  },
+  // Way Canguk fork: colours come from the tag itself (same for everyone),
+  // not from a random pick stored per browser.
+  getTagColor: (tag: Tag) => getTagColor(tag),
   clearTagColors: () => {
     set(() => ({
       colors: {

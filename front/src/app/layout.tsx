@@ -11,8 +11,8 @@ import "./globals.css";
 const mulish = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Whombat",
-  description: "Audio annotation tool for machine learning",
+  title: "Anotasi Way Canguk",
+  description: "Bird-call annotation for Way Canguk (built on Whombat)",
 };
 
 export default function RootLayout({

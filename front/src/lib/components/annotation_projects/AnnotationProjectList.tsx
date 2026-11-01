@@ -19,8 +19,8 @@ export default function AnnotationProjectList({
   isLoading?: boolean;
   onClickAnnotationProject?: (annotationProject: AnnotationProject) => void;
   AnnotationProjectSearch: JSX.Element;
-  AnnotationProjectCreate: JSX.Element;
-  AnnotationProjectImport: JSX.Element;
+  AnnotationProjectCreate?: JSX.Element | null;
+  AnnotationProjectImport?: JSX.Element | null;
   Pagination: JSX.Element;
 }) {
   return (
@@ -30,33 +30,37 @@ export default function AnnotationProjectList({
       Search={AnnotationProjectSearch}
       Empty={<NoProjects />}
       Actions={[
-        <Dialog
-          key="create"
-          mode="text"
-          title="Create Annotation Project"
-          width="w-96"
-          label={
-            <>
-              <AddIcon className="inline-block w-4 h-4 align-middle" /> Create
-            </>
-          }
-        >
-          {() => AnnotationProjectCreate}
-        </Dialog>,
-        <Dialog
-          key="import"
-          mode="text"
-          title="Import annotation project"
-          label={
-            <>
-              <UploadIcon className="inline-block w-4 h-4 align-middle" />{" "}
-              Import
-            </>
-          }
-        >
-          {() => AnnotationProjectImport}
-        </Dialog>,
-      ]}
+        AnnotationProjectCreate != null && (
+          <Dialog
+            key="create"
+            mode="text"
+            title="Create Annotation Project"
+            width="w-96"
+            label={
+              <>
+                <AddIcon className="inline-block w-4 h-4 align-middle" /> Create
+              </>
+            }
+          >
+            {() => AnnotationProjectCreate}
+          </Dialog>
+        ),
+        AnnotationProjectImport != null && (
+          <Dialog
+            key="import"
+            mode="text"
+            title="Import annotation project"
+            label={
+              <>
+                <UploadIcon className="inline-block w-4 h-4 align-middle" />{" "}
+                Import
+              </>
+            }
+          >
+            {() => AnnotationProjectImport}
+          </Dialog>
+        ),
+      ].filter((a): a is JSX.Element => Boolean(a))}
       Pagination={Pagination}
       items={annotationProjects.map((item) => (
         <AnnotationProjectComponent

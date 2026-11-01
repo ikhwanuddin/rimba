@@ -1,16 +1,14 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import api from "@/app/api";
 
-import { WhombatIcon } from "@/lib/components/icons";
 import { Group, Input } from "@/lib/components/inputs/index";
-import Info from "@/lib/components/ui/Info";
-import Link from "@/lib/components/ui/Link";
 
 const schema = z.object({
   username: z.string(),
@@ -53,56 +51,64 @@ export default function LoginForm() {
       });
   };
 
+  // Way Canguk fork: project login page (no "create account" box; accounts are
+  // made by the administrator).
   return (
-    <div className="flex flex-col gap-4 items-center justify-center min-h-screen">
-      <div className="mb-4 flex flex-col items-center gap-4 text-center text-7xl">
-        <WhombatIcon width={128} height={128} />
-        <span className="font-sans font-bold text-emerald-500 underline decoration-8">
-          Whombat
-        </span>
-      </div>
-      <p className="max-w-prose text-stone-500">
-        Welcome back! Please sign in to continue.
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
+    <div className="flex flex-col min-h-screen bg-emerald-50 dark:bg-stone-900">
+      <div className="flex flex-1 flex-col items-center justify-center gap-8 p-6">
+        <Image
+          src="/waycanguk_logo.svg"
+          alt="Anotasi Suara Way Canguk"
+          width={420}
+          height={131}
+          priority
+        />
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-80 flex flex-col gap-3 rounded-lg border border-emerald-200 bg-white p-6 shadow-sm dark:border-stone-700 dark:bg-stone-800"
+        >
           <Group
             label="Username"
             name="username"
             error={errors.username?.message}
           >
-            <Input {...register("username")} />
+            <Input autoComplete="username" {...register("username")} />
           </Group>
-        </div>
-        <div className="mb-3">
           <Group
             label="Password"
             name="password"
             error={errors.password?.message}
           >
-            <Input type="password" {...register("password")} />
+            <Input
+              type="password"
+              autoComplete="current-password"
+              {...register("password")}
+            />
           </Group>
-        </div>
-        <div>
-          <Input type="submit" value="Sign in" />
-        </div>
-      </form>
-      <Info className="w-80">
-        <p>
-          Don&apos;t have an account? Ask your administrator to create one for
-          you.
+          <button
+            type="submit"
+            className="mt-2 rounded-md bg-emerald-700 px-4 py-2 font-bold text-white hover:bg-emerald-800 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+          >
+            Sign in
+          </button>
+        </form>
+        <p className="w-80 text-center text-sm text-stone-600 dark:text-stone-400">
+          No account yet? Ask the project administrator.
         </p>
-      </Info>
-      <Info className="w-80">
-        <p>
-          First time booting up Whombat? Click instead to create an account:
-        </p>
-        <div className="w-full flex flex-row justify-center">
-          <Link mode="text" href="/first/" variant="info">
-            Create account
-          </Link>
-        </div>
-      </Info>
+      </div>
+      <footer className="p-4 text-center text-xs text-stone-500">
+        Built on{" "}
+        <a className="underline" href="https://github.com/mbsantiago/whombat">
+          Whombat
+        </a>{" "}
+        © Martínez Balvanera et al., GPL-3.0 ·{" "}
+        <a
+          className="underline"
+          href="https://github.com/ikhwanuddin/whombat/tree/waycanguk"
+        >
+          source code
+        </a>
+      </footer>
     </div>
   );
 }
