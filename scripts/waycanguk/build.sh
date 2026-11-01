@@ -3,7 +3,7 @@
 # Usage: scripts/waycanguk/build.sh   (needs node/npm and uv)
 set -euo pipefail
 cd "$(dirname "$0")/../.."
-(cd front && npm ci --no-audit --no-fund >/dev/null && npm run build >/dev/null)
+(cd front && { [ -d node_modules ] || npm ci --no-audit --no-fund >/dev/null; } && npm run build >/dev/null)
 rm -rf back/src/whombat/statics && mkdir back/src/whombat/statics
 mv front/out/* back/src/whombat/statics/
 rm -f dist/whombat-*.whl

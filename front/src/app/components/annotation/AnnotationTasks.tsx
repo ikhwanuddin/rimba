@@ -4,6 +4,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 import useAudioSettings from "@/app/hooks/settings/useAudioSettings";
 import useSpectrogramSettings from "@/app/hooks/settings/useSpectrogramSettings";
 import useViewSettings from "@/app/hooks/settings/useViewSettings";
+import useIsAdmin from "@/app/hooks/useIsAdmin";
 
 import AnnotationProgress from "@/lib/components/annotation/AnnotationProgress";
 import AnnotationTaskBase from "@/lib/components/annotation/AnnotationTask";
@@ -21,6 +22,7 @@ import TagSearchBar from "../tags/TagSearchBar";
 import ClipAnnotationSpectrogram from "./AnnotationClip";
 import AnnotationContext from "./AnnotationContext";
 import AnnotationTagPalette from "./AnnotationTagPalette";
+import AnnotatorView from "./AnnotatorView";
 
 export default function AnnotateTasks({
   annotationProject,
@@ -31,6 +33,8 @@ export default function AnnotateTasks({
   annotationTask?: AnnotationTask;
   onChangeTask?: (task: AnnotationTask) => void;
 }) {
+  const isAdmin = useIsAdmin();
+
   const audioSettings = useAudioSettings();
 
   const spectrogramSettings = useSpectrogramSettings();
@@ -60,19 +64,45 @@ export default function AnnotateTasks({
 
   useHotkeys("g", () => tasks.markCompleted.mutate(), {
     description: "Mark current task as completed",
+    enabled: isAdmin,
   });
 
   useHotkeys("r", () => tasks.markRejected.mutate(), {
     description: "Mark current task as rejected (for review)",
+    enabled: isAdmin,
   });
 
   useHotkeys("v", () => tasks.markVerified.mutate(), {
     description: "Mark current task as verified",
+    enabled: isAdmin,
   });
 
   useHotkeys("c", () => tagPalette.clearTags(), {
     description: "Clear all tags from the tag palette",
+    enabled: isAdmin,
   });
+
+  // Way Canguk fork: annotators get the simple page (AnnotatorView).
+  if (!isAdmin) {
+    return (
+      <AnnotatorView
+        annotationProject={annotationProject}
+        tasks={tasks}
+        Spectrogram={
+          tasks.annotations.data != null ? (
+            <ClipAnnotationSpectrogram
+              clipAnnotation={tasks.annotations.data}
+              audioSettings={audioSettings}
+              viewSettings={viewSettings}
+              spectrogramSettings={spectrogramSettings}
+              tagPalette={tagPalette}
+              simple
+            />
+          ) : undefined
+        }
+      />
+    );
+  }
 
   return (
     <AnnotationTaskBase

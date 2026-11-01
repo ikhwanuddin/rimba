@@ -30,12 +30,15 @@ export default function ClipAnnotationSpectrogram({
   viewSettings,
   tagPalette,
   height,
+  simple = false,
 }: {
   clipAnnotation: ClipAnnotation;
   spectrogramSettings: ReturnType<typeof useSpectrogramSettings>;
   audioSettings: ReturnType<typeof useAudioSettings>;
   viewSettings: ReturnType<typeof useViewSettings>;
   tagPalette: ReturnType<typeof useAnnotationTagPallete>;
+  /** Way Canguk fork: annotator view, only player, small box tools and canvas */
+  simple?: boolean;
   height?: number;
 }) {
   const { data = clipAnnotation } = useClipAnnotation({
@@ -69,7 +72,9 @@ export default function ClipAnnotationSpectrogram({
   return (
     <ClipAnnotationSpectrogramBase
       ViewportToolbar={
-        <ViewportToolbar state={spectrogramState} viewport={viewport} />
+        simple ? undefined : (
+          <ViewportToolbar state={spectrogramState} viewport={viewport} />
+        )
       }
       Player={
         <Player
@@ -81,14 +86,16 @@ export default function ClipAnnotationSpectrogram({
         />
       }
       SettingsMenu={
-        <SettingsMenu
-          samplerate={data.clip.recording.samplerate}
-          audioSettings={audioSettings}
-          spectrogramSettings={spectrogramSettings}
-          viewSettings={viewSettings}
-        />
+        simple ? undefined : (
+          <SettingsMenu
+            samplerate={data.clip.recording.samplerate}
+            audioSettings={audioSettings}
+            spectrogramSettings={spectrogramSettings}
+            viewSettings={viewSettings}
+          />
+        )
       }
-      ViewportBar={<ViewportBar viewport={viewport} />}
+      ViewportBar={simple ? undefined : <ViewportBar viewport={viewport} />}
       AnnotationControls={
         <AnnotationControls
           mode={annotationState.mode}
@@ -111,10 +118,11 @@ export default function ClipAnnotationSpectrogram({
           audio={audio}
           viewport={viewport}
           defaultTags={tagPalette.tags}
+          enabled={!simple}
         />
       }
       SelectedSoundEvent={
-        annotationState.selectedAnnotation != null ? (
+        simple ? undefined : annotationState.selectedAnnotation != null ? (
           <SelectedSoundEventAnnotation
             soundEventAnnotation={annotationState.selectedAnnotation}
           />
