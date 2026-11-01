@@ -4,8 +4,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useContext } from "react";
 
 import AnnotateTasks from "@/app/components/annotation/AnnotationTasks";
+import AnnotatorView from "@/app/components/annotation/AnnotatorView";
 
 import useAnnotationTask from "@/app/hooks/api/useAnnotationTask";
+import useIsAdmin from "@/app/hooks/useIsAdmin";
 
 import Loading from "@/lib/components/ui/Loading";
 
@@ -15,6 +17,7 @@ import AnnotationProjectContext from "../../../../contexts/annotationProject";
 
 export default function Page() {
   const project = useContext(AnnotationProjectContext);
+  const isAdmin = useIsAdmin();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -34,6 +37,11 @@ export default function Page() {
     },
     [router, pathname, searchParams],
   );
+
+  // Way Canguk fork: annotators work from the shared clip queue.
+  if (!isAdmin) {
+    return <AnnotatorView annotationProject={project} />;
+  }
 
   if (isLoading && taskUUID != null) {
     return <Loading />;

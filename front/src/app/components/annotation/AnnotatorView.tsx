@@ -3,9 +3,12 @@
  * One question per clip: is the sound inside the box the species on its label?
  * Yes / No / Not sure (keys 1, 2, 3). The answer is stored as a clip tag
  * ("jawaban": "ya" | "tidak" | "tidak yakin"), the task is marked completed and
- * the next clip opens. Optionally the box label can be changed to another
- * species of the project before answering. Box editing stays available but in
+ * the next clip opens. Clips come from a shared queue (POST
+ * /annotation_tasks/claim/): each annotator gets the next clip nobody holds.
+ * "Previous" walks back through the clips seen in this session. Optionally the
+ * box label can be changed to another species of the project before answering. Box editing stays available but in
  * small controls; metadata, filters, maps and settings are hidden. */
+import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames";
 import {
   useCallback,
@@ -19,15 +22,26 @@ import toast from "react-hot-toast";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import useClipAnnotation from "@/app/hooks/api/useClipAnnotation";
+import useAudioSettings from "@/app/hooks/settings/useAudioSettings";
+import useSpectrogramSettings from "@/app/hooks/settings/useSpectrogramSettings";
+import useViewSettings from "@/app/hooks/settings/useViewSettings";
 
+import api from "@/app/api";
 import UserContext from "@/app/contexts/user";
 
-import type useAnnotateTasks from "@/lib/hooks/annotation/useAnnotateTasks";
+import useAnnotationTagPallete from "@/lib/hooks/annotation/useAnnotationTagPalette";
 
-import type { AnnotationProject, Tag } from "@/lib/types";
+import type { Claim } from "@/lib/api/annotation_tasks";
+import type {
+  AnnotationProject,
+  AnnotationTask,
+  ClipAnnotation,
+  Tag,
+} from "@/lib/types";
 import { getTagClassNames, getTagColor } from "@/lib/utils/tags";
 
 import ClipAnnotationNotes from "../clip_annotations/ClipAnnotationNotes";
+import ClipAnnotationSpectrogram from "./AnnotationClip";
 
 export const ANSWER_KEY = "jawaban";
 export const SPECIES_KEY = "species";
@@ -52,68 +66,115 @@ const ANSWERS = [
   },
 ] as const;
 
-type Tasks = ReturnType<typeof useAnnotateTasks>;
+type QueueState = {
+  stack: AnnotationTask[];
+  pos: number;
+  claim: Claim | null;
+  loading: boolean;
+};
 
 export default function AnnotatorView({
   annotationProject,
-  tasks,
-  Spectrogram,
 }: {
   annotationProject: AnnotationProject;
-  tasks: Tasks;
-  Spectrogram?: JSX.Element;
 }) {
-  const user = useContext(UserContext);
-  const total = tasks.tasks.length;
-  const done = useMemo(
-    () =>
-      tasks.tasks.filter((t) =>
-        t.status_badges?.some((b) => b.state === "completed"),
-      ).length,
-    [tasks.tasks],
-  );
+  const audioSettings = useAudioSettings();
+  const spectrogramSettings = useSpectrogramSettings();
+  const viewSettings = useViewSettings();
+  const tagPalette = useAnnotationTagPallete();
+  const [q, setQ] = useState<QueueState>({
+    stack: [],
+    pos: -1,
+    claim: null,
+    loading: true,
+  });
   const [showHelp, setShowHelp] = useState(false);
 
-  // On opening the page, continue at the first clip not answered yet.
-  const resumed = useRef(false);
-  useEffect(() => {
-    if (resumed.current || tasks.task == null || tasks.tasks.length === 0)
-      return;
-    resumed.current = true;
-    const isDone = (t: (typeof tasks.tasks)[number]) =>
-      t.status_badges?.some((b) => b.state === "completed") ?? false;
-    if (!isDone(tasks.task)) return;
-    const next = tasks.tasks.find((t) => !isDone(t));
-    if (next != null) tasks.goToTask(next);
-  }, [tasks]);
+  const claimNext = useCallback(async () => {
+    setQ((s) => ({ ...s, loading: true }));
+    try {
+      const claim = await api.annotationTasks.claim(annotationProject);
+      setQ((s) => {
+        const stack = s.stack.filter((t) => t.uuid !== claim.task?.uuid);
+        if (claim.task != null) stack.push(claim.task);
+        return {
+          stack,
+          pos: claim.task != null ? stack.length - 1 : stack.length,
+          claim,
+          loading: false,
+        };
+      });
+    } catch {
+      toast.error("Gagal mengambil klip berikutnya. Coba muat ulang halaman.");
+      setQ((s) => ({ ...s, loading: false }));
+    }
+  }, [annotationProject]);
 
+  const started = useRef(false);
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    claimNext();
+  }, [claimNext]);
+
+  const task = q.pos >= 0 && q.pos < q.stack.length ? q.stack[q.pos] : null;
+  const goPrev = useCallback(
+    () => setQ((s) => ({ ...s, pos: Math.max(0, s.pos - 1) })),
+    [],
+  );
+  const goNext = useCallback(() => {
+    if (q.pos < q.stack.length - 1) setQ((s) => ({ ...s, pos: s.pos + 1 }));
+    else claimNext();
+  }, [q.pos, q.stack.length, claimNext]);
+  const replaceTask = useCallback(
+    (t: AnnotationTask) =>
+      setQ((s) => ({
+        ...s,
+        stack: s.stack.map((x) => (x.uuid === t.uuid ? t : x)),
+      })),
+    [],
+  );
+
+  const annotations = useQuery<ClipAnnotation>({
+    // the task object only changes its badges; the uuid identifies the clip
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
+    queryKey: ["annotation_task", task?.uuid, "annotations"],
+    queryFn: () => api.annotationTasks.getAnnotations(task!),
+    enabled: task != null,
+  });
+
+  const c = q.claim;
   return (
     <div className="flex flex-col gap-4 max-w-6xl mx-auto">
       <div className="flex flex-row flex-wrap items-center gap-4">
         <button
           type="button"
           className="rounded-md border border-stone-300 px-3 py-1 hover:bg-stone-200 disabled:opacity-40 dark:border-stone-600 dark:hover:bg-stone-700"
-          onClick={tasks.prevTask}
-          disabled={!tasks.hasPrevTask}
+          onClick={goPrev}
+          disabled={q.pos <= 0}
         >
           ← Sebelumnya
         </button>
         <div className="flex flex-col grow min-w-48">
           <span className="text-sm text-stone-600 dark:text-stone-400">
-            Klip {(tasks.current ?? 0) + 1} dari {total} · selesai {done}
+            {c
+              ? `Kamu sudah menjawab ${c.done_by_me} · sisa proyek ${c.remaining} dari ${c.total}`
+              : "…"}
           </span>
           <div className="h-2 w-full rounded-full bg-stone-200 dark:bg-stone-700">
             <div
               className="h-2 rounded-full bg-emerald-600"
-              style={{ width: `${total ? (100 * done) / total : 0}%` }}
+              style={{
+                width: `${c && c.total ? (100 * (c.total - c.remaining)) / c.total : 0}%`,
+              }}
             />
           </div>
         </div>
         <button
           type="button"
           className="rounded-md border border-stone-300 px-3 py-1 hover:bg-stone-200 disabled:opacity-40 dark:border-stone-600 dark:hover:bg-stone-700"
-          onClick={tasks.nextTask}
-          disabled={!tasks.hasNextTask}
+          onClick={goNext}
+          disabled={q.loading}
         >
           Berikutnya →
         </button>
@@ -132,20 +193,34 @@ export default function AnnotatorView({
           {annotationProject.annotation_instructions}
         </div>
       )}
-      {tasks.task == null || tasks.annotations.data == null ? (
+      {task == null ? (
         <div className="p-8 text-center text-stone-500">
-          {total > 0 && done === total
-            ? "Semua klip sudah dijawab. Terima kasih!"
-            : "Memuat klip…"}
+          {q.loading
+            ? "Memuat klip…"
+            : "Tidak ada klip tersisa untukmu. Terima kasih!"}
         </div>
+      ) : annotations.data == null ? (
+        <div className="p-8 text-center text-stone-500">Memuat klip…</div>
       ) : (
         <>
-          {Spectrogram}
+          <ClipAnnotationSpectrogram
+            key={annotations.data.uuid}
+            clipAnnotation={annotations.data}
+            audioSettings={audioSettings}
+            viewSettings={viewSettings}
+            spectrogramSettings={spectrogramSettings}
+            tagPalette={tagPalette}
+            simple
+          />
           <AnswerPanel
-            key={tasks.annotations.data.uuid}
+            key={task.uuid}
             annotationProject={annotationProject}
-            tasks={tasks}
-            userId={user?.id}
+            task={task}
+            clipAnnotation={annotations.data}
+            onDone={(t) => {
+              replaceTask(t);
+              goNext();
+            }}
           />
         </>
       )}
@@ -155,14 +230,16 @@ export default function AnnotatorView({
 
 function AnswerPanel({
   annotationProject,
-  tasks,
-  userId,
+  task,
+  clipAnnotation,
+  onDone,
 }: {
   annotationProject: AnnotationProject;
-  tasks: Tasks;
-  userId?: string;
+  task: AnnotationTask;
+  clipAnnotation: ClipAnnotation;
+  onDone: (task: AnnotationTask) => void;
 }) {
-  const clipAnnotation = tasks.annotations.data!;
+  const user = useContext(UserContext);
   const {
     data = clipAnnotation,
     addClipAnnotationTag,
@@ -207,14 +284,14 @@ function AnswerPanel({
           }
         }
         if (answer !== value) await addClipAnnotationTag.mutateAsync(tag);
-        const alreadyDone = tasks.task?.status_badges?.some(
-          (b) => b.state === "completed" && b.user?.id === userId,
+        const alreadyDone = task.status_badges?.some(
+          (b) => b.state === "completed" && b.user?.id === user?.id,
         );
-        if (alreadyDone) {
-          tasks.nextTask();
-        } else {
-          await tasks.markCompleted.mutateAsync();
-        }
+        onDone(
+          alreadyDone
+            ? task
+            : await api.annotationTasks.addBadge(task, "completed"),
+        );
       } catch {
         toast.error("Gagal menyimpan jawaban. Coba lagi.");
       } finally {
@@ -228,8 +305,9 @@ function AnswerPanel({
       answer,
       addClipAnnotationTag,
       removeClipAnnotationTag,
-      tasks,
-      userId,
+      task,
+      user,
+      onDone,
     ],
   );
 

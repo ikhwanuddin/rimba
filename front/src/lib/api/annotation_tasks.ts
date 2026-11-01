@@ -13,7 +13,17 @@ const DEFAULT_ENDPOINTS = {
   delete: "/api/v1/annotation_tasks/detail/",
   addBadge: "/api/v1/annotation_tasks/detail/badges/",
   removeBadge: "/api/v1/annotation_tasks/detail/badges/",
+  claim: "/api/v1/annotation_tasks/claim/",
 };
+
+/* Way Canguk fork: clip given by the shared queue, with progress numbers. */
+export const ClaimSchema = z.object({
+  task: schemas.AnnotationTaskSchema.nullish(),
+  done_by_me: z.number(),
+  remaining: z.number(),
+  total: z.number(),
+});
+export type Claim = z.infer<typeof ClaimSchema>;
 
 export function registerAnnotationTasksAPI(
   instance: AxiosInstance,
@@ -124,7 +134,19 @@ export function registerAnnotationTasksAPI(
     return schemas.AnnotationTaskSchema.parse(response.data);
   }
 
+  async function claim(
+    annotationProject: types.AnnotationProject,
+  ): Promise<Claim> {
+    const response = await instance.post(
+      endpoints.claim,
+      {},
+      { params: { annotation_project_uuid: annotationProject.uuid } },
+    );
+    return ClaimSchema.parse(response.data);
+  }
+
   return {
+    claim,
     createMany,
     getMany,
     get: getAnnotationTask,
