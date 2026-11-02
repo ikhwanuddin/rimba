@@ -5,6 +5,14 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { EditIcon } from "@/lib/components/icons";
 import { Input, TextArea } from "@/lib/components/inputs";
 
+import { localized } from "@/lib/i18n";
+
+/** RIMBA: text values in the interface language, other values as before. */
+function shown(value: string | number | Date | undefined): string {
+  if (typeof value === "string") return localized(value);
+  return value?.toLocaleString() ?? "";
+}
+
 /**
  * A component to display data within a description list (<dd>) element.
  */
@@ -77,7 +85,8 @@ export function EditableDescriptionData<T extends string | number | Date>({
   if (!editing) {
     return (
       <DescriptionData className="flex flex-row justify-between">
-        <p className="whitespace-pre-wrap">{value?.toLocaleString() ?? ""}</p>
+        {/* RIMBA: show one language; editing shows both (see localized) */}
+        <p className="whitespace-pre-wrap">{shown(value)}</p>
         <button
           onClick={() => setEditing(true)}
           className="ml-2 text-sm underline text-stone-500"
@@ -204,7 +213,7 @@ export default function Description<T extends string | number | Date>({
     return (
       <div className="flex flex-col w-full">
         <DescriptionTerm>{name}</DescriptionTerm>
-        <DescriptionData>{value?.toLocaleString() ?? ""}</DescriptionData>
+        <DescriptionData>{shown(value)}</DescriptionData>
       </div>
     );
   }

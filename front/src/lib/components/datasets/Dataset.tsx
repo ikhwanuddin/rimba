@@ -7,7 +7,7 @@ import {
 } from "@/lib/components/icons";
 import Button from "@/lib/components/ui/Button";
 
-import { locale } from "@/lib/i18n";
+import { locale, localized } from "@/lib/i18n";
 import type { Dataset as DatasetType } from "@/lib/types";
 
 export function Atom({ label, value }: { label: ReactNode; value: ReactNode }) {
@@ -39,11 +39,11 @@ export default function Dataset({
             mode="text"
             onClick={onClickDataset}
           >
-            {dataset.name}
+            {localized(dataset.name)}
           </Button>
         </h3>
         <p className="mt-1 w-full text-sm leading-5 text-stone-600 dark:text-stone-400">
-          {dataset.description}
+          {localized(dataset.description ?? "")}
         </p>
       </div>
       <div className="flex flex-row py-4">

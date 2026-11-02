@@ -8,7 +8,7 @@ import { DatasetIcon, RecordingsIcon } from "@/lib/components/icons";
 import SectionTabs from "@/lib/components/navigation/SectionTabs";
 import Tab from "@/lib/components/ui/Tab";
 
-import { t } from "@/lib/i18n";
+import { localized, t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 /**
@@ -29,7 +29,7 @@ export default function DatasetTabs({ dataset }: { dataset: Dataset }) {
 
   return (
     <SectionTabs
-      title={dataset.name}
+      title={localized(dataset.name)}
       tabs={[
         <Tab
           key="overview"

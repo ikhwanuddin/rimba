@@ -30,7 +30,7 @@ export default function AnnotationProjectUpdateComponent({
                 name={t("Nama")}
                 value={annotationProject.name}
                 onChange={(name) => onChangeAnnotationProject?.({ name })}
-                type="text"
+                type="textarea"
                 editable
               />
             </div>
