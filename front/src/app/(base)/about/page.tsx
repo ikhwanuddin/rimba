@@ -82,22 +82,6 @@ export default function Page() {
               ))}
             </ul>
           </section>
-          <p className="text-center text-xs text-stone-500">
-            Dibangun di atas{" "}
-            <a
-              className="underline"
-              href="https://github.com/mbsantiago/whombat"
-            >
-              Whombat
-            </a>{" "}
-            (Martínez Balvanera dkk., 2024), GPL-3.0 ·{" "}
-            <a
-              className="underline"
-              href="https://github.com/ikhwanuddin/whombat/tree/waycanguk"
-            >
-              kode sumber versi ini
-            </a>
-          </p>
         </div>
       </div>
     </div>
