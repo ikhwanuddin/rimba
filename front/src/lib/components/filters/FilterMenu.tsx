@@ -44,7 +44,7 @@ function FilterCombobox<T extends Object>({
         getOptionKey={(filter) => filter.name}
         onSelect={onChange}
         empty={
-          <div className="w-full text-center text-stone-500">
+          <div className="w-full text-center text-stone-500 dark:text-stone-400">
             {t("Tidak ada saringan")}
           </div>
         }
@@ -78,7 +78,9 @@ function FilterPanel<T extends Object>({
     <>
       <div className="flex flex-row justify-between items-center mb-2">
         <div>
-          <span className="mr-2 text-stone-500">{t("Saring menurut")}</span>
+          <span className="mr-2 text-stone-500 dark:text-stone-400">
+            {t("Saring menurut")}
+          </span>
           <span className="underline text-stone-700 underline-offset-2 decoration-amber-500 decoration-2 dark:text-stone-300">
             {t(selectedFilter.name)}
           </span>

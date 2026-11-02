@@ -44,7 +44,7 @@ function FloatField({
             {t("Operasi")}
           </label>
           <select
-            className="pr-3 pl-2 h-full bg-transparent rounded-l-md border-0 focus:ring-2 focus:ring-inset focus:ring-emerald-600 text-stone-500"
+            className="pr-3 pl-2 h-full bg-transparent rounded-l-md border-0 focus:ring-2 focus:ring-inset focus:ring-emerald-600 text-stone-500 dark:text-stone-400"
             id={`${name}-operation`}
             name={`${name}-operation`}
             value={operation}
@@ -99,7 +99,7 @@ function IsNullField({
       </label>
       <Checkbox
         id={`${name}-isnull`}
-        className="text-emerald-500 rounded shadow-sm dark:text-emerald-500 focus:ring focus:ring-emerald-300 focus:ring-opacity-50 focus:ring-offset-0 form-checkbox"
+        className="text-emerald-700 rounded shadow-sm dark:text-emerald-500 focus:ring focus:ring-emerald-300 focus:ring-opacity-50 focus:ring-offset-0 form-checkbox"
         checked={value === true}
         indeterminate={value === false}
         onChange={() => {
@@ -112,7 +112,7 @@ function IsNullField({
           }
         }}
       />
-      <span className="text-stone-500">
+      <span className="text-stone-500 dark:text-stone-400">
         {value === null ? "not set" : value ? "is null" : "is not null"}
       </span>
       <button

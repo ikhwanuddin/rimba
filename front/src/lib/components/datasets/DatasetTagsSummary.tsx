@@ -29,10 +29,10 @@ export default function DatasetTagsSummary({
   return (
     <Card>
       <H3>
-        <TagsIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
+        <TagsIcon className="inline-block mr-2 w-6 h-6 text-emerald-700 dark:text-emerald-400" />
         {t("Label")}
       </H3>
-      <p className="text-stone-500">
+      <p className="text-stone-500 dark:text-stone-400">
         {t("Label yang dipakai di rekaman ini.")}
       </p>
       {isLoading ? (

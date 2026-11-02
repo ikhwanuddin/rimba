@@ -31,10 +31,14 @@ export default function TagList({
       <Search onChange={(value) => setSearch(value as string)} />
       <div className="flex flex-wrap gap-2 w-full">
         {tags.length === 0 && (
-          <p className="text-stone-500">{t("Belum ada label")}</p>
+          <p className="text-stone-500 dark:text-stone-400">
+            {t("Belum ada label")}
+          </p>
         )}
         {items.length === 0 && tags.length > 0 && (
-          <p className="text-stone-500">{t("Label tidak ditemukan")}</p>
+          <p className="text-stone-500 dark:text-stone-400">
+            {t("Label tidak ditemukan")}
+          </p>
         )}
         {items.map((tag) => (
           <TagComponent

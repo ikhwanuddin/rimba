@@ -221,13 +221,13 @@ export default function AnnotatorView({
         </div>
       )}
       {task == null ? (
-        <div className="p-8 text-center text-stone-500">
+        <div className="p-8 text-center text-stone-500 dark:text-stone-400">
           {q.loading
             ? t("Memuat klip…")
             : t("Tidak ada klip tersisa untukmu. Terima kasih!")}
         </div>
       ) : annotations.data == null ? (
-        <div className="p-8 text-center text-stone-500">
+        <div className="p-8 text-center text-stone-500 dark:text-stone-400">
           {t("Memuat klip…")}
         </div>
       ) : (

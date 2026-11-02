@@ -12,8 +12,10 @@ export default function ClipEvaluationExplorer(props: {
 }) {
   return (
     <ui.Card className="flex flex-col gap-2 w-full">
-      <ui.H4 className="text-lg font-bold text-stone-500">Clip Explorer</ui.H4>
-      <p className="text-sm text-stone-500">
+      <ui.H4 className="text-lg font-bold text-stone-500 dark:text-stone-400">
+        Clip Explorer
+      </ui.H4>
+      <p className="text-sm text-stone-500 dark:text-stone-400">
         Explore each of the evaluated clips.
       </p>
       <div className="flex flex-col">
@@ -51,7 +53,7 @@ export function FilterControls(props: {
     <div className="inline-flex gap-4 items-center">
       {props.FilterMenu}
       <div className="inline-flex gap-1 items-center">
-        <span className="inline-block text-sm text-stone-500">
+        <span className="inline-block text-sm text-stone-500 dark:text-stone-400">
           Show Annotations:
         </span>
         <Toggle
@@ -61,7 +63,7 @@ export function FilterControls(props: {
         />
       </div>
       <div className="inline-flex gap-1 items-center">
-        <span className="inline-block text-sm text-stone-500">
+        <span className="inline-block text-sm text-stone-500 dark:text-stone-400">
           Show Predictions:
         </span>
         <Toggle
@@ -71,7 +73,9 @@ export function FilterControls(props: {
         />
       </div>
       <div className="inline-flex gap-1 items-center">
-        <span className="inline-block text-sm text-stone-500">Threshold:</span>
+        <span className="inline-block text-sm text-stone-500 dark:text-stone-400">
+          Threshold:
+        </span>
         <div className="inline-flex items-center w-40">
           <Slider
             label="threshold"

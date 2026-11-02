@@ -86,7 +86,7 @@ export default function useRecordingTable({
       enableResizing: true,
       header: () => (
         <TableHeader>
-          <TagIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
+          <TagIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
           {t("Label")}
         </TableHeader>
       ),
@@ -254,7 +254,7 @@ export default function useRecordingTable({
       header: () => {
         return (
           <TableHeader>
-            <DateIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
+            <DateIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
             {t("Tanggal")}
           </TableHeader>
         );
@@ -289,7 +289,7 @@ export default function useRecordingTable({
       header: () => {
         return (
           <TableHeader>
-            <TimeIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
+            <TimeIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
             {t("Jam")}
           </TableHeader>
         );
@@ -324,7 +324,7 @@ export default function useRecordingTable({
       header: () => {
         return (
           <TableHeader>
-            <LocationIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
+            <LocationIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
             {t("Lokasi")}
           </TableHeader>
         );
@@ -363,7 +363,7 @@ export default function useRecordingTable({
       header: () => {
         return (
           <TableHeader>
-            <NotesIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
+            <NotesIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
             {t("Catatan")}
           </TableHeader>
         );
@@ -375,7 +375,7 @@ export default function useRecordingTable({
 
         return (
           <span className="ms-2">
-            <SunIcon className="inline-block mr-2 w-5 h-5 text-blue-500 align-middle" />
+            <SunIcon className="inline-block mr-2 w-5 h-5 text-blue-600 align-middle dark:text-blue-400" />
             {notes.length} notes
           </span>
         );

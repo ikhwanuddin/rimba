@@ -87,7 +87,7 @@ export default function Player({
       <button
         type="button"
         className={classNames(COMMON_BUTTON_CLASSES, {
-          "text-emerald-500 dark:hover:text-emerald-300 hover:text-emerald-700":
+          "text-emerald-700 dark:hover:text-emerald-300 hover:text-emerald-700 dark:text-emerald-400":
             loop,
           "dark:text-stone-400 dark:hover:text-stone-200 text-stone-600 hover:text-stone-800":
             !loop,
@@ -184,8 +184,8 @@ function SelectSpeed({
                 <>
                   <span
                     className={`block truncate ${
-                      selected ? "text-emerald-500 font-medium" : "font-normal"
-                    }`}
+                      selected ? "text-emerald-700 font-medium" : "font-normal"
+                    } dark:text-emerald-400`}
                   >
                     {option.label}
                   </span>
@@ -262,7 +262,7 @@ function PlayerSlider(props: AriaSliderProps) {
   return (
     <div {...groupProps} className="ml-2 w-36">
       {props.label && (
-        <div className="flex justify-between text-xs text-stone-600 dark:text-stone-400">
+        <div className="flex justify-between text-xs tabular-nums text-stone-700 dark:text-stone-200">
           <VisuallyHidden>
             <label {...labelProps}>{props.label}</label>
           </VisuallyHidden>

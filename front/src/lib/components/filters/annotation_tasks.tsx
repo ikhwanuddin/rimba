@@ -27,7 +27,7 @@ const annotationTaskFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select only verified annotation tasks.",
     icon: (
-      <VerifiedIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <VerifiedIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -45,7 +45,7 @@ const annotationTaskFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select only annotation tasks that need review.",
     icon: (
-      <NeedsReviewIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <NeedsReviewIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -63,7 +63,7 @@ const annotationTaskFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select only pending annotation tasks.",
     icon: (
-      <EditIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <EditIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -81,7 +81,7 @@ const annotationTaskFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select only verified annotation tasks.",
     icon: (
-      <CompleteIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <CompleteIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
 ];

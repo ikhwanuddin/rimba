@@ -34,7 +34,7 @@ function DeleteEvaluationSet({
     <Alert
       title={
         <>
-          <icons.WarningIcon className="inline-block mr-2 w-8 h-8 text-red-500" />
+          <icons.WarningIcon className="inline-block mr-2 w-8 h-8 text-red-600 dark:text-red-400" />
           Are you sure you want to delete this evaluation set?
         </>
       }

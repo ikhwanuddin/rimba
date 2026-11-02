@@ -38,7 +38,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
     ),
     description: "Saring berkas menurut durasi (detik).",
     icon: (
-      <TimeIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <TimeIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -55,7 +55,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       <FloatFilter onChange={(val) => setFilter("samplerate", val)} />
     ),
     icon: (
-      <SampleRateIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <SampleRateIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -68,7 +68,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       <FloatFilter onChange={(val) => setFilter("channels", val)} />
     ),
     icon: (
-      <ChannelsIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <ChannelsIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -85,7 +85,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       <FloatFilter onChange={(val) => setFilter("time_expansion", val)} />
     ),
     icon: (
-      <TimeExpansionIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <TimeExpansionIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -101,7 +101,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       />
     ),
     icon: (
-      <LatitudeIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <LatitudeIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -117,7 +117,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       />
     ),
     icon: (
-      <LongitudeIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <LongitudeIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -134,7 +134,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       <TagFilter onChange={(tag) => setFilter("tag", tag)} />
     ),
     icon: (
-      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -151,7 +151,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       <BooleanFilter onChange={(val) => setFilter("has_issues", val)} />
     ),
     icon: (
-      <IssueIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <IssueIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
 ];

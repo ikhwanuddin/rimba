@@ -30,7 +30,7 @@ export default function Error({
               "Halaman ini gagal dimuat. Coba lagi, atau kabari pengelola proyek dengan menyertakan pesan di bawah ini:",
             )}
           </p>
-          <span className="p-4 max-w-prose font-mono text-sm text-stone-500 whitespace-pre-wrap">
+          <span className="p-4 max-w-prose font-mono text-sm text-stone-500 whitespace-pre-wrap dark:text-stone-400">
             {error?.message}
           </span>
         </div>

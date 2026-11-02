@@ -48,7 +48,7 @@ function DeleteProject({
     <Alert
       title={
         <>
-          <WarningIcon className="inline-block mr-2 w-8 h-8 text-red-500" />
+          <WarningIcon className="inline-block mr-2 w-8 h-8 text-red-600 dark:text-red-400" />
           {t("Yakin mau menghapus proyek ini?")}
         </>
       }

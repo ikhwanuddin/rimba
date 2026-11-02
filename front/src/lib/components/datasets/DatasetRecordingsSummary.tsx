@@ -17,8 +17,8 @@ export default function DatasetRecordingSummary({
       title={t("Berkas audio")}
       icon={
         <>
-          <RecordingsIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
-          <span className="mr-1 font-semibold text-stone-500">
+          <RecordingsIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
+          <span className="mr-1 font-semibold text-stone-500 dark:text-stone-400">
             {dataset?.recording_count}
           </span>
         </>
@@ -31,7 +31,7 @@ export default function DatasetRecordingSummary({
           variant="secondary"
           label={
             <>
-              <DownloadIcon className="inline-block mr-1 w-5 h-5 text-emerald-500 align-middle" />
+              <DownloadIcon className="inline-block mr-1 w-5 h-5 text-emerald-700 align-middle dark:text-emerald-400" />
               {t("ekspor")}
             </>
           }

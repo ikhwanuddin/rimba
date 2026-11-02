@@ -13,7 +13,9 @@ export default function ModelRunUpdateForm(props: {
         <h3 className="text-base font-semibold leading-7 text-stone-900 dark:text-stone-200">
           {props.modelRun.name}
         </h3>
-        <p className="text-xs text-stone-500">{props.modelRun.version}</p>
+        <p className="text-xs text-stone-500 dark:text-stone-400">
+          {props.modelRun.version}
+        </p>
       </div>
       <div className="mt-6 border-t border-stone-300 dark:border-stone-700">
         <dl className="divide-y divide-stone-500">

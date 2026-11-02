@@ -56,8 +56,10 @@ function CreateNewTag({
       <ComboBoxSection>
         <div className="relative py-2 px-4 cursor-default select-none">
           To create a new tag, type the tag in the format{" "}
-          <code className="text-emerald-500">key:value</code> and press{" "}
-          <KeyboardKey keys={["Shift", "Enter"]} />
+          <code className="text-emerald-700 dark:text-emerald-400">
+            key:value
+          </code>{" "}
+          and press <KeyboardKey keys={["Shift", "Enter"]} />
         </div>
       </ComboBoxSection>
     );

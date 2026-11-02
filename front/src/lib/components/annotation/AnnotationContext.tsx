@@ -42,8 +42,8 @@ export default function AnnotationContext({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-row gap-8 justify-start items-center">
-        <div className="inline-flex items-center text-stone-500">
-          <RecordingIcon className="inline-block mr-1 w-5 h-5 text-stone-600" />
+        <div className="inline-flex items-center text-stone-500 dark:text-stone-400">
+          <RecordingIcon className="inline-block mr-1 w-5 h-5 text-stone-600 dark:text-stone-400" />
           <Button
             mode="text"
             padding="p-0"
@@ -52,7 +52,9 @@ export default function AnnotationContext({
             className="max-w-xl whitespace-nowrap"
           >
             {baseName}
-            <span className="text-sm text-stone-600">.WAV</span>
+            <span className="text-sm text-stone-600 dark:text-stone-400">
+              .WAV
+            </span>
           </Button>
         </div>
         <RecordingLocation
@@ -62,15 +64,15 @@ export default function AnnotationContext({
         />
         <RecordingTime time={recording.time} disabled />
         <RecordingDate date={recording.date} disabled />
-        <div className="text-sm text-stone-500">
+        <div className="text-sm text-stone-500 dark:text-stone-400">
           <span className="font-semibold">SR</span>{" "}
           {recording.samplerate.toLocaleString()} Hz
         </div>
-        <div className="text-sm text-stone-500">
+        <div className="text-sm text-stone-500 dark:text-stone-400">
           <span className="font-semibold">C</span>{" "}
           {recording.channels.toLocaleString()}
         </div>
-        <div className="text-sm text-stone-500">
+        <div className="text-sm text-stone-500 dark:text-stone-400">
           <span className="font-semibold">TE</span>{" "}
           {recording.time_expansion.toLocaleString()}
         </div>

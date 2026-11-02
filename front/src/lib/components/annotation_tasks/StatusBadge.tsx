@@ -18,10 +18,11 @@ const ICONS = {
 };
 
 const CLASSNAMES = {
-  assigned: "bg-blue-100 border-blue-200 text-blue-500",
-  completed: "bg-emerald-100 border-emerald-200 text-emerald-500",
+  assigned: "bg-blue-100 border-blue-200 text-blue-600 dark:text-blue-400",
+  completed:
+    "bg-emerald-100 border-emerald-200 text-emerald-700 dark:text-emerald-400",
   verified: "bg-amber-100 border-amber-200 text-amber-500",
-  rejected: "bg-red-100 border-red-200 text-red-500",
+  rejected: "bg-red-100 border-red-200 text-red-600 dark:text-red-400",
 };
 
 export default function StatusBadge({
@@ -57,7 +58,7 @@ export default function StatusBadge({
         />
         <span
           className={classNames(
-            "transition-all text-stone-500 text-sm font-thin ml-1",
+            "transition-all text-stone-500 text-sm font-thin ml-1 dark:text-stone-400",
             onClick != null && "group-hover:font-medium",
           )}
         >

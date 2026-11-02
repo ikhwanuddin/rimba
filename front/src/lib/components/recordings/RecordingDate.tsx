@@ -21,11 +21,11 @@ function DateButton({
 }) {
   return (
     <Button mode="text" variant="secondary" padding="py-1" disabled={disabled}>
-      <DateIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
+      <DateIcon className="inline-block mr-1 w-5 h-5 text-stone-500 dark:text-stone-400" />
       {date != null ? (
         date.toLocaleDateString()
       ) : (
-        <span className="text-sm text-stone-400 dark:text-stone-600">-</span>
+        <span className="text-sm text-stone-500 dark:text-stone-400">-</span>
       )}
     </Button>
   );

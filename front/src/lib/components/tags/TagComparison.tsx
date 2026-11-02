@@ -68,7 +68,9 @@ export default function TagComparison(props: {
   return (
     <div className="grid grid-cols-2 gap-4 mt-4">
       <div className="flex flex-col gap-2">
-        <h5 className="font-bold text-stone-500">Predicted</h5>
+        <h5 className="font-bold text-stone-500 dark:text-stone-400">
+          Predicted
+        </h5>
         {predictedTags?.map(({ predictedTag, key, score, correct }) => (
           <div className="inline-flex gap-4 items-center" key={key}>
             <ScoreBullet score={score} correct={correct} />
@@ -84,7 +86,7 @@ export default function TagComparison(props: {
         )}
       </div>
       <div className="flex flex-col gap-2">
-        <h5 className="font-bold text-stone-500">True</h5>
+        <h5 className="font-bold text-stone-500 dark:text-stone-400">True</h5>
         {trueTags?.map(({ key, tag, score, correct }) => (
           <div className="inline-flex gap-4 items-center" key={key}>
             <ScoreBullet
@@ -169,7 +171,7 @@ const CLASS_NAMES: Record<
 > = {
   correct: {
     high: {
-      text: "text-emerald-500 font-bold",
+      text: "text-emerald-700 font-bold dark:text-emerald-400",
       bullet: "bg-emerald-500",
     },
     medium: {
@@ -191,7 +193,7 @@ const CLASS_NAMES: Record<
   },
   incorrect: {
     high: {
-      text: "text-rose-500 font-bold",
+      text: "text-rose-600 font-bold dark:text-rose-400",
       bullet: "bg-rose-500",
     },
     medium: {

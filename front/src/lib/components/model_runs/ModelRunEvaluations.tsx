@@ -19,7 +19,7 @@ export default function ModelRunEvaluation(props: {
       <div className="flex justify-between">
         <div>
           <H4>Evaluation</H4>
-          <span className="text-sm text-stone-500">
+          <span className="text-sm text-stone-500 dark:text-stone-400">
             Here you can see the evaluation for this model predictions when
             compared against the evaluation set.
           </span>
@@ -64,7 +64,10 @@ function NoEvaluation() {
       <p>
         This model run has not been evaluated yet! Evaluate this model run by
         clicking the
-        <span className="text-emerald-500"> Evaluate </span>
+        <span className="text-emerald-700 dark:text-emerald-400">
+          {" "}
+          Evaluate{" "}
+        </span>
         button above.
       </p>
     </Empty>

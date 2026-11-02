@@ -15,9 +15,11 @@ export default function ModelRunItem({
         <ui.Button mode="text" padding="p-0" onClick={onClick}>
           {modelRun.name}
         </ui.Button>
-        <span className="text-sm text-stone-500">{modelRun.version}</span>
+        <span className="text-sm text-stone-500 dark:text-stone-400">
+          {modelRun.version}
+        </span>
       </div>
-      <div className="text-xs text-stone-500">
+      <div className="text-xs text-stone-500 dark:text-stone-400">
         {modelRun.created_on.toLocaleString()}
       </div>
     </li>

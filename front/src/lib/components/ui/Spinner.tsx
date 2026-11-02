@@ -32,7 +32,7 @@ export default function Spinner({
         aria-hidden="true"
         className={classnames(
           className,
-          "mr-2 inline animate-spin text-stone-200 dark:text-stone-600",
+          "mr-2 inline animate-spin text-stone-200 dark:text-stone-400",
           getClassName(variant),
         )}
         viewBox="0 0 100 101"

@@ -95,7 +95,7 @@ export default function ErrorModal({
         {/* Technical Log Section */}
         <div className="relative group">
           <div className="flex justify-between items-center mb-2">
-            <span className="font-bold tracking-widest uppercase text-[10px] text-stone-400">
+            <span className="font-bold tracking-widest uppercase text-[10px] text-stone-500 dark:text-stone-400">
               Debug Information
             </span>
           </div>

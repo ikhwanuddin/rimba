@@ -28,9 +28,9 @@ export function Step({
       >
         <Icon
           className={classNames("w-5 h-5", {
-            "text-emerald-500 dark:text-emerald-400": !active,
+            "text-emerald-700 dark:text-emerald-400": !active,
             "text-amber-500 dark:text-amber-400": active,
-            "text-stone-400 dark:text-stone-900": disabled,
+            "text-stone-500 dark:text-stone-900": disabled,
           })}
           aria-hidden="true"
         />

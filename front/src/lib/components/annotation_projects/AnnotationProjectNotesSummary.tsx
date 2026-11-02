@@ -78,7 +78,7 @@ function IssuesSummary({
 function NoIssues() {
   return (
     <Empty>
-      <CheckIcon className="w-6 h-6 text-emerald-500" />
+      <CheckIcon className="w-6 h-6 text-emerald-700 dark:text-emerald-400" />
       {t("Tidak ada masalah tercatat.")}
     </Empty>
   );

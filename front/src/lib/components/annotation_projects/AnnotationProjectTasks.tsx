@@ -43,7 +43,7 @@ export default function AnnotationProjectTasks(props: {
           <icons.TasksIcon className="inline-block w-6 h-6" />
           {t("Tambah klip")}
         </ui.H2>
-        <p className="max-w-prose text-sm text-stone-500">
+        <p className="max-w-prose text-sm text-stone-500 dark:text-stone-400">
           {t(
             "Di sini klip ditambahkan ke proyek anotasi: pilih kumpulan rekaman, saring berkasnya bila perlu, lalu atur cara memotong klip.",
           )}
@@ -99,7 +99,7 @@ function SelectDataset({ DatasetSearch }: { DatasetSearch: JSX.Element }) {
     <ui.Card>
       <div>
         <ui.H3 className="text-lg">{t("Pilih rekaman audio")}</ui.H3>
-        <p className="text-stone-500">
+        <p className="text-stone-500 dark:text-stone-400">
           {t("Pilih kumpulan rekaman sumber klip.")}
         </p>
       </div>
@@ -132,7 +132,7 @@ function SelectRecordings({
     <ui.Card>
       <div>
         <ui.H3 className="text-lg">{t("Pilih berkas")}</ui.H3>
-        <p className="text-stone-500">
+        <p className="text-stone-500 dark:text-stone-400">
           {t(
             "Pilih berkas yang akan dipotong jadi klip. Bisa disaring dan diambil sebagian.",
           )}
@@ -221,7 +221,7 @@ function ExtractClips({
     <ui.Card>
       <div>
         <ui.H3>{t("Pemotongan klip")}</ui.H3>
-        <p className="text-stone-500">
+        <p className="text-stone-500 dark:text-stone-400">
           {t("Atur cara memotong klip dari berkas terpilih.")}
         </p>
       </div>
@@ -305,30 +305,38 @@ function ReviewClips({
     <ui.Card>
       <ui.H3>{t("Ringkasan")}</ui.H3>
       {dataset == null ? (
-        <p className="text-stone-500">{t("Pilih kumpulan rekaman dulu.")}</p>
+        <p className="text-stone-500 dark:text-stone-400">
+          {t("Pilih kumpulan rekaman dulu.")}
+        </p>
       ) : isLoading ? (
         <ui.Loading />
       ) : (
         <>
           <dl className="text-sm divide-y divide-stone-100 dark:divide-stone-700">
             <div className="flex gap-3 justify-between py-2">
-              <dt className="text-stone-500">{t("Rekaman terpilih:")}</dt>
+              <dt className="text-stone-500 dark:text-stone-400">
+                {t("Rekaman terpilih:")}
+              </dt>
               <dd className="font-medium text-right break-words min-w-0">
                 {localized(dataset.name)}
               </dd>
             </div>
             <div className="flex gap-3 justify-between py-2">
-              <dt className="text-stone-500">{t("Berkas terpilih:")}</dt>
+              <dt className="text-stone-500 dark:text-stone-400">
+                {t("Berkas terpilih:")}
+              </dt>
               <dd className="font-medium tabular-nums">{numRecordings}</dd>
             </div>
             <div className="flex gap-3 justify-between py-2">
-              <dt className="text-stone-500">{t("Klip yang ditambahkan:")}</dt>
+              <dt className="text-stone-500 dark:text-stone-400">
+                {t("Klip yang ditambahkan:")}
+              </dt>
               <dd className="text-lg font-semibold tabular-nums text-emerald-700 dark:text-emerald-400">
                 {numClips}
               </dd>
             </div>
           </dl>
-          <p className="text-sm text-stone-500">
+          <p className="text-sm text-stone-500 dark:text-stone-400">
             {t(
               "Kalau pilihan sudah pas, klik tombol di bawah untuk menambahkan klip ke proyek.",
             )}

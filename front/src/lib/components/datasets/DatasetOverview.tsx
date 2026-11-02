@@ -33,7 +33,7 @@ export default function DatasetOverview({
         <MetricBadge
           onClick={onClickDatasetRecordings}
           icon={
-            <RecordingsIcon className="inline-block w-8 h-8 text-blue-500" />
+            <RecordingsIcon className="inline-block w-8 h-8 text-blue-600 dark:text-blue-400" />
           }
           title={t("Berkas audio")}
           value={dataset.recording_count}
@@ -47,7 +47,9 @@ export default function DatasetOverview({
         />
         <MetricBadge
           onClick={onClickDatasetMissing}
-          icon={<WarningIcon className="inline-block w-8 h-8 text-red-500" />}
+          icon={
+            <WarningIcon className="inline-block w-8 h-8 text-red-600 dark:text-red-400" />
+          }
           title={t("Berkas hilang")}
           value={numMissing}
           isLoading={isLoading}

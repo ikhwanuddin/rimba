@@ -15,15 +15,21 @@ export default function ModelRun({
     <Card className="w-full">
       <div className="flex flex-row gap-4">
         <div className="flex flex-col">
-          <span className="text-sm text-stone-500">Model</span>
+          <span className="text-sm text-stone-500 dark:text-stone-400">
+            Model
+          </span>
           <span className="font-thin">{modelRun.name}</span>
         </div>
         <div className="flex flex-col">
-          <span className="text-sm text-stone-500">Version</span>
+          <span className="text-sm text-stone-500 dark:text-stone-400">
+            Version
+          </span>
           <span className="font-thin">{modelRun.version}</span>
         </div>
         <div className="flex flex-col">
-          <span className="text-sm text-stone-500">Description</span>
+          <span className="text-sm text-stone-500 dark:text-stone-400">
+            Description
+          </span>
           <span className="font-thin">{modelRun.description}</span>
         </div>
         <div className="flex flex-col justify-center h-full">
@@ -34,7 +40,7 @@ export default function ModelRun({
         </div>
       </div>
       <div className="flex flex-row justify-end">
-        <span className="text-xs text-stone-500">
+        <span className="text-xs text-stone-500 dark:text-stone-400">
           created on {modelRun.created_on.toLocaleString()}
         </span>
       </div>

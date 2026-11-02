@@ -30,7 +30,7 @@ export default function PluginInfo({
         <h5 className="mb-1 text-xl font-bold tracking-tight dark:text-white text-stone-900">
           {name}
         </h5>
-        <small className="mb-3 text-sm text-stone-500">
+        <small className="mb-3 text-sm text-stone-500 dark:text-stone-400">
           {version} - {attribution}
         </small>
         <p className="mb-2 text-stone-700 dark:text-stone-400">{description}</p>

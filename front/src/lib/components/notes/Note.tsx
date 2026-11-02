@@ -33,7 +33,7 @@ export default function Note({
       <div className="flex flex-col flex-1 gap-2">
         <div className="flex absolute -left-3 z-10 flex-row justify-center items-center w-6 h-6 rounded-full bg-stone-100 dark:bg-stone-900">
           {note.is_issue ? (
-            <IssueIcon className="inline-block w-5 h-5 text-red-500" />
+            <IssueIcon className="inline-block w-5 h-5 text-red-600 dark:text-red-400" />
           ) : (
             <NoteIcon className="inline-block w-5 h-5 text-ston-500" />
           )}
@@ -45,16 +45,18 @@ export default function Note({
           {noteType != null ? (
             <span className="font-thin">{noteType}</span>
           ) : null}
-          <span className="text-xs font-normal text-stone-400">
+          <span className="text-xs font-normal text-stone-500 dark:text-stone-400">
             {" "}
             {note.created_on.toLocaleString()}
           </span>
         </h4>
-        <p className="text-sm text-stone-500">{note.message}</p>
+        <p className="text-sm text-stone-500 dark:text-stone-400">
+          {note.message}
+        </p>
         <div className="flex flex-row gap-4 justify-end">
           {onClickNote == null ? null : (
             <Button mode="text" onClick={onClickNote}>
-              <GoToIcon className="inline-block mr-1 w-4 h-4 text-emerald-500" />{" "}
+              <GoToIcon className="inline-block mr-1 w-4 h-4 text-emerald-700 dark:text-emerald-400" />{" "}
               See
             </Button>
           )}

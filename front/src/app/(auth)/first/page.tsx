@@ -40,7 +40,7 @@ export default function Page() {
       <div className="flex flex-col max-w-prose gap-4">
         <div className="mb-4 flex flex-col items-center gap-4 text-center text-7xl">
           <RimbaIcon width={128} height={128} />
-          <span className="font-sans font-bold text-emerald-500 underline decoration-8">
+          <span className="font-sans font-bold text-emerald-700 underline decoration-8 dark:text-emerald-400">
             RIMBA
           </span>
         </div>

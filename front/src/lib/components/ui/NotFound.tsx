@@ -14,7 +14,7 @@ export default function NotFound({ onGoHome }: { onGoHome?: () => void }) {
         />
       </div>
       <p className="text-2xl font-semibold">{t("Halaman tidak ditemukan")}</p>
-      <p className="text-stone-500">
+      <p className="text-stone-500 dark:text-stone-400">
         {t("Alamat ini tidak ada atau sudah dipindah.")}
       </p>
       <div>

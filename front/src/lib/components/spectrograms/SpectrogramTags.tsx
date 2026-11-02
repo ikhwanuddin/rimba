@@ -1,18 +1,24 @@
 import classNames from "classnames";
 import { useMemo } from "react";
-import type { ComponentProps, FC, ReactNode } from "react";
+import type { CSSProperties, ComponentProps, FC, ReactNode } from "react";
 
 import { CloseIcon } from "@/lib/components/icons";
 
 import useElementSize from "@/lib/hooks/utils/useElementSize";
 
+import { t } from "@/lib/i18n";
 import type {
   Dimensions,
   SoundEventAnnotation,
   SpectrogramWindow,
   Tag as TagType,
 } from "@/lib/types";
-import { isGeometryInWindow } from "@/lib/utils/geometry";
+import {
+  bboxIntersection,
+  computeGeometryBBox,
+  isGeometryInWindow,
+  scaleBBoxToViewport,
+} from "@/lib/utils/geometry";
 import { getLabelPosition, getTagKey } from "@/lib/utils/tags";
 import {
   type Color,
@@ -68,6 +74,36 @@ export type SoundEventSpectrogramTagsProps = {
   onRemoveTag?: (tag: TagType) => void;
 };
 
+/* RIMBA: where a box label sits, in pixels. Labels go just inside the top-left
+ * corner of a box (top-right when a narrow box is near the right edge), so they
+ * never leave the spectrogram or cover the bar below it. Other geometries keep
+ * the upstream position. */
+function labelStyle(
+  soundEvent: SoundEventAnnotation,
+  viewport: SpectrogramWindow,
+  dimensions: Dimensions,
+): CSSProperties {
+  const { geometry } = soundEvent.sound_event;
+  if (geometry.type === "TimeStamp" || geometry.type === "TimeInterval") {
+    const { x, y } = getLabelPosition(soundEvent, viewport, dimensions);
+    return { left: x, top: y };
+  }
+  const windowBox: [number, number, number, number] = [
+    viewport.time.min,
+    viewport.freq.min,
+    viewport.time.max,
+    viewport.freq.max,
+  ];
+  const box = bboxIntersection(computeGeometryBBox(geometry), windowBox);
+  if (box == null) return { display: "none" };
+  const [left, top, right] = scaleBBoxToViewport(dimensions, box, viewport);
+  const y = Math.max(top, 0) + 4;
+  if (left > dimensions.width - 160 && right - left < 160) {
+    return { right: Math.max(dimensions.width - right, 0) + 4, top: y };
+  }
+  return { left: Math.max(left, 0) + 4, top: y };
+}
+
 export function SoundEventSpectrogramTagsBase({
   soundEvent,
   viewport,
@@ -80,36 +116,36 @@ export function SoundEventSpectrogramTagsBase({
 }: SoundEventSpectrogramTagsProps & {
   tagColorFn?: (tag: TagType) => Color;
 } & Omit<ComponentProps<typeof AddTagButton>, "onSelectTag">) {
-  const { x, y } = getLabelPosition(soundEvent, viewport, dimensions);
   return (
     <div
-      className={classNames(
-        "h-5 flex flex-col absolute px-2 text-stone-300 hover:z-50 z-40",
-      )}
-      style={{
-        left: x,
-        top: y,
-      }}
+      className="flex absolute z-40 flex-row flex-wrap gap-1 items-center hover:z-50"
+      style={labelStyle(soundEvent, viewport, dimensions)}
     >
-      <div className="flex relative right-0 flex-col gap-1 -ms-2">
-        {soundEvent.tags?.map((tag) => (
-          <SpectrogramTag
-            key={getTagKey(tag)}
-            disabled={!enabled}
-            tagColorFn={tagColorFn}
-            onClick={() => onRemoveTag?.(tag)}
-            tag={tag}
-          />
-        ))}
-      </div>
-      {enabled && <AddTagButton onSelectTag={onAddTag} {...props} />}
+      {soundEvent.tags?.map((tag) => (
+        <SpectrogramTag
+          key={getTagKey(tag)}
+          disabled={!enabled}
+          tagColorFn={tagColorFn}
+          onClick={() => onRemoveTag?.(tag)}
+          tag={tag}
+        />
+      ))}
+      {enabled && (
+        <span
+          title={t("Tambah label")}
+          className="rounded-md border shadow bg-white/95 border-stone-300 [&_button]:px-1 [&_button]:!text-stone-700 [&_button]:!stroke-stone-700"
+        >
+          <AddTagButton text="" onSelectTag={onAddTag} {...props} />
+        </span>
+      )}
     </div>
   );
 }
 
-/* RIMBA: the label of a box is always visible (upstream shows a small
- * dot and the name only on hover), in the same high-contrast colours as other
- * tags. Removing a tag needs a click on the small cross, not on the label. */
+/* RIMBA: the label of a box is always visible (upstream shows a small dot and
+ * the name only on hover). The spectrogram is dark in both themes, so the label
+ * is a light chip with dark text and a dot in the label colour. Removing a tag
+ * needs a click on the small cross, not on the label. */
 export function SpectrogramTag({
   tag,
   onClick,
@@ -121,19 +157,20 @@ export function SpectrogramTag({
   return (
     <span
       title={`${tag.key}: ${tag.value}`}
-      className={classNames(
-        "flex flex-row gap-1 items-center w-fit px-1.5 py-0.5 rounded-md border text-xs font-semibold whitespace-nowrap shadow",
-        cls.background,
-        cls.text,
-        cls.border,
-      )}
+      className="flex flex-row gap-1.5 items-center py-0.5 px-1.5 text-xs font-semibold whitespace-nowrap rounded-md border shadow w-fit bg-white/95 border-stone-300 text-stone-900"
     >
+      <span
+        className={classNames(
+          "w-2.5 h-2.5 rounded-full border-[3px]",
+          cls.border,
+        )}
+      />
       {tag.value}
       {!disabled && (
         <button
           type="button"
           aria-label={`Remove ${tag.value}`}
-          className="hover:text-red-600"
+          className="text-stone-500 hover:text-red-600"
           onClick={onClick}
         >
           <CloseIcon className="inline-block w-3 h-3 stroke-2" />

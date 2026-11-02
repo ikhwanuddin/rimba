@@ -123,7 +123,7 @@ export function EditableDescriptionData<T extends string | number | Date>({
           type="button"
           title={t("Ubah")}
           onClick={() => setEditing(true)}
-          className="flex-none p-1 rounded-md text-stone-400 hover:bg-stone-100 hover:text-emerald-700 dark:hover:bg-stone-700 dark:hover:text-emerald-400"
+          className="flex-none p-1 rounded-md text-stone-500 hover:bg-stone-100 hover:text-emerald-700 dark:hover:bg-stone-700 dark:hover:text-emerald-400 dark:text-stone-400"
         >
           <EditIcon className="w-4 h-4" />
         </button>

@@ -46,7 +46,7 @@ export default function TableCell({
     >
       <span className="overflow-x-auto grow">{children}</span>
       {!editable ? null : (
-        <EditIcon className="inline-block w-5 h-5 text-stone-500" />
+        <EditIcon className="inline-block w-5 h-5 text-stone-500 dark:text-stone-400" />
       )}
     </div>
   );

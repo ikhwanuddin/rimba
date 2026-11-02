@@ -24,7 +24,7 @@ export default function DatasetNotesSumary({
   return (
     <Card>
       <H3>
-        <NotesIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
+        <NotesIcon className="inline-block mr-2 w-6 h-6 text-emerald-700 dark:text-emerald-400" />
         {t("Catatan dan masalah")}
       </H3>
       {isLoading ? <Loading /> : <IssuesSummary {...props} />}
@@ -94,7 +94,7 @@ function IssuesSummary({
 function NoIssues() {
   return (
     <div>
-      <CheckIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
+      <CheckIcon className="inline-block mr-2 w-6 h-6 text-emerald-700 dark:text-emerald-400" />
       {t("Tidak ada masalah")}
     </div>
   );

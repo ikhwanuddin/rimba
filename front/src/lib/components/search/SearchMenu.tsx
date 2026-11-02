@@ -210,7 +210,7 @@ function MenuContents<T>({
           className="w-full cursor-default"
           onClick={() => setLimit(total)}
         >
-          <div className="flex flex-row w-full justify-between items-center text-stone-500">
+          <div className="flex flex-row w-full justify-between items-center text-stone-500 dark:text-stone-400">
             <span className="flex-grow text-left">{t("Tampilkan semua")}</span>
             <span>{total - options.length} more</span>
           </div>
@@ -221,7 +221,7 @@ function MenuContents<T>({
           className="w-full cursor-default"
           onClick={() => setLimit(initialLimit)}
         >
-          <div className="flex flex-row w-full justify-between items-center text-stone-500">
+          <div className="flex flex-row w-full justify-between items-center text-stone-500 dark:text-stone-400">
             <span className="flex-grow text-left">
               {t("Tampilkan lebih sedikit")}
             </span>

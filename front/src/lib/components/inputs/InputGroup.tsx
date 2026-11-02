@@ -3,19 +3,35 @@ import type { ReactNode } from "react";
 import InputLabel from "./InputLabel";
 
 export function InputError({ message }: { message: string }) {
-  return <p className="mt-2 text-xs italic text-red-500">{message}</p>;
+  return (
+    <p className="mt-2 text-xs italic text-red-600 dark:text-red-400">
+      {message}
+    </p>
+  );
 }
 
 export function InputHelp({ message }: { message: string }) {
-  return <p className="mt-2 text-xs italic text-stone-500">{message}</p>;
+  return (
+    <p className="mt-2 text-xs italic text-stone-500 dark:text-stone-400">
+      {message}
+    </p>
+  );
 }
 
 export function InputInfo({ message }: { message: string }) {
-  return <p className="mt-2 text-xs italic text-blue-500">{message}</p>;
+  return (
+    <p className="mt-2 text-xs italic text-blue-600 dark:text-blue-400">
+      {message}
+    </p>
+  );
 }
 
 export function InputSuccess({ message }: { message: string }) {
-  return <p className="mt-2 text-xs italic text-emerald-500">{message}</p>;
+  return (
+    <p className="mt-2 text-xs italic text-emerald-700 dark:text-emerald-400">
+      {message}
+    </p>
+  );
 }
 
 function InputGroupShell({ children }: { children: React.ReactNode }) {

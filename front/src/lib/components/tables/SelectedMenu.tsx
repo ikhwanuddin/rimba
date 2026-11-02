@@ -52,7 +52,9 @@ export default function SelectedMenu({
   return (
     <ul className="flex flex-row items-center space-x-2">
       <li className="px-2">
-        <span className="mr-1 font-bold text-blue-500">{numSelected}</span>
+        <span className="mr-1 font-bold text-blue-600 dark:text-blue-400">
+          {numSelected}
+        </span>
         selected
       </li>
       <li>

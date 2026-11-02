@@ -75,11 +75,11 @@ export default function EvaluationSets({
 function NoEvaluationSets() {
   return (
     <Empty>
-      <WarningIcon className="w-8 h-8 text-stone-500" />
+      <WarningIcon className="w-8 h-8 text-stone-500 dark:text-stone-400" />
       <p>No evaluation sets found.</p>
       <p>
         To create an evaluation set, click on the
-        <span className="text-emerald-500">
+        <span className="text-emerald-700 dark:text-emerald-400">
           <AddIcon className="inline-block mr-1 ml-2 w-4 h-4" />
           Create{" "}
         </span>{" "}

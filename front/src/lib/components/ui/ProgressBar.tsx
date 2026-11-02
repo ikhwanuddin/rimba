@@ -16,39 +16,24 @@ export default function ProgressBar({
   const completedPerc = (complete / total) * 100;
   const verifiedPerc = (verified / total) * 100;
   const errorPerc = (error / total) * 100;
-  const remainingPerc = 100 - completedPerc - verifiedPerc - errorPerc;
 
+  // RIMBA: a slim bar without numbers inside (they could not be read); the
+  // numbers are in the tooltip.
+  const title = `${complete + verified}/${total} (${Math.round(completedPerc + verifiedPerc)}%)`;
   return (
     <div
+      title={title}
       className={classNames(
         className,
-        "w-full flex flex-row h-4 overflow-hidden bg-stone-200 rounded-full dark:bg-stone-700",
+        "w-full flex flex-row h-2 overflow-hidden bg-stone-200 rounded-full dark:bg-stone-700",
       )}
     >
       <div
-        className="flex flex-row items-center justify-center h-4 bg-stone-400 dark:bg-stone-500 text-white"
-        style={{ width: `${remainingPerc}%` }}
-      >
-        {remainingPerc >= 10 ? `${remainingPerc.toPrecision(3)}%` : ""}
-      </div>
-      <div
-        className="flex flex-row items-center justify-center h-4 bg-red-600 dark:bg-red-400 text-red-100 dark:text-red-900"
-        style={{ width: `${errorPerc}%` }}
-      >
-        {errorPerc >= 10 ? `${errorPerc.toPrecision(3)}%` : ""}
-      </div>
-      <div
-        className="flex flex-row items-center justify-center h-4 bg-emerald-600 dark:bg-emerald-400 text-emerald-100 dark:text-emerald-500"
+        className="bg-emerald-600 dark:bg-emerald-500"
         style={{ width: `${completedPerc}%` }}
-      >
-        {completedPerc >= 10 ? `${completedPerc.toPrecision(3)}%` : ""}
-      </div>
-      <div
-        className="flex flex-row items-center justify-center h-4 bg-amber-600 dark:bg-amber-400 text-amber-100 dark:text-amber-900"
-        style={{ width: `${verifiedPerc}%` }}
-      >
-        {verifiedPerc >= 10 ? `${verifiedPerc.toPrecision(3)}%` : ""}
-      </div>
+      />
+      <div className="bg-amber-500" style={{ width: `${verifiedPerc}%` }} />
+      <div className="bg-red-500" style={{ width: `${errorPerc}%` }} />
     </div>
   );
 }

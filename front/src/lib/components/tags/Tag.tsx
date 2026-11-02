@@ -62,10 +62,7 @@ export default function Tag({
         onClick={onClick}
       >
         <span
-          className={classnames(
-            "font-normal opacity-75",
-            !wrapText && "min-w-fit shrink",
-          )}
+          className={classnames("font-normal", !wrapText && "min-w-fit shrink")}
         >
           {tag.key}
         </span>

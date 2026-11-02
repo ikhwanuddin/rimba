@@ -72,7 +72,7 @@ export default function TableMap({
       >
         <Popover.Button className="flex flex-row gap-2 justify-between items-center px-1 text-center grow">
           <span>{formatLocation(initialValue)}</span>
-          <EditIcon className="inline-block flex-none w-5 h-5 text-stone-500" />
+          <EditIcon className="inline-block flex-none w-5 h-5 text-stone-500 dark:text-stone-400" />
         </Popover.Button>
         <Popover.Panel
           unmount

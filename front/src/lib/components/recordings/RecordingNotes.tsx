@@ -13,7 +13,7 @@ function NoNotes() {
           <NotesIcon className="inline-block mr-1 w-5 h-5" />{" "}
           {t(" Belum ada catatan")}
         </span>
-        <span className="text-sm text-stone-500">
+        <span className="text-sm text-stone-500 dark:text-stone-400">
           {t("Tulis catatan di atas untuk memulai diskusi tentang berkas ini.")}
         </span>
       </div>

@@ -59,33 +59,41 @@ export default function EvaluationSetOverview({
       <div className="flex flex-row gap-2 justify-around">
         <MetricBadge
           icon={
-            <PredictionTypeIcon className="inline-block w-8 h-8 text-blue-500" />
+            <PredictionTypeIcon className="inline-block w-8 h-8 text-blue-600 dark:text-blue-400" />
           }
           title="Prediction Type"
           value={evaluationSet.task}
         />
         <MetricBadge
-          icon={<TasksIcon className="inline-block w-8 h-8 text-blue-500" />}
+          icon={
+            <TasksIcon className="inline-block w-8 h-8 text-blue-600 dark:text-blue-400" />
+          }
           title="Num Examples"
           value={numExamples}
           isLoading={isLoading}
           onClick={props.onClickExamplesBadge}
         />
         <MetricBadge
-          icon={<TagsIcon className="inline-block w-8 h-8 text-blue-500" />}
+          icon={
+            <TagsIcon className="inline-block w-8 h-8 text-blue-600 dark:text-blue-400" />
+          }
           title="Num Classes"
           value={numClasses}
           onClick={props.onClickClassesBadge}
         />
         <MetricBadge
-          icon={<ModelIcon className="inline-block w-8 h-8 text-blue-500" />}
+          icon={
+            <ModelIcon className="inline-block w-8 h-8 text-blue-600 dark:text-blue-400" />
+          }
           title="Model Runs"
           isLoading={isLoading}
           value={numModelRuns}
           onClick={props.onClickModelRunsBadge}
         />
         <MetricBadge
-          icon={<UserIcon className="inline-block w-8 h-8 text-blue-500" />}
+          icon={
+            <UserIcon className="inline-block w-8 h-8 text-blue-600 dark:text-blue-400" />
+          }
           title="User Training Sessions"
           value={numTrainingSessions}
           isLoading={isLoading}
@@ -108,7 +116,10 @@ function NoEvaluationExamples() {
       <div className="text-center">
         No examples are currently assigned to this evaluation set! Please add
         some evaluation examples to get started, by clicking
-        <span className="text-emerald-500"> Add Evaluation Examples</span>{" "}
+        <span className="text-emerald-700 dark:text-emerald-400">
+          {" "}
+          Add Evaluation Examples
+        </span>{" "}
         button above.
       </div>
     </Empty>
@@ -125,8 +136,11 @@ function NoEvaluationTags() {
       <div className="text-center">
         No tags are currently assigned to this evaluation set. Please add some
         evaluation tags to get started by clicking
-        <span className="text-emerald-500"> Add Evaluation Tags </span> button
-        above.
+        <span className="text-emerald-700 dark:text-emerald-400">
+          {" "}
+          Add Evaluation Tags{" "}
+        </span>{" "}
+        button above.
       </div>
     </Empty>
   );

@@ -97,16 +97,16 @@ function CurrentTask({ currentTask }: { currentTask?: AnnotationTask }) {
         tooltip={
           <div className="flex flex-col gap-2 p-1 min-w-[200px]">
             <div className="flex justify-between items-center">
-              <span className="font-bold text-stone-400 dark:text-stone-500">
+              <span className="font-bold text-stone-500 dark:text-stone-400">
                 {t("ID klip")}
               </span>
             </div>
             <div className="relative group">
-              <code className="block p-2 font-mono leading-relaxed text-blue-500 break-all rounded border bg-stone-100 border-stone-200 dark:bg-stone-800 dark:border-stone-700">
+              <code className="block p-2 font-mono leading-relaxed text-blue-600 break-all rounded border bg-stone-100 border-stone-200 dark:bg-stone-800 dark:border-stone-700 dark:text-blue-400">
                 {currentTask?.uuid}
               </code>
             </div>
-            <div className="flex gap-1.5 items-center italic text-stone-500">
+            <div className="flex gap-1.5 items-center italic text-stone-500 dark:text-stone-400">
               <KeyboardKey keys={["Click"]} />
               <span>{t("untuk menyalin")}</span>
             </div>
@@ -199,8 +199,8 @@ export default function AnnotationProgress({
         <div className="flex flex-wrap gap-3 items-center">
           <CurrentTask currentTask={currentTask} />
           <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap">
-            <span className="text-stone-500">#:</span>
-            <span className="font-bold text-blue-500">
+            <span className="text-stone-500 dark:text-stone-400">#:</span>
+            <span className="font-bold text-blue-600 dark:text-blue-400">
               {currentTask != null && tasks.indexOf(currentTask) + 1}
             </span>
           </span>
@@ -223,7 +223,9 @@ export default function AnnotationProgress({
             )}
           </Dialog>
           <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap">
-            <span className="text-stone-500">{t("Progres:")}</span>
+            <span className="text-stone-500 dark:text-stone-400">
+              {t("Progres:")}
+            </span>
             <div className="w-36">
               <ProgressBar
                 error={needReview}
@@ -235,9 +237,12 @@ export default function AnnotationProgress({
             </div>
           </span>
         </div>
-        <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap text-stone-500">
+        <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap text-stone-500 dark:text-stone-400">
           <span>{t("Sisa:")}</span>
-          <span className="font-medium text-blue-500">{pending}</span>/{total}
+          <span className="font-medium text-blue-600 dark:text-blue-400">
+            {pending}
+          </span>
+          /{total}
         </span>
         <SearchTask onSubmit={handleSearch} />
         <Dialog

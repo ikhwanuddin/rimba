@@ -21,11 +21,11 @@ function LocationButton({
   const hasLocation = latitude != null && longitude != null;
   return (
     <Button mode="text" variant="secondary" padding="py-1" disabled={disabled}>
-      <LocationIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
+      <LocationIcon className="inline-block mr-1 w-5 h-5 text-stone-500 dark:text-stone-400" />
       {hasLocation ? (
         formatLocation({ latitude, longitude })
       ) : (
-        <span className="text-sm text-stone-400 dark:text-stone-600">
+        <span className="text-sm text-stone-500 dark:text-stone-400">
           {t("Tanpa lokasi")}
         </span>
       )}

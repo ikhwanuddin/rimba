@@ -31,7 +31,7 @@ const tasksFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select only tasks that are pending",
     icon: (
-      <EditIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <EditIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -49,7 +49,7 @@ const tasksFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select tasks by their verified status",
     icon: (
-      <VerifiedIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <VerifiedIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -67,7 +67,7 @@ const tasksFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select tasks by their review status",
     icon: (
-      <NeedsReviewIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <NeedsReviewIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
 
@@ -88,7 +88,7 @@ const tasksFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select task that contain a sound event with a specific tag",
     icon: (
-      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
 
@@ -103,7 +103,7 @@ const tasksFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select tasks that come from a specific dataset",
     icon: (
-      <DatasetIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <DatasetIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
 
@@ -122,7 +122,7 @@ const tasksFilterDefs: FilterDef<AnnotationTaskFilter>[] = [
     ),
     description: "Select task that come from a recording with a specific tag",
     icon: (
-      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
 ];

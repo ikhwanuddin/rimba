@@ -55,7 +55,7 @@ export default function Select<T>({
             <span className="block truncate">{selected.label}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ExpandIcon
-                className="h-5 w-5 text-stone-400"
+                className="h-5 w-5 text-stone-500 dark:text-stone-400"
                 aria-hidden="true"
               />
             </span>

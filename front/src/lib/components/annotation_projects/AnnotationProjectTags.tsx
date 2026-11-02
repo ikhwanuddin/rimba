@@ -24,8 +24,10 @@ export default function AnnotationProjectTags({
           <TagsIcon className="inline-block w-6 h-6" />
           {t("Label proyek")}
         </H2>
-        <p className="max-w-prose text-sm text-stone-500">
-          <span className="font-bold text-emerald-500">{t("Label")}</span>{" "}
+        <p className="max-w-prose text-sm text-stone-500 dark:text-stone-400">
+          <span className="font-bold text-emerald-700 dark:text-emerald-400">
+            {t("Label")}
+          </span>{" "}
           {t(
             " memberi makna pada anotasi. Lihat label proyek ini atau tambahkan bila perlu.",
           )}{" "}
@@ -35,11 +37,11 @@ export default function AnnotationProjectTags({
       <div className="grid grid-cols-1 gap-6 items-start md:grid-cols-2">
         <Card>
           <H4>{t("Tambah label")}</H4>
-          <small className="text-stone-500">
+          <small className="text-stone-500 dark:text-stone-400">
             {t("Cari label di bawah, lalu klik untuk menambahkannya.")}
           </small>
           <div className="py-2">{TagSearchBar}</div>
-          <small className="text-stone-500">
+          <small className="text-stone-500 dark:text-stone-400">
             {t("Buat label baru bila perlu, tapi jangan dobel makna.")}
           </small>
         </Card>
@@ -50,7 +52,7 @@ export default function AnnotationProjectTags({
               {(annotationProject.tags ?? []).length.toLocaleString()}
             </span>
           </H4>
-          <small className="text-stone-500">
+          <small className="text-stone-500 dark:text-stone-400">
             {t("Cari label yang sudah dipilih. Klik label untuk melepasnya.")}
           </small>
           <div>

@@ -22,7 +22,7 @@ export default function EvaluationSetComponent({
     <div className="w-full">
       <div className="px-4 sm:px-0">
         <h3 className="inline-flex items-center text-base font-semibold leading-7 text-stone-900 dark:text-stone-100">
-          <span className="inline-block w-6 h-6 align-middle text-stone-500">
+          <span className="inline-block w-6 h-6 align-middle text-stone-500 dark:text-stone-400">
             <TasksIcon />
           </span>{" "}
           <Button
@@ -32,7 +32,7 @@ export default function EvaluationSetComponent({
           >
             {evaluationSet.name}
           </Button>
-          <span className="text-sm ms-4 text-stone-500">
+          <span className="text-sm ms-4 text-stone-500 dark:text-stone-400">
             {evaluationSet.task}
           </span>
         </h3>

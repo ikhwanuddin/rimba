@@ -18,12 +18,12 @@ export default function UserProfile(props: { user: User }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="inline-flex items-end px-4 sm:px-0">
-        <UserIcon className="w-12 h-12 text-stone-500" />
+        <UserIcon className="w-12 h-12 text-stone-500 dark:text-stone-400" />
         <h3 className="text-base font-semibold leading-7 text-stone-900 dark:text-stone-200">
           {t("Profil kamu")}
         </h3>
       </div>
-      <p className="text-stone-500">
+      <p className="text-stone-500 dark:text-stone-400">
         {t(
           "Nama tampil di bagian atas halaman. Nama pengguna dipakai untuk masuk dan tidak bisa diubah di sini.",
         )}

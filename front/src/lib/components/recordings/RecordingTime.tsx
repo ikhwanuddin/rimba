@@ -22,11 +22,11 @@ function TimeButton({
 }) {
   return (
     <Button mode="text" variant="secondary" padding="py-1" disabled={disabled}>
-      <TimeIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
+      <TimeIcon className="inline-block mr-1 w-5 h-5 text-stone-500 dark:text-stone-400" />
       {time != null ? (
         time
       ) : (
-        <span className="text-sm text-stone-400 dark:text-stone-600">-</span>
+        <span className="text-sm text-stone-500 dark:text-stone-400">-</span>
       )}
     </Button>
   );

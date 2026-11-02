@@ -37,14 +37,16 @@ export default function NavigationControls(props: {
         <NextIcon className="w-6 h-6" />
       </ui.Button>
       {props.index == null ? (
-        <span className="inline-flex gap-1 items-center text-stone-500">
+        <span className="inline-flex gap-1 items-center text-stone-500 dark:text-stone-400">
           No item selected
         </span>
       ) : (
-        <span className="inline-flex gap-1 items-center text-stone-500">
+        <span className="inline-flex gap-1 items-center text-stone-500 dark:text-stone-400">
           Viewing item{" "}
-          <span className="font-bold text-blue-500">{props.index}</span> of{" "}
-          <span className="font-bold">{props.total}</span>
+          <span className="font-bold text-blue-600 dark:text-blue-400">
+            {props.index}
+          </span>{" "}
+          of <span className="font-bold">{props.total}</span>
         </span>
       )}
     </div>

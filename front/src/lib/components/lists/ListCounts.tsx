@@ -5,13 +5,15 @@ export default function ListCounts(props: {
 }) {
   return (
     <div>
-      <span className="text-stone-500">
+      <span className="text-stone-500 dark:text-stone-400">
         Showing{" "}
         <span className="font-bold">
           {props.startIndex} - {props.endIndex}
         </span>{" "}
         out of{" "}
-        <span className="font-bold text-emerald-500">{props.total}</span>{" "}
+        <span className="font-bold text-emerald-700 dark:text-emerald-400">
+          {props.total}
+        </span>{" "}
       </span>
     </div>
   );

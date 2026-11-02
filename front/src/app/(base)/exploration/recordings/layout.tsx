@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <div className="flex flex-row justify-center">
-        <p className="max-w-prose text-sm text-center text-stone-500">
+        <p className="max-w-prose text-sm text-center text-stone-500 dark:text-stone-400">
           Explore all recordings. Use the filtering options to select a subset,
           and choose the view you wish to use to explore the recordings.
         </p>

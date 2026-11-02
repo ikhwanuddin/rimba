@@ -32,20 +32,26 @@ export default function ClipEvaluationDisplay(props: {
       <div>
         <div className="flex flex-row gap-4 p-4">
           <div className="flex flex-col">
-            <span className="font-bold text-md text-stone-500">Clip Score</span>
+            <span className="font-bold text-md text-stone-500 dark:text-stone-400">
+              Clip Score
+            </span>
             <span className="text-lg">
               {(100 * clipEvaluation.score).toFixed(2)}
             </span>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-md text-stone-500">Metrics</span>
+            <span className="font-bold text-md text-stone-500 dark:text-stone-400">
+              Metrics
+            </span>
             <span className="inline-flex flex-wrap gap-4">
               {clipEvaluation.metrics?.map((metric) => (
                 <div
                   key={metric.name}
                   className="flex flex-row gap-2 items-center"
                 >
-                  <span className="text-sm text-stone-500">{metric.name}</span>
+                  <span className="text-sm text-stone-500 dark:text-stone-400">
+                    {metric.name}
+                  </span>
                   <span className="text-lg">
                     {(100 * metric.value).toFixed(2)}
                   </span>

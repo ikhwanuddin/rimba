@@ -43,7 +43,7 @@ export default function FilterBar<T extends Object>({
   return (
     <div className="flex flex-row items-center">
       {total != null && (
-        <span className="mr-3 text-stone-500">
+        <span className="mr-3 text-stone-500 dark:text-stone-400">
           {total} {t(" hasil")}
         </span>
       )}

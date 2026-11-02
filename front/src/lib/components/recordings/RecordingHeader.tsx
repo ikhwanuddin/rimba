@@ -42,12 +42,12 @@ export default function RecordingHeader({
   return (
     <div className="flex overflow-x-auto flex-row gap-x-6 items-center w-full">
       <div className="inline-flex items-center">
-        <RecordingIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
+        <RecordingIcon className="inline-block mr-1 w-5 h-5 text-stone-500 dark:text-stone-400" />
         <H3 className="max-w-xl whitespace-nowrap">
           <Tooltip
             tooltip={
               <div className="w-96 text-sm font-thin tracking-tighter whitespace-normal break-all dark:bg-stone-700 dark:border-stone-800">
-                <span className="font-normal text-blue-500">
+                <span className="font-normal text-blue-600 dark:text-blue-400">
                   {t("Path lengkap:")}
                 </span>{" "}
                 {path}
@@ -61,7 +61,7 @@ export default function RecordingHeader({
               onClick={onRecordingClick}
             >
               {baseName}
-              <span className="text-sm text-stone-500">
+              <span className="text-sm text-stone-500 dark:text-stone-400">
                 .{extension?.toUpperCase()}
               </span>
             </button>

@@ -22,12 +22,14 @@ export default function EvaluationSetTags({
         <icons.TagsIcon className="inline-block mr-2 w-8 h-8 align-middle" />
         Evaluation Tags
       </ui.H2>
-      <p className="text-stone-500">
+      <p className="text-stone-500 dark:text-stone-400">
         When assessing models and annotators using this evaluation set, emphasis
         will be placed solely on{" "}
-        <span className="text-emerald-500">these tags</span>. Choose from the
-        registered tags, ensuring alignment with the goals of this evaluation
-        set to achieve precise and meaningful assessments.
+        <span className="text-emerald-700 dark:text-emerald-400">
+          these tags
+        </span>
+        . Choose from the registered tags, ensuring alignment with the goals of
+        this evaluation set to achieve precise and meaningful assessments.
       </p>
       <ui.Info className="mt-4">
         It is recommended to add all tags before starting evaluation. Otherwise,
@@ -37,7 +39,7 @@ export default function EvaluationSetTags({
       <div className="grid grid-cols-2 gap-y-4 gap-x-14">
         <div className="col-span-2 md:col-span-1">
           <ui.H3>Add Tags</ui.H3>
-          <small className="text-stone-500">
+          <small className="text-stone-500 dark:text-stone-400">
             Use the search bar below to look for tags you want to focus
             evaluation on. Select as many tags as you want.
           </small>
@@ -46,13 +48,13 @@ export default function EvaluationSetTags({
         <div className="flex flex-col col-span-2 gap-2 md:col-span-1">
           <ui.H3>Selected tags</ui.H3>
           <p>
-            <span className="font-bold text-blue-500">
+            <span className="font-bold text-blue-600 dark:text-blue-400">
               {tags.length.toLocaleString()}
             </span>{" "}
             tags to use for evaluation. Each of these tags will be considered a
             separate class when evaluating predictions.
           </p>
-          <small className="text-stone-500">
+          <small className="text-stone-500 dark:text-stone-400">
             Use the search bar to look for registered tags. Click on a tag to
             remove it.
           </small>

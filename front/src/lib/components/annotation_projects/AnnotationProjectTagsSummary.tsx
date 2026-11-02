@@ -178,7 +178,7 @@ function TagCounts({
 
 function NoAnnotationTags() {
   return (
-    <div className="text-stone-500">
+    <div className="text-stone-500 dark:text-stone-400">
       {t("Belum ada label pada anotasi di proyek ini.")}
     </div>
   );
@@ -277,7 +277,7 @@ function TagTable({
       <AscendingIcon className="inline-block w-4 h-4" />
     ) : null;
   const head =
-    "inline-flex gap-1 items-center text-xs font-medium uppercase tracking-wide text-stone-500 hover:text-stone-800 dark:hover:text-stone-200";
+    "inline-flex gap-1 items-center text-xs font-medium uppercase tracking-wide text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 dark:text-stone-400";
   return (
     <div className="flex flex-col w-full text-sm">
       <div className="grid grid-cols-[minmax(0,1fr)_3.5rem_3.5rem] gap-2 pb-2 border-b border-stone-200 dark:border-stone-700">

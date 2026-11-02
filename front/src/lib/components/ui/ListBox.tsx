@@ -61,7 +61,7 @@ export function Option<T>({
         "cursor-pointer text-stone-800 dark:text-stone-200 py-2 pl-4 pr-2 outline-none",
         {
           "outline-2 outline-emerald-500 outline-offset-0": isFocused,
-          "bg-stone-300 dark:bg-stone-800 text-stone-500 dark:text-stone-500":
+          "bg-stone-300 dark:bg-stone-800 text-stone-500 dark:text-stone-400":
             isDisabled,
           "bg-emerald-600": isSelected,
           "bg-stone-200 dark:bg-stone-600 text-stone-900 dark:text-stone-100":

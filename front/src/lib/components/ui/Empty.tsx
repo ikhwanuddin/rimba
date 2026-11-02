@@ -15,7 +15,7 @@ export default function Empty({
       <div
         className={classNames(
           className,
-          "flex flex-col gap-1 justify-center items-center py-6 px-4 w-full text-sm text-center rounded-lg border border-dashed border-stone-300 text-stone-500 dark:border-stone-600",
+          "flex flex-col gap-1 justify-center items-center py-6 px-4 w-full text-sm text-center rounded-lg border border-dashed border-stone-300 text-stone-500 dark:border-stone-600 dark:text-stone-400",
         )}
       >
         {children}

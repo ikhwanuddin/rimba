@@ -74,7 +74,8 @@ export default function Marker({
       }}
       ref={markerRef}
       icon={divIcon({
-        className: "marker text-emerald-500 fill-emerald-500",
+        className:
+          "marker text-emerald-700 fill-emerald-500 dark:text-emerald-400",
         html: MAP_PIN,
       })}
     >

@@ -12,7 +12,7 @@ export default function Page() {
       Header={
         <>
           <h1 className="text-5xl text-center">Exploration Tools</h1>
-          <h2 className="text-3xl text-center text-stone-500 dark:text-stone-500">
+          <h2 className="text-3xl text-center text-stone-500 dark:text-stone-400">
             Utilize the provided tools to delve into your data
           </h2>
         </>

@@ -89,7 +89,9 @@ function NoTasks() {
     <Empty>
       <p>
         {t("Proyek ini belum punya klip. Tambahkan lewat tombol")}{" "}
-        <span className="inline text-emerald-500">{t("Tambah klip")}</span>{" "}
+        <span className="inline text-emerald-700 dark:text-emerald-400">
+          {t("Tambah klip")}
+        </span>{" "}
         {t(" di atas.")}
       </p>
     </Empty>
@@ -162,28 +164,28 @@ function ProgressReport({
           icon={<EditIcon className="w-4 h-4" />}
           title={t("Belum dijawab")}
           value={missing}
-          tone="bg-stone-50 text-stone-600 ring-stone-200 dark:bg-stone-900 dark:text-stone-300 dark:ring-stone-700"
+          tone="bg-stone-50 text-stone-600 ring-stone-200 dark:bg-stone-900/60 dark:text-stone-300 dark:ring-stone-700"
           onClick={onClickPending}
         />
         <StatTile
           icon={<NeedsReviewIcon className="w-4 h-4" />}
           title={t("Perlu ditinjau")}
           value={needReview}
-          tone="bg-red-50 text-red-700 ring-red-200 dark:bg-red-950 dark:text-red-300 dark:ring-red-900"
+          tone="bg-red-50 text-red-700 ring-red-200 dark:bg-red-950/40 dark:text-red-300 dark:ring-red-900"
           onClick={onClickReview}
         />
         <StatTile
           icon={<CompleteIcon className="w-4 h-4" />}
           title={t("Selesai")}
           value={completed}
-          tone="bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:ring-emerald-900"
+          tone="bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:ring-emerald-900"
           onClick={onClickCompleted}
         />
         <StatTile
           icon={<VerifiedIcon className="w-4 h-4" />}
           title={t("Diverifikasi")}
           value={verified}
-          tone="bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-900"
+          tone="bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900"
           onClick={onClickVerified}
         />
       </div>

@@ -73,7 +73,7 @@ export default function useAnnotationTaskTable({
 
           return (
             <span className="ms-2">
-              <SunIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
+              <SunIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
               {rec_notes.length} notes
             </span>
           );
@@ -138,7 +138,7 @@ export default function useAnnotationTaskTable({
 
           return (
             <span className="ms-2">
-              <SunIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
+              <SunIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
               {clip_anno_notes.length} notes
             </span>
           );

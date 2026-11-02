@@ -68,8 +68,10 @@ export default function RecordingTagBar({
   return (
     <div className="flex flex-row gap-2 items-center">
       <div className="inline-flex">
-        <TagIcon className="inline-block mr-1 w-5 h-5 text-stone-400 dark:text-stone-600" />
-        <span className="text-sm font-medium text-stone-500">{label}</span>
+        <TagIcon className="inline-block mr-1 w-5 h-5 text-stone-500 dark:text-stone-400" />
+        <span className="text-sm font-medium text-stone-500 dark:text-stone-400">
+          {label}
+        </span>
       </div>
       <div className="flex flex-row flex-wrap gap-2 items-center">
         {tags?.map((tag: Tag) => (
@@ -83,7 +85,7 @@ export default function RecordingTagBar({
           />
         ))}
         {tags?.length === 0 && (
-          <span className="text-sm text-stone-400 dark:text-stone-600">
+          <span className="text-sm text-stone-500 dark:text-stone-400">
             {t("Belum ada label")}
           </span>
         )}

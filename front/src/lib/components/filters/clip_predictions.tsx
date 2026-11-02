@@ -21,7 +21,7 @@ const clipPredictionFilterDef: FilterDef<ClipPredictionFilter>[] = [
     ),
     description: "Select clip predictions that have a given tag",
     icon: (
-      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
   {
@@ -42,7 +42,7 @@ const clipPredictionFilterDef: FilterDef<ClipPredictionFilter>[] = [
     description:
       "Select clip predictions that have a predicted sound event with a given tag",
     icon: (
-      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
+      <TagIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500 dark:text-stone-400" />
     ),
   },
 ];

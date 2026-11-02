@@ -62,7 +62,7 @@ function Ring({
         <span className="text-3xl font-bold text-stone-900 dark:text-stone-100">
           {pct}%
         </span>
-        <span className="text-xs text-stone-500">
+        <span className="text-xs text-stone-500 dark:text-stone-400">
           {answered} / {total} {t(" klip")}
         </span>
       </div>
@@ -91,7 +91,7 @@ function Stat({
       <span
         className={
           "text-xs font-semibold uppercase tracking-wide " +
-          (accent ? "text-emerald-100" : "text-stone-500")
+          (accent ? "text-emerald-100" : "text-stone-500 dark:text-stone-400")
         }
       >
         {label}
@@ -100,7 +100,8 @@ function Stat({
       {note && (
         <span
           className={
-            "text-xs " + (accent ? "text-emerald-100" : "text-stone-500")
+            "text-xs " +
+            (accent ? "text-emerald-100" : "text-stone-500 dark:text-stone-400")
           }
         >
           {note}
@@ -118,13 +119,13 @@ function Activity({ p, isAdmin }: { p: Progress; isAdmin: boolean }) {
         <h3 className="text-sm font-semibold text-stone-700 dark:text-stone-300">
           {t("Klip terjawab per hari (14 hari, WIB)")}
         </h3>
-        <span className="flex items-center gap-3 text-xs text-stone-500">
+        <span className="flex items-center gap-3 text-xs text-stone-500 dark:text-stone-400">
           <span className="flex items-center gap-1">
-            <span className="h-2.5 w-2.5 rounded-sm bg-emerald-700" />{" "}
+            <span className="h-2.5 w-2.5 rounded-sm bg-emerald-700 dark:bg-emerald-400" />{" "}
             {isAdmin ? t("kamu") : t("jawabanmu")}
           </span>
           <span className="flex items-center gap-1">
-            <span className="h-2.5 w-2.5 rounded-sm bg-emerald-200 dark:bg-emerald-900" />{" "}
+            <span className="h-2.5 w-2.5 rounded-sm bg-emerald-200 dark:bg-emerald-700/60" />{" "}
             {t("tim")}
           </span>
         </span>
@@ -141,16 +142,16 @@ function Activity({ p, isAdmin }: { p: Progress; isAdmin: boolean }) {
             })}
           >
             <div
-              className="flex w-full flex-col justify-end overflow-hidden rounded-t-md bg-emerald-200 dark:bg-emerald-900"
+              className="flex w-full flex-col justify-end overflow-hidden rounded-t-md bg-emerald-200 dark:bg-emerald-700/60"
               style={{ height: `${(100 * n) / max}%`, minHeight: n ? 4 : 0 }}
             >
               <div
-                className="w-full bg-emerald-700"
+                className="w-full bg-emerald-700 dark:bg-emerald-400"
                 style={{ height: n ? `${(100 * p.my_by_day[i]) / n}%` : 0 }}
               />
             </div>
             {n > 0 && (
-              <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-semibold text-stone-500 opacity-0 group-hover:opacity-100">
+              <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-semibold text-stone-500 opacity-0 group-hover:opacity-100 dark:text-stone-400">
                 {n}
               </span>
             )}
@@ -165,7 +166,7 @@ function Activity({ p, isAdmin }: { p: Progress; isAdmin: boolean }) {
               "flex-1 text-center text-[10px] " +
               (i === p.days.length - 1
                 ? "font-bold text-emerald-700 dark:text-emerald-300"
-                : "text-stone-400") +
+                : "text-stone-500 dark:text-stone-400") +
               // on a phone only every other day is labelled
               ((p.days.length - 1 - i) % 2 === 1 ? " invisible sm:visible" : "")
             }
@@ -229,7 +230,9 @@ function Annotators({ byUser }: { byUser: Record<string, number> }) {
         {t("Per anotator")}
       </h3>
       {rows.length === 0 ? (
-        <p className="text-sm text-stone-500">{t("Belum ada jawaban.")}</p>
+        <p className="text-sm text-stone-500 dark:text-stone-400">
+          {t("Belum ada jawaban.")}
+        </p>
       ) : (
         rows.map(([u, n]) => (
           <div key={u} className="flex items-center gap-3 text-sm">
@@ -303,7 +306,9 @@ function ProjectPanel({
           <div className="flex flex-col items-center gap-6 sm:flex-row">
             <div className="flex flex-col items-center gap-1">
               <Ring pct={pct} answered={answered} total={p.total} />
-              <span className="text-xs text-stone-500">{t("progres tim")}</span>
+              <span className="text-xs text-stone-500 dark:text-stone-400">
+                {t("progres tim")}
+              </span>
             </div>
             <div className="grid w-full flex-1 grid-cols-2 gap-3 lg:grid-cols-4">
               <Stat
@@ -377,9 +382,13 @@ export default function Page() {
         </h1>
       </div>
       {isLoading ? (
-        <p className="text-stone-500">{t("Memuat proyek…")}</p>
+        <p className="text-stone-500 dark:text-stone-400">
+          {t("Memuat proyek…")}
+        </p>
       ) : items.length === 0 ? (
-        <p className="text-stone-500">{t("Belum ada proyek anotasi.")}</p>
+        <p className="text-stone-500 dark:text-stone-400">
+          {t("Belum ada proyek anotasi.")}
+        </p>
       ) : (
         items.map((project) => (
           <ProjectPanel

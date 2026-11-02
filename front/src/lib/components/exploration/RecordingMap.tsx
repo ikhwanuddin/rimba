@@ -166,7 +166,7 @@ function RecordingPopup({
           <RecordingAttribute field="time" value={recording.time} />
         )}
         <div className="flex flex-row gap-2">
-          <icons.TagsIcon className="w-4 h-4 text-stone-500" />
+          <icons.TagsIcon className="w-4 h-4 text-stone-500 dark:text-stone-400" />
           <div className="flex flex-col gap-2">
             {recording.tags?.map((tag) => (
               <Tag key={getTagKey(tag)} tag={tag} {...tagColorFn(tag)} />
@@ -187,7 +187,7 @@ function RecordingAttribute({
 }) {
   return (
     <div className="flex flex-row gap-2">
-      <span className="text-stone-500">{field}</span>
+      <span className="text-stone-500 dark:text-stone-400">{field}</span>
       {value}
     </div>
   );

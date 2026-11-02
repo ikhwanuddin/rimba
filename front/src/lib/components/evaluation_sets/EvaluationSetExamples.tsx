@@ -28,7 +28,7 @@ function SelectAnnotationProject({
     <Card>
       <div>
         <H3>Select Annotation Project</H3>
-        <p className="text-stone-500">
+        <p className="text-stone-500 dark:text-stone-400">
           Choose the annotation project from which to source your ground truth
           data.
         </p>
@@ -67,7 +67,7 @@ function FilterAnnotations({
   return (
     <Card>
       <H3>Filter Annotations</H3>
-      <p className="text-stone-500">
+      <p className="text-stone-500 dark:text-stone-400">
         Select which annotations from the annotation project to add to the
         evaluation set as evaluation examples. Here are some recommended
         filters:
@@ -136,14 +136,18 @@ function ReviewExamples({
       <ul className="list-disc list-inside">
         <li>
           Examples selected from:{" "}
-          <span className="text-emerald-500">{project.name}</span>
+          <span className="text-emerald-700 dark:text-emerald-400">
+            {project.name}
+          </span>
         </li>
         <li>
           Examples to add:{" "}
-          <span className="font-bold text-emerald-500">{toAdd.length}</span>
+          <span className="font-bold text-emerald-700 dark:text-emerald-400">
+            {toAdd.length}
+          </span>
         </li>
       </ul>
-      <p className="text-stone-500">
+      <p className="text-stone-500 dark:text-stone-400">
         Once satisfied with your selections, click the button below to add the
         chosen examples to the evaluation set.
       </p>
@@ -185,7 +189,7 @@ export default function EvaluationSetExamples({
       </H2>
       <div className="flex flex-row gap-8">
         <div className="flex flex-col gap-y-6 max-w-prose">
-          <p className="max-w-prose text-stone-500">
+          <p className="max-w-prose text-stone-500 dark:text-stone-400">
             On this page, you can add examples to the evaluation set. Choose an
             annotation project to source examples from, and then filter the
             examples to add to the evaluation set.
