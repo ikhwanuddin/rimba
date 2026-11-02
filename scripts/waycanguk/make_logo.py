@@ -59,7 +59,11 @@ def wordmark(x=225, y=140, size=58):
     sub = text_paths(font(500), "ANOTASI KICAU BURUNG", x + 2, y - size * 0.95, size * 0.36, S.INK, spacing=size * 0.12)
     big = text_paths(font(700), "WAY CANGUK", x, y, size, S.GREEN, spacing=3,
                      dys=[0, 8, -4, -4, 4, 6, -12, 10, -3, -5], rots=[0, -4, 3, 0, -3, 4, -3, 5, -4, 3])
-    return sub + big
+    # the site follows the system light/dark setting; an SVG shown with <img> sees the same
+    # media query, so the words switch to light colours on a dark page
+    style = ("<style>@media (prefers-color-scheme: dark)"
+             "{.sub path{fill:#E7E5E4}.big path{fill:#93BF7E}}</style>")
+    return f'{style}<g class="sub">{sub}</g><g class="big">{big}</g>'
 
 
 mark = f'{S.CLIP}<g clip-path="url(#c)">{S.mark()}</g>'
