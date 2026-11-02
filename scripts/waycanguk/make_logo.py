@@ -18,6 +18,8 @@ import logo_shapes as S  # noqa: E402
 ROOT = HERE.parent.parent
 OUT_PUBLIC = ROOT / "front" / "public"
 OUT_APP = ROOT / "front" / "src" / "app"
+# imported by the pages, so Next serves them under a content-hashed URL (no stale cache)
+OUT_ASSETS = ROOT / "front" / "src" / "assets"
 FONT_URL = "https://github.com/google/fonts/raw/main/ofl/oswald/Oswald%5Bwght%5D.ttf"
 FONT = HERE / ".cache" / "Oswald.ttf"
 
@@ -63,8 +65,8 @@ def wordmark(x=225, y=140, size=58):
 mark = f'{S.CLIP}<g clip-path="url(#c)">{S.mark()}</g>'
 full = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200">'
         f'{mark}{wordmark()}</svg>\n')
-(OUT_PUBLIC / "waycanguk_logo.svg").write_text(full)
-(OUT_PUBLIC / "waycanguk_icon.svg").write_text(S.svg(S.mark()))
+(OUT_ASSETS / "waycanguk_logo.svg").write_text(full)
+(OUT_ASSETS / "waycanguk_icon.svg").write_text(S.svg(S.mark()))
 (OUT_PUBLIC / "favicon.svg").write_text(S.svg(S.favicon_mark()))
 (OUT_APP / "icon.svg").write_text(S.svg(S.favicon_mark()))
 print("wrote logo, icon, favicon")

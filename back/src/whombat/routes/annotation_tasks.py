@@ -42,12 +42,27 @@ ANSWER_VALUES = ("ya", "tidak", "tidak yakin")
 
 
 class Progress(BaseModel):
-    """Answered clips per annotator, and what is left."""
+    """Answered clips per annotator, and what is left (home page dashboard).
+
+    Days are Western Indonesia Time (UTC+7), where the annotators work. by_day and
+    my_by_day are the last DAYS days, oldest first.
+    """
 
     done_by_me: int
     remaining: int
     total: int
     by_user: dict[str, int]
+    today_by_me: int
+    today_total: int
+    by_day: list[int]
+    my_by_day: list[int]
+    days: list[str]
+    answers: dict[str, int]
+    my_answers: dict[str, int]
+
+
+WIB = datetime.timedelta(hours=7)
+DAYS = 14
 
 
 def _naive_utc(t: datetime.datetime) -> datetime.datetime:
@@ -232,24 +247,42 @@ def get_annotation_tasks_router(settings: WhombatSettings) -> APIRouter:
     ):
         """Way Canguk fork: answered clips per annotator in a project."""
         T, B, U = models.AnnotationTask, models.AnnotationStatusBadge, models.User
+        CT, Tag = models.ClipAnnotationTag, models.Tag
         project = await api.annotation_projects.get(session, annotation_project_uuid)
         total = await session.scalar(
             select(func.count(T.id)).where(T.annotation_project_id == project.id))
-        rows = (await session.execute(
-            select(U.username, func.count(func.distinct(B.annotation_task_id)))
+        done = (await session.execute(
+            select(B.annotation_task_id, U.username, B.created_on)
             .join(T, T.id == B.annotation_task_id).join(U, U.id == B.user_id)
-            .where(T.annotation_project_id == project.id,
-                   B.state == AnnotationState.completed)
-            .group_by(U.username)
+            .where(T.annotation_project_id == project.id, B.state == AnnotationState.completed)
         )).all()
-        answered = await session.scalar(
-            select(func.count(func.distinct(B.annotation_task_id)))
-            .join(T, T.id == B.annotation_task_id)
-            .where(T.annotation_project_id == project.id,
-                   B.state == AnnotationState.completed))
-        by_user = {name: n for name, n in rows}
+        today = (datetime.datetime.now(datetime.timezone.utc) + WIB).date()
+        days = [today - datetime.timedelta(days=DAYS - 1 - i) for i in range(DAYS)]
+        index = {d: i for i, d in enumerate(days)}
+        by_user, by_day, my_by_day = {}, [0] * DAYS, [0] * DAYS
+        for _, name, created_on in done:
+            by_user[name] = by_user.get(name, 0) + 1
+            i = index.get((_naive_utc(created_on) + WIB).date())
+            if i is not None:
+                by_day[i] += 1
+                my_by_day[i] += name == user.username
+        answer_rows = (await session.execute(
+            select(Tag.value, U.username)
+            .join(CT, CT.tag_id == Tag.id).join(U, U.id == CT.created_by_id)
+            .join(T, T.clip_annotation_id == CT.clip_annotation_id)
+            .where(T.annotation_project_id == project.id, Tag.key == ANSWER_KEY)
+        )).all()
+        answers = {v: 0 for v in ANSWER_VALUES}
+        my_answers = {v: 0 for v in ANSWER_VALUES}
+        for value, name in answer_rows:
+            answers[value] = answers.get(value, 0) + 1
+            if name == user.username:
+                my_answers[value] = my_answers.get(value, 0) + 1
         return Progress(done_by_me=by_user.get(user.username, 0),
-                        remaining=total - answered, total=total, by_user=by_user)
+                        remaining=total - len({t for t, _, _ in done}), total=total,
+                        by_user=by_user, today_by_me=my_by_day[-1], today_total=by_day[-1],
+                        by_day=by_day, my_by_day=my_by_day, days=[d.isoformat() for d in days],
+                        answers=answers, my_answers=my_answers)
 
     @annotation_tasks_router.post("/answer/", response_model=schemas.AnnotationTask)
     async def answer_task(

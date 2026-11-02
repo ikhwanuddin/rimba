@@ -28,7 +28,10 @@ export default function AnnotationProjects() {
 
   return (
     <>
-      <Hero text="Proyek anotasi" />
+      <Hero
+        text="Proyek anotasi"
+        note="Pekerjaan anotasi: klip yang ditanyakan ke anotator, label yang boleh dipakai, petunjuk, dan semua jawaban. Dibuat dari rekaman audio."
+      />
       <AnnotationProjectList
         onClickAnnotationProject={handleClickAnnotationProject}
         onCreateAnnotationProject={handleClickAnnotationProject}

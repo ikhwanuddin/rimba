@@ -1,5 +1,6 @@
 "use client";
 
+import logo from "@/assets/waycanguk_logo.svg";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -61,7 +62,7 @@ export default function LoginForm() {
     <div className="flex flex-col min-h-screen bg-emerald-50 dark:bg-stone-900">
       <div className="flex flex-1 flex-col items-center justify-center gap-8 p-6">
         <Image
-          src="/waycanguk_logo.svg"
+          src={logo}
           alt="Anotasi Kicau Burung Way Canguk"
           width={420}
           height={131}

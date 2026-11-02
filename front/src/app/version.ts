@@ -1,1 +1,1 @@
-export const version = "0.9.0+wc.6";
+export const version = "0.9.0+wc.7";

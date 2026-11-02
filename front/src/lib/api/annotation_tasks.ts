@@ -23,6 +23,13 @@ export const ProgressSchema = z.object({
   remaining: z.number(),
   total: z.number(),
   by_user: z.record(z.number()),
+  today_by_me: z.number(),
+  today_total: z.number(),
+  by_day: z.array(z.number()),
+  my_by_day: z.array(z.number()),
+  days: z.array(z.string()),
+  answers: z.record(z.number()),
+  my_answers: z.record(z.number()),
 });
 export type Progress = z.infer<typeof ProgressSchema>;
 

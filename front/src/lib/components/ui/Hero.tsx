@@ -12,13 +12,21 @@ import { H1 } from "@/lib/components/ui/Headings";
  */
 export default function Hero({
   text,
+  note,
 }: {
   /** The text content to be displayed within the H1 heading. */
   text: string;
+  /** Way Canguk fork: optional one-line explanation under the heading. */
+  note?: string;
 }) {
   return (
     <Header>
       <H1>{text}</H1>
+      {note && (
+        <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">
+          {note}
+        </p>
+      )}
     </Header>
   );
 }

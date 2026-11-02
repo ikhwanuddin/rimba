@@ -30,7 +30,10 @@ export default function Page() {
 
   return (
     <>
-      <Hero text="Data rekaman" />
+      <Hero
+        text="Rekaman audio"
+        note="File audio yang terdaftar di server, dikelompokkan per kumpulan. Bahan untuk membuat proyek anotasi; belum berisi pekerjaan atau jawaban."
+      />
       <DatasetList
         onCreateDataset={goToDatasetDetail}
         onClickDataset={goToDatasetDetail}
