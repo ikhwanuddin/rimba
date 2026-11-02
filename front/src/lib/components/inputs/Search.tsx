@@ -17,7 +17,7 @@ import Input from "./Input";
  */
 export default function Search({
   label = t("Cari"),
-  placeholder = "Search...",
+  placeholder,
   isLoading = false,
   icon,
   ...props
@@ -48,7 +48,12 @@ export default function Search({
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 w-8 pointer-events-none">
           {isLoading ? <Loading /> : icon || <SearchIcon />}
         </div>
-        <Input className="pl-10 text-sm 5" ref={ref} {...inputProps} />
+        <Input
+          className="pl-10 text-sm"
+          ref={ref}
+          {...inputProps}
+          placeholder={placeholder}
+        />
         {state.value !== "" && (
           <Button
             variant="primary"

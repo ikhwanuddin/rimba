@@ -179,7 +179,7 @@ export default function AnnotationProgress({
   );
 
   return (
-    <div className="inline-flex gap-1 items-center w-full h-full">
+    <div className="flex gap-1 items-center w-full min-w-0 h-full">
       <Tooltip
         tooltip={
           <div className="inline-flex gap-2 items-center">
@@ -195,8 +195,8 @@ export default function AnnotationProgress({
           <PreviousIcon className="inline-block w-8 h-8" />
         </Button>
       </Tooltip>
-      <div className="inline-flex gap-4 items-center px-2 h-full rounded-lg border grow dark:border-stone-800">
-        <div className="inline-flex gap-3 items-center">
+      <div className="flex flex-wrap gap-y-1 gap-x-4 items-center py-1 px-2 min-w-0 h-full rounded-lg border grow dark:border-stone-800">
+        <div className="flex flex-wrap gap-3 items-center">
           <CurrentTask currentTask={currentTask} />
           <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap">
             <span className="text-stone-500">#:</span>

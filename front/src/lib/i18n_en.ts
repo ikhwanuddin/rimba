@@ -1,5 +1,11 @@
 /* RIMBA: English interface texts, keyed by the Indonesian text in the code (see i18n.ts). */
 const EN: Record<string, string> = {
+  // project page (0.4)
+  "{done} dari {total} klip selesai": "{done} of {total} clips done",
+  Ubah: "Edit",
+  Ringkas: "Show less",
+  "Cari label": "Search labels",
+  "Tampilkan semua ({n})": "Show all ({n})",
   // login, profile, errors
   "Nama pengguna atau kata sandi salah": "Wrong username or password",
   "Nama pengguna": "Username",

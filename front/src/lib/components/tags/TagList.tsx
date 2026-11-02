@@ -29,7 +29,7 @@ export default function TagList({
   return (
     <div className="flex flex-col gap-4">
       <Search onChange={(value) => setSearch(value as string)} />
-      <div className="flex overflow-hidden flex-col gap-2 w-full">
+      <div className="flex flex-wrap gap-2 w-full">
         {tags.length === 0 && (
           <p className="text-stone-500">{t("Belum ada label")}</p>
         )}
@@ -40,6 +40,7 @@ export default function TagList({
           <TagComponent
             key={`${tag.key}-${tag.value}`}
             tag={tag}
+            wrapText
             {...tagColorFn(tag)}
             onClick={onClick && (() => onClick(tag))}
             onClose={onRemove && (() => onRemove(tag))}

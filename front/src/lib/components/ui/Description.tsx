@@ -5,12 +5,44 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { EditIcon } from "@/lib/components/icons";
 import { Input, TextArea } from "@/lib/components/inputs";
 
-import { localized } from "@/lib/i18n";
+import { locale, localized, t } from "@/lib/i18n";
 
 /** RIMBA: text values in the interface language, other values as before. */
 function shown(value: string | number | Date | undefined): string {
   if (typeof value === "string") return localized(value);
+  if (value instanceof Date)
+    return value.toLocaleString(locale(), {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
   return value?.toLocaleString() ?? "";
+}
+
+/** RIMBA: long text is folded to a few lines with a show more/less toggle. */
+function Folded({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  const long = text.length > 280 || text.split("\n").length > 6;
+  return (
+    <div className="min-w-0">
+      <p
+        className={classNames(
+          "whitespace-pre-wrap break-words",
+          long && !open && "line-clamp-6",
+        )}
+      >
+        {text}
+      </p>
+      {long && (
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="mt-1 text-xs font-medium text-emerald-700 hover:underline dark:text-emerald-400"
+        >
+          {open ? t("Ringkas") : t("Tampilkan semua")}
+        </button>
+      )}
+    </div>
+  );
 }
 
 /**
@@ -27,7 +59,7 @@ export function DescriptionData({
   return (
     <dd
       className={classNames(
-        "mt-1 w-full text-sm leading-6 text-stone-700 dark:text-stone-400 sm:col-span-2 sm:mt-0",
+        "mt-1 w-full text-sm leading-6 text-stone-800 dark:text-stone-300",
         className,
       )}
       {...rest}
@@ -51,7 +83,7 @@ export function DescriptionTerm({
   return (
     <dt
       className={classNames(
-        "text-sm w-full font-medium leading-6 text-stone-900 dark:text-stone-300",
+        "w-full text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400",
         className,
       )}
       {...rest}
@@ -84,14 +116,16 @@ export function EditableDescriptionData<T extends string | number | Date>({
 
   if (!editing) {
     return (
-      <DescriptionData className="flex flex-row justify-between">
+      <DescriptionData className="flex flex-row gap-3 justify-between items-start">
         {/* RIMBA: show one language; editing shows both (see localized) */}
-        <p className="whitespace-pre-wrap">{shown(value)}</p>
+        <Folded text={shown(value)} />
         <button
+          type="button"
+          title={t("Ubah")}
           onClick={() => setEditing(true)}
-          className="ml-2 text-sm underline text-stone-500"
+          className="flex-none p-1 rounded-md text-stone-400 hover:bg-stone-100 hover:text-emerald-700 dark:hover:bg-stone-700 dark:hover:text-emerald-400"
         >
-          <EditIcon className="inline-block w-5 h-5 text-emerald-700 dark:text-emerald-400" />
+          <EditIcon className="w-4 h-4" />
         </button>
       </DescriptionData>
     );

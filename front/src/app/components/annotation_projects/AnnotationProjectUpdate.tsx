@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import useAnnotationProject from "@/app/hooks/api/useAnnotationProject";
 
 import AnnotationProjectUpdateBase from "@/lib/components/annotation_projects/AnnotationProjectUpdate";
@@ -6,8 +8,10 @@ import type { AnnotationProject } from "@/lib/types";
 
 export default function AnnotationProjectUpdate({
   annotationProject,
+  actions,
 }: {
   annotationProject: AnnotationProject;
+  actions?: ReactNode;
 }) {
   const { data, update, isLoading } = useAnnotationProject({
     uuid: annotationProject.uuid,
@@ -19,6 +23,7 @@ export default function AnnotationProjectUpdate({
       annotationProject={data || annotationProject}
       isLoading={isLoading}
       onChangeAnnotationProject={update.mutate}
+      actions={actions}
     />
   );
 }

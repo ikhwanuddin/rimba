@@ -20,6 +20,7 @@ export default function Tag({
   level = 1,
   className,
   canClose = true,
+  wrapText = false,
   onClick,
   onClose,
   ...props
@@ -28,6 +29,8 @@ export default function Tag({
   level: (typeof LEVELS)[number];
   color: (typeof COLOR_NAMES)[number];
   canClose?: boolean;
+  /** RIMBA: let long values wrap instead of being cut off. */
+  wrapText?: boolean;
   onClick?: () => void;
   onClose?: () => void;
 } & HTMLProps<HTMLDivElement>) {
@@ -36,7 +39,8 @@ export default function Tag({
   return (
     <div
       className={classnames(
-        "border rounded-md px-1.5 whitespace-nowrap inline-flex w-fit max-w-full flex-nowrap",
+        "border rounded-md px-1.5 inline-flex w-fit max-w-full flex-nowrap",
+        wrapText ? "whitespace-normal" : "whitespace-nowrap",
         classNames.background,
         classNames.text,
         classNames.border,
@@ -51,13 +55,26 @@ export default function Tag({
       )}
       <button
         type="button"
-        className="flex flex-row items-center max-w-full group"
+        className={classnames(
+          "max-w-full group text-left",
+          wrapText ? "block" : "flex flex-row items-center",
+        )}
         onClick={onClick}
       >
-        <span className="font-normal opacity-75 min-w-fit shrink">
+        <span
+          className={classnames(
+            "font-normal opacity-75",
+            !wrapText && "min-w-fit shrink",
+          )}
+        >
           {tag.key}
         </span>
-        <span className="flex-1 ml-1 font-bold group-hover:underline grow truncate group-hover:decoration-2 group-hover:underline-offset-2">
+        <span
+          className={classnames(
+            "ml-1 font-bold group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2",
+            wrapText ? "break-words" : "flex-1 grow truncate",
+          )}
+        >
           {tag.value}
         </span>
       </button>

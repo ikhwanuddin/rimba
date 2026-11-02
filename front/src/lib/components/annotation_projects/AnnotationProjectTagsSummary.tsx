@@ -6,7 +6,7 @@ import {
   DescendingIcon,
   TagsIcon,
 } from "@/lib/components/icons";
-import ListSearch from "@/lib/components/lists/ListSearch";
+import Search from "@/lib/components/inputs/Search";
 import TagComponent from "@/lib/components/tags/Tag";
 import Button from "@/lib/components/ui/Button";
 import Card from "@/lib/components/ui/Card";
@@ -49,18 +49,26 @@ export default function ProjectTagsSummary({
 
   return (
     <Card>
-      <div className="flex flex-row justify-between items-center">
-        <H4 className="inline-flex items-center">
-          <TagsIcon className="inline-block mr-2 w-5 h-5" />
+      <div className="flex flex-row gap-2 justify-between items-center">
+        <H4 className="inline-flex gap-2 items-center">
+          <TagsIcon className="inline-block w-5 h-5" />
           {t("Label proyek")}
+          <span className="py-0.5 px-2 text-xs font-medium rounded-full bg-stone-100 text-stone-600 dark:bg-stone-700 dark:text-stone-300">
+            {projectTags.length}
+          </span>
           <Help>
             {t(
               'Label yang dipakai di proyek ini. "Klip" = jumlah klip berlabel itu, "Kotak" = jumlah kotak berlabel itu.',
             )}
           </Help>
         </H4>
-        <Button mode="text" variant="primary" onClick={onAddTags}>
-          <AddIcon className="inline-block mr-2 w-5 h-5" /> {t(" Tambah label")}
+        <Button
+          mode="outline"
+          variant="primary"
+          padding="px-3 py-1.5"
+          onClick={onAddTags}
+        >
+          <AddIcon className="inline-block mr-1 w-4 h-4" /> {t(" Tambah label")}
         </Button>
       </div>
       {isLoading ? (
@@ -130,57 +138,39 @@ function TagCounts({
   }
 
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <div>
-        {t("Ada")}{" "}
-        <span className="font-bold text-emerald-700 dark:text-emerald-400">
-          {counts.length}
-        </span>{" "}
-        {t("label di proyek ini.")}
-      </div>
-      <ListSearch
-        limit={limit}
-        onChangeLimit={setLimit}
-        onChangeSearch={setSearch}
-      />
+    <div className="flex flex-col gap-3 w-full">
+      {counts.length > 8 && (
+        <Search
+          placeholder={t("Cari label")}
+          onChange={(value) => setSearch(value as string)}
+        />
+      )}
       <TagTable
         items={items}
         sortBy={sortBy}
         onClickTag={onClickTag}
         tagColorFn={tagColorFn}
         onSortByTag={() =>
-          setSortBy((sortBy) => {
-            if (sortBy === "tag") {
-              return "-tag";
-            } else {
-              return "tag";
-            }
-          })
+          setSortBy((sortBy) => (sortBy === "tag" ? "-tag" : "tag"))
         }
-        onSortByClip={() => {
-          setSortBy((sortBy) => {
-            if (sortBy === "clip") {
-              return "-clip";
-            } else {
-              return "clip";
-            }
-          });
-        }}
-        onSortBySoundEvent={() => {
-          setSortBy((sortBy) => {
-            if (sortBy === "soundEvent") {
-              return "-soundEvent";
-            } else {
-              return "soundEvent";
-            }
-          });
-        }}
+        onSortByClip={() =>
+          setSortBy((sortBy) => (sortBy === "clip" ? "-clip" : "clip"))
+        }
+        onSortBySoundEvent={() =>
+          setSortBy((sortBy) =>
+            sortBy === "soundEvent" ? "-soundEvent" : "soundEvent",
+          )
+        }
       />
       {counts.length > limit && (
-        <div className="text-stone-500">
-          Showing {limit} of {counts.length} tags. Adjust the search or limit to
-          see more.
-        </div>
+        <Button
+          mode="text"
+          variant="primary"
+          padding="py-1"
+          onClick={() => setLimit(counts.length)}
+        >
+          {t("Tampilkan semua ({n})", { n: counts.length })}
+        </Button>
       )}
     </div>
   );
@@ -279,61 +269,60 @@ function TagTable({
   onClickTag?: (tag: types.Tag) => void;
   tagColorFn?: (tag: types.Tag) => Color;
 }) {
+  // RIMBA: a grid table; long label names wrap instead of pushing the counts out.
+  const sortIcon = (key: string) =>
+    sortBy === key ? (
+      <DescendingIcon className="inline-block w-4 h-4" />
+    ) : sortBy === "-" + key ? (
+      <AscendingIcon className="inline-block w-4 h-4" />
+    ) : null;
+  const head =
+    "inline-flex gap-1 items-center text-xs font-medium uppercase tracking-wide text-stone-500 hover:text-stone-800 dark:hover:text-stone-200";
   return (
-    <table className="min-w-full text-left table-fixed">
-      <thead>
-        <tr>
-          <th scope="col" className="py-2">
-            <Button padding="p-0" mode="text" onClick={onSortByTag}>
-              Tag
-              {sortBy == "tag" ? (
-                <DescendingIcon className="inline-block ml-2 w-5 h-5" />
-              ) : sortBy == "-tag" ? (
-                <AscendingIcon className="inline-block ml-2 w-5 h-5" />
-              ) : null}
-            </Button>
-          </th>
-          <th scope="col" className="py-2 w-20">
-            <Button padding="p-0" mode="text" onClick={onSortByClip}>
-              {t("Klip")}
-              {sortBy == "clip" ? (
-                <DescendingIcon className="inline-block ml-2 w-5 h-5" />
-              ) : sortBy == "-clip" ? (
-                <AscendingIcon className="inline-block ml-2 w-5 h-5" />
-              ) : (
-                <DescendingIcon className="inline-block invisible ml-2 w-5 h-5" />
-              )}
-            </Button>
-          </th>
-          <th scope="col" className="py-2 w-20">
-            <Button padding="p-0" mode="text" onClick={onSortBySoundEvent}>
-              {t("Kotak")}
-              {sortBy == "soundEvent" ? (
-                <DescendingIcon className="inline-block ml-2 w-5 h-5" />
-              ) : sortBy == "-soundEvent" ? (
-                <AscendingIcon className="inline-block ml-2 w-5 h-5" />
-              ) : (
-                <DescendingIcon className="inline-block invisible ml-2 w-5 h-5" />
-              )}
-            </Button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map(({ tag, clipCount, soundEventCount }) => (
-          <tr key={getTagKey(tag)}>
-            <td className="py-2 whitespace-nowrap">
-              <TagComponent
-                tag={tag}
-                onClick={() => onClickTag?.(tag)}
-                {...tagColorFn(tag)}
-              />
-            </td>
-            <td className="py-2 whitespace-nowrap">{clipCount}</td>
-            <td className="py-2 whitespace-nowrap">{soundEventCount}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="flex flex-col w-full text-sm">
+      <div className="grid grid-cols-[minmax(0,1fr)_3.5rem_3.5rem] gap-2 pb-2 border-b border-stone-200 dark:border-stone-700">
+        <button type="button" className={head} onClick={onSortByTag}>
+          {t("Label")}
+          {sortIcon("tag")}
+        </button>
+        <button
+          type="button"
+          className={head + " justify-end"}
+          onClick={onSortByClip}
+        >
+          {sortIcon("clip")}
+          {t("Klip")}
+        </button>
+        <button
+          type="button"
+          className={head + " justify-end"}
+          onClick={onSortBySoundEvent}
+        >
+          {sortIcon("soundEvent")}
+          {t("Kotak")}
+        </button>
+      </div>
+      {items.map(({ tag, clipCount, soundEventCount }) => (
+        <div
+          key={getTagKey(tag)}
+          className="grid grid-cols-[minmax(0,1fr)_3.5rem_3.5rem] gap-2 items-center py-2 border-b border-stone-100 last:border-b-0 dark:border-stone-700/50"
+        >
+          <div className="min-w-0">
+            <TagComponent
+              tag={tag}
+              wrapText
+              onClick={() => onClickTag?.(tag)}
+              {...tagColorFn(tag)}
+            />
+          </div>
+          <span className="text-right tabular-nums text-stone-700 dark:text-stone-300">
+            {clipCount}
+          </span>
+          <span className="text-right tabular-nums text-stone-700 dark:text-stone-300">
+            {soundEventCount}
+          </span>
+        </div>
+      ))}
+    </div>
   );
 }

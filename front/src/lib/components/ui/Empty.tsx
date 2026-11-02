@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export default function Empty({
   children,
-  outerClassName = "p-8",
+  outerClassName = "py-2",
   className,
 }: {
   children: ReactNode;
@@ -15,7 +15,7 @@ export default function Empty({
       <div
         className={classNames(
           className,
-          "flex flex-col justify-center items-center p-4 w-full text-center rounded-md border border-dashed border-stone-500 text-stone-500",
+          "flex flex-col gap-1 justify-center items-center py-6 px-4 w-full text-sm text-center rounded-lg border border-dashed border-stone-300 text-stone-500 dark:border-stone-600",
         )}
       >
         {children}

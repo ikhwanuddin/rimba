@@ -41,7 +41,7 @@ export default function TagPanel({
 }) {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <H4 className="text-center">
+      <H4 className="inline-flex items-center">
         <TagsIcon className="inline-block mr-1 w-5 h-5" />
         {title}
       </H4>

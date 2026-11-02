@@ -3,7 +3,7 @@ import { type ComponentProps, type FC } from "react";
 import { CheckIcon, IssuesIcon } from "@/lib/components/icons";
 import Card from "@/lib/components/ui/Card";
 import Empty from "@/lib/components/ui/Empty";
-import { H3 } from "@/lib/components/ui/Headings";
+import { H4 } from "@/lib/components/ui/Headings";
 import Loading from "@/lib/components/ui/Loading";
 
 import { t } from "@/lib/i18n";
@@ -17,10 +17,10 @@ export default function ProjectNotesSummary({
 } & ComponentProps<typeof IssuesSummary>) {
   return (
     <Card>
-      <H3>
-        <IssuesIcon className="inline-block mr-2 w-5 h-5" />
+      <H4 className="inline-flex gap-2 items-center">
+        <IssuesIcon className="inline-block w-5 h-5" />
         {t("Masalah proyek")}
-      </H3>
+      </H4>
       {isLoading ? <Loading /> : <IssuesSummary {...props} />}
     </Card>
   );
@@ -78,7 +78,7 @@ function IssuesSummary({
 function NoIssues() {
   return (
     <Empty>
-      <CheckIcon className="w-8 h-8 text-emerald-500" />
+      <CheckIcon className="w-6 h-6 text-emerald-500" />
       {t("Tidak ada masalah tercatat.")}
     </Empty>
   );

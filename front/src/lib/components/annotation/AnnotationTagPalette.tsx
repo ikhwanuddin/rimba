@@ -32,7 +32,7 @@ export default function AnnotationTagPalette({
 } & TagSearchBarProps) {
   return (
     <Card>
-      <H4 className="text-center">
+      <H4 className="inline-flex items-center">
         <Tooltip
           tooltip={
             <div className="w-48 text-center">

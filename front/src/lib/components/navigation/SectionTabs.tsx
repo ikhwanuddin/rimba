@@ -23,13 +23,17 @@ export default function SectionTabs({
 }) {
   return (
     <Header>
-      <div className="flex overflow-x-auto flex-row flex-wrap items-center gap-x-6 gap-y-2 w-full">
-        {title != null && <H1>{title}</H1>}
-        <ul className="flex gap-1">
-          {tabs.map((tab, index) => (
-            <li key={index}>{tab}</li>
-          ))}
-        </ul>
+      <div className="flex flex-row flex-wrap gap-y-3 gap-x-6 items-center w-full min-w-0">
+        {title != null && (
+          <H1 className="min-w-0 text-xl sm:text-2xl">{title}</H1>
+        )}
+        {tabs.length > 0 && (
+          <ul className="flex overflow-x-auto gap-1 p-1 max-w-full rounded-lg bg-stone-100 dark:bg-stone-800">
+            {tabs.map((tab, index) => (
+              <li key={index}>{tab}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </Header>
   );

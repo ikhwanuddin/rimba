@@ -30,7 +30,7 @@ function NavLink({
     <a
       href={href}
       className={classnames(
-        "rounded-md px-3 py-2 text-sm font-semibold",
+        "rounded-md px-2 py-2 text-sm font-semibold sm:px-3",
         active
           ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100"
           : "text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700",
@@ -49,9 +49,11 @@ function UserMenu({ user, onLogout }: { user?: User; onLogout?: () => void }) {
     "group flex w-full items-center rounded-md px-3 py-2 text-sm text-stone-700 dark:text-stone-200";
   return (
     <Menu as="div" className="relative">
-      <Menu.Button className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700">
+      <Menu.Button className="inline-flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold sm:px-3 text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700">
         <UserCircleIcon className="h-5 w-5" />
-        {user?.name || user?.username}
+        <span className="hidden max-w-[12rem] truncate sm:inline">
+          {user?.name || user?.username}
+        </span>
         <ChevronDownIcon className="h-4 w-4" />
       </Menu.Button>
       <Transition
@@ -115,7 +117,7 @@ function ManageMenu({ active }: { active: boolean }) {
     <Menu as="div" className="relative">
       <Menu.Button
         className={classnames(
-          "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold",
+          "inline-flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold sm:px-3",
           active
             ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100"
             : "text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700",
@@ -171,8 +173,8 @@ export function NavBar({
   const isAdmin = user?.is_superuser === true;
   return (
     <nav className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 backdrop-blur dark:border-stone-700 dark:bg-stone-900/95">
-      <div className="mx-auto flex max-w-7xl flex-row items-center gap-2 px-4 py-2">
-        <a href="/" className="mr-4 flex items-center gap-2">
+      <div className="mx-auto flex max-w-7xl flex-row items-center gap-0.5 px-2 py-2 sm:gap-2 sm:px-4">
+        <a href="/" className="mr-1 flex flex-none items-center gap-2 sm:mr-4">
           <Image src={icon} alt="" width={36} height={36} priority />
           <span className="hidden whitespace-nowrap text-lg font-bold uppercase tracking-wide text-emerald-700 sm:inline dark:text-emerald-300">
             RIMBA
@@ -187,7 +189,7 @@ export function NavBar({
             }
           />
         )}
-        <div className="ml-auto flex items-center gap-1">
+        <div className="ml-auto flex flex-none items-center gap-0.5 sm:gap-1">
           <NavLink
             href="/about/"
             label={t("Tentang")}

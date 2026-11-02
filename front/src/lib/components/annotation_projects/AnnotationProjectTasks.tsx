@@ -5,7 +5,7 @@ import * as icons from "@/lib/components/icons";
 import * as inputs from "@/lib/components/inputs";
 import * as ui from "@/lib/components/ui";
 
-import { t } from "@/lib/i18n";
+import { localized, t } from "@/lib/i18n";
 import type * as types from "@/lib/types";
 
 export default function AnnotationProjectTasks(props: {
@@ -37,18 +37,20 @@ export default function AnnotationProjectTasks(props: {
   DatasetSearch: JSX.Element;
 }) {
   return (
-    <div className="flex flex-col gap-8">
-      <ui.H2>
-        <icons.TasksIcon className="inline-block mr-2 w-5 h-5 align-middle" />
-        {t("Tambah klip")}
-      </ui.H2>
-      <div className="flex flex-row gap-8">
-        <div className="flex flex-col gap-y-6 max-w-prose">
-          <p className="max-w-prose text-stone-500">
-            {t(
-              "Di sini klip ditambahkan ke proyek anotasi: pilih kumpulan rekaman, saring berkasnya bila perlu, lalu atur cara memotong klip.",
-            )}
-          </p>
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-1">
+        <ui.H2 className="inline-flex gap-2 items-center">
+          <icons.TasksIcon className="inline-block w-6 h-6" />
+          {t("Tambah klip")}
+        </ui.H2>
+        <p className="max-w-prose text-sm text-stone-500">
+          {t(
+            "Di sini klip ditambahkan ke proyek anotasi: pilih kumpulan rekaman, saring berkasnya bila perlu, lalu atur cara memotong klip.",
+          )}
+        </p>
+      </div>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
+        <div className="flex flex-col gap-6 min-w-0">
           <SelectDataset DatasetSearch={props.DatasetSearch} />
           {props.dataset != null && (
             <>
@@ -76,7 +78,7 @@ export default function AnnotationProjectTasks(props: {
             </>
           )}
         </div>
-        <div className="w-96">
+        <div className="min-w-0">
           <div className="sticky top-8">
             <ReviewClips
               isLoading={props.isLoading}
@@ -308,21 +310,25 @@ function ReviewClips({
         <ui.Loading />
       ) : (
         <>
-          <ul className="list-disc list-inside">
-            <li>
-              {t("Rekaman terpilih:")}{" "}
-              <span className="text-emerald-500">{dataset.name}</span>
-            </li>
-            <li>
-              {t("Berkas terpilih:")}{" "}
-              <span className="text-emerald-500">{numRecordings}</span>
-            </li>
-            <li>
-              {t("Klip yang ditambahkan:")}{" "}
-              <span className="font-bold text-emerald-500">{numClips}</span>
-            </li>
-          </ul>
-          <p className="text-stone-500">
+          <dl className="text-sm divide-y divide-stone-100 dark:divide-stone-700">
+            <div className="flex gap-3 justify-between py-2">
+              <dt className="text-stone-500">{t("Rekaman terpilih:")}</dt>
+              <dd className="font-medium text-right break-words min-w-0">
+                {localized(dataset.name)}
+              </dd>
+            </div>
+            <div className="flex gap-3 justify-between py-2">
+              <dt className="text-stone-500">{t("Berkas terpilih:")}</dt>
+              <dd className="font-medium tabular-nums">{numRecordings}</dd>
+            </div>
+            <div className="flex gap-3 justify-between py-2">
+              <dt className="text-stone-500">{t("Klip yang ditambahkan:")}</dt>
+              <dd className="text-lg font-semibold tabular-nums text-emerald-700 dark:text-emerald-400">
+                {numClips}
+              </dd>
+            </div>
+          </dl>
+          <p className="text-sm text-stone-500">
             {t(
               "Kalau pilihan sudah pas, klik tombol di bawah untuk menambahkan klip ke proyek.",
             )}

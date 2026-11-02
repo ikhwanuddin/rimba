@@ -20,13 +20,14 @@ export default function ProjectActions({
   onDownloadAnnotationProject?: () => void;
 }) {
   return (
-    <div className="flex flex-row gap-2 justify-center">
+    <div className="flex flex-row flex-wrap gap-2 justify-between items-center">
       <Button
-        mode="text"
+        mode="outline"
         variant="primary"
+        padding="px-3 py-1.5"
         onClick={onDownloadAnnotationProject}
       >
-        <DownloadIcon className="inline-block mr-2 w-5 h-5" /> {t(" Unduh")}
+        <DownloadIcon className="inline-block mr-1 w-4 h-4" /> {t(" Unduh")}
       </Button>
       <DeleteProject
         annotationProject={annotationProject}

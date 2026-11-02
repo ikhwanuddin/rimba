@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import classNames from "classnames";
+import { type ReactNode, useMemo } from "react";
 
 import {
   AddIcon,
@@ -10,10 +11,8 @@ import {
 import Button from "@/lib/components/ui/Button";
 import Card from "@/lib/components/ui/Card";
 import Empty from "@/lib/components/ui/Empty";
-import { H3 } from "@/lib/components/ui/Headings";
+import { H4 } from "@/lib/components/ui/Headings";
 import Loading from "@/lib/components/ui/Loading";
-import MetricBadge from "@/lib/components/ui/MetricBadge";
-import ProgressBar from "@/lib/components/ui/ProgressBar";
 
 import { t } from "@/lib/i18n";
 import type { AnnotationTask } from "@/lib/types";
@@ -52,10 +51,15 @@ export default function ProjectProgress({
 
   return (
     <Card>
-      <div className="flex flex-row justify-between items-center">
-        <H3>{t("Progres anotasi")}</H3>
-        <Button mode="text" variant="primary" onClick={onAddTasks}>
-          <AddIcon className="inline-block mr-2 w-5 h-5" /> {t(" Tambah klip")}
+      <div className="flex flex-row gap-2 justify-between items-center">
+        <H4>{t("Progres anotasi")}</H4>
+        <Button
+          mode="outline"
+          variant="primary"
+          padding="px-3 py-1.5"
+          onClick={onAddTasks}
+        >
+          <AddIcon className="inline-block mr-1 w-4 h-4" /> {t(" Tambah klip")}
         </Button>
       </div>
       {isLoading ? (
@@ -92,9 +96,42 @@ function NoTasks() {
   );
 }
 
+// RIMBA: status tiles and a slim progress bar with a one-line summary.
+function StatTile({
+  icon,
+  title,
+  value,
+  tone,
+  onClick,
+}: {
+  icon: ReactNode;
+  title: string;
+  value: number;
+  tone: string;
+  onClick?: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={classNames(
+        "flex flex-col gap-1 items-start p-3 text-left rounded-lg ring-1 ring-inset transition hover:brightness-95 focus:outline-none focus:ring-2",
+        tone,
+      )}
+    >
+      <span className="flex gap-1.5 items-center text-xs font-medium">
+        {icon}
+        {title}
+      </span>
+      <span className="text-2xl font-semibold tabular-nums text-stone-900 dark:text-stone-100">
+        {value.toLocaleString()}
+      </span>
+    </button>
+  );
+}
+
 function ProgressReport({
   annotationTasks,
-  isLoading,
   missing,
   needReview,
   completed,
@@ -115,56 +152,65 @@ function ProgressReport({
   onClickCompleted?: () => void;
   onClickVerified?: () => void;
 }) {
+  const total = annotationTasks.length;
+  const done = completed + verified;
+  const percent = total === 0 ? 0 : Math.round((done / total) * 100);
   return (
-    <>
-      <div className="flex flex-row gap-2 justify-around">
-        <MetricBadge
-          icon={<EditIcon className="inline-block w-8 h-8 text-blue-500" />}
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <StatTile
+          icon={<EditIcon className="w-4 h-4" />}
           title={t("Belum dijawab")}
           value={missing}
-          isLoading={isLoading}
+          tone="bg-stone-50 text-stone-600 ring-stone-200 dark:bg-stone-900 dark:text-stone-300 dark:ring-stone-700"
           onClick={onClickPending}
         />
-        <MetricBadge
-          icon={
-            <NeedsReviewIcon className="inline-block w-8 h-8 text-red-500" />
-          }
+        <StatTile
+          icon={<NeedsReviewIcon className="w-4 h-4" />}
           title={t("Perlu ditinjau")}
           value={needReview}
-          isLoading={isLoading}
+          tone="bg-red-50 text-red-700 ring-red-200 dark:bg-red-950 dark:text-red-300 dark:ring-red-900"
           onClick={onClickReview}
         />
-        <MetricBadge
-          icon={
-            <CompleteIcon className="inline-block w-8 h-8 text-emerald-500" />
-          }
+        <StatTile
+          icon={<CompleteIcon className="w-4 h-4" />}
           title={t("Selesai")}
           value={completed}
-          isLoading={isLoading}
+          tone="bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:ring-emerald-900"
           onClick={onClickCompleted}
         />
-        <MetricBadge
-          icon={
-            <VerifiedIcon className="inline-block w-8 h-8 text-amber-500" />
-          }
+        <StatTile
+          icon={<VerifiedIcon className="w-4 h-4" />}
           title={t("Diverifikasi")}
           value={verified}
-          isLoading={isLoading}
+          tone="bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-900"
           onClick={onClickVerified}
         />
       </div>
-      <div className="mt-4">
-        <div className="mb-2 text-stone-500">
-          {t("Total klip: ")}
-          {annotationTasks.length}
+      <div className="flex flex-col gap-2">
+        <div className="flex justify-between items-baseline text-sm">
+          <span className="text-stone-600 dark:text-stone-400">
+            {t("{done} dari {total} klip selesai", { done, total })}
+          </span>
+          <span className="font-semibold tabular-nums text-emerald-700 dark:text-emerald-400">
+            {percent}%
+          </span>
         </div>
-        <ProgressBar
-          total={annotationTasks.length}
-          complete={completed}
-          verified={verified}
-          error={needReview}
-        />
+        <div className="flex overflow-hidden w-full h-2 rounded-full bg-stone-200 dark:bg-stone-700">
+          <div
+            className="bg-emerald-600"
+            style={{ width: `${(completed / total) * 100}%` }}
+          />
+          <div
+            className="bg-amber-500"
+            style={{ width: `${(verified / total) * 100}%` }}
+          />
+          <div
+            className="bg-red-500"
+            style={{ width: `${(needReview / total) * 100}%` }}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 }

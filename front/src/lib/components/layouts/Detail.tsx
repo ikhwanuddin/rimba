@@ -18,9 +18,10 @@ export default function DetailLayout({
   Actions?: JSX.Element;
 }) {
   return (
-    <div className="flex flex-row flex-wrap gap-8 justify-between lg:flex-nowrap w-full">
-      <div className="grow">{MainContent}</div>
-      <div className="flex flex-col flex-none gap-4 w-96">
+    // RIMBA: a grid so wide main content never pushes the sidebar off screen.
+    <div className="grid grid-cols-1 gap-6 w-full lg:grid-cols-[minmax(0,1fr)_22rem] xl:grid-cols-[minmax(0,1fr)_24rem]">
+      <div className="min-w-0">{MainContent}</div>
+      <div className="flex flex-col gap-4 min-w-0">
         {Actions}
         <div className="sticky top-8 w-full">{SideBar}</div>
       </div>

@@ -17,12 +17,7 @@ export default function AnnotationProjectDetail({
 }) {
   return (
     <AnnotationProjectDetailBase
-      AnnotationProjectActions={
-        <AnnotationProjectActions
-          annotationProject={annotationProject}
-          onDeleteAnnotationProject={onDeleteAnnotationProject}
-        />
-      }
+      AnnotationProjectActions={<></>}
       AnnotationProjectNotesSummary={
         <AnnotationProjectNotesSummary annotationProject={annotationProject} />
       }
@@ -30,7 +25,15 @@ export default function AnnotationProjectDetail({
         <AnnotationProjectTagsSummary annotationProject={annotationProject} />
       }
       AnnotationProjectUpdate={
-        <AnnotationProjectUpdate annotationProject={annotationProject} />
+        <AnnotationProjectUpdate
+          annotationProject={annotationProject}
+          actions={
+            <AnnotationProjectActions
+              annotationProject={annotationProject}
+              onDeleteAnnotationProject={onDeleteAnnotationProject}
+            />
+          }
+        />
       }
       AnnotationProjectProgress={
         <AnnotationProjectProgress annotationProject={annotationProject} />

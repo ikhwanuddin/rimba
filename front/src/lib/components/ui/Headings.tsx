@@ -64,7 +64,7 @@ export function H4({
     <h4
       className={classnames(
         className,
-        "text-md font-semibold leading-6 text-stone-800 dark:text-stone-300",
+        "text-base font-semibold leading-6 text-stone-800 dark:text-stone-300",
       )}
       {...props}
     >

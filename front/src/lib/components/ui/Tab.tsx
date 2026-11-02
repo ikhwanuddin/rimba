@@ -2,13 +2,13 @@ import classnames from "classnames";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 const BASE_CLASS =
-  "whitespace-nowrap rounded-md px-3 py-2 text-center text-sm font-semibold focus:outline-none focus:ring-4 focus:ring-emerald-500/50 flex gap-1 items-center";
+  "whitespace-nowrap rounded-md px-3 py-1.5 text-center text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 flex gap-1.5 items-center transition";
 
 const ACTIVE_CLASS =
-  "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100";
+  "bg-white text-emerald-800 shadow-sm dark:bg-stone-700 dark:text-emerald-200";
 
 const INACTIVE_CLASS =
-  "text-stone-700 hover:bg-stone-200 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-700 dark:hover:text-stone-300";
+  "text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200";
 
 export default function Tab({
   children,
