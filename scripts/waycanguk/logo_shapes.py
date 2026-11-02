@@ -1,7 +1,7 @@
 """Way Canguk fork: logo mark (MAARU art style). Used by make_logo.py.
 
-A large songbird on a branch sings three thick sound arcs, turned 18 degrees upwards, under
-a light-blue sky with two clouds and a curved green hill. Shapes are kept thick so the bird,
+A slim songbird with a fanned tail sings three thick sound arcs, turned 18 degrees upwards,
+under a dawn sky (peach to cream) with two clouds and a curved green hill. Shapes are kept thick so the bird,
 the arcs and the clouds still read at 32 px. favicon_mark() drops the branch and the legs
 for the 16-32 px browser tab.
 """
@@ -9,20 +9,23 @@ import math
 
 GREEN = "#2E6B3F"      # forest green (app accent), the bird
 SAGE = "#B9D7A6"       # hill
-SKY = "#CFE6F5"        # sky
 INK = "#1A1A1A"        # sound arcs, small text
 BRANCH = "#5B3A1E"
 WHITE = "#FFFFFF"
 
-# songbird facing right, ~100x100 box; beak a little longer and deeper than a plain
-# wedge so it still reads at 36 px (tip at (94, 37)). beak() keeps (91, 38) as the
-# anchor for the sound arcs.
+# slim songbird facing right, ~100x100 box: tip of the beak at (94, 37), a fanned tail of
+# three rounded feathers that stays inside the circle. beak() keeps (91, 38) as the anchor
+# for the sound arcs.
 BIRD = ("M94 37 L80 33.5 C80 27 73 21.5 66 22 C58.5 22.5 54.5 28.5 53.5 35 "
-        "C44 36 33 40 25 46 L7 52.5 L11 57 L26 55.5 C33 64.5 44 69 56 67.5 "
-        "C70 65.5 78.5 55.5 79.8 43 Z")
-BIRD_LEGS = "M55 66 L52 79 M62 65 L62 79"
+        "C46 36 38 39 31 44 L14 38.5 Q8 38 8.5 42.5 L16 46.5 Q6 46.5 6.5 51.5 L16 52.5 "
+        "Q9 55.5 11.5 59.5 L32 53 C38 60 46 63 56 62.5 C70 61 78.5 54 79.8 43 Z")
+BIRD_LEGS = "M55 61 L53 72 M62 60.5 L62 72"
 
-CLIP = '<defs><clipPath id="c"><circle cx="100" cy="100" r="96"/></clipPath></defs>'
+# dawn sky: warm peach at the top fading to cream (matches the warm greys of the site)
+SKY_TOP, SKY_LOW = "#F9D3A8", "#FBEBD8"
+CLIP = ('<defs><clipPath id="c"><circle cx="100" cy="100" r="96"/></clipPath>'
+        f'<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{SKY_TOP}"/>'
+        f'<stop offset="0.75" stop-color="{SKY_LOW}"/></linearGradient></defs>')
 
 
 def bird(x, y, s, legs=True):
@@ -63,12 +66,12 @@ def hill(y_edge, y_top):
 
 
 def sky():
-    return f'<circle cx="100" cy="100" r="96" fill="{SKY}"/>'
+    return '<circle cx="100" cy="100" r="96" fill="url(#sky)"/>'
 
 
 def mark():
     """Full mark in a 200x200 box (logo, top bar, login page)."""
-    bx, by, s = 54, 118, 1.6
+    bx, by, s = 72, 127.7, 1.38   # feet on the branch, whole tail inside the circle
     x, y = beak(bx, by, s)
     return (sky() + hill(160, 128) + cloud(40, 54, 0.9) + cloud(116, 44, 0.7)
             + f'<path d="M-10 168 Q70 162 150 170" stroke="{BRANCH}" stroke-width="9" fill="none" stroke-linecap="round"/>'
@@ -76,11 +79,11 @@ def mark():
 
 
 def favicon_mark():
-    """Browser-tab mark: no branch, no legs, one cloud, thicker arcs."""
-    bx, by, s = 58, 124, 1.5
+    """Browser-tab mark: no branch, no legs, one cloud."""
+    bx, by, s = 70, 122, 1.3
     x, y = beak(bx, by, s)
-    return (sky() + hill(166, 136) + cloud(60, 50, 1.0) + bird(bx, by, s, legs=False)
-            + arcs(x + 6, y, -18, 12, 15, 21, 46))
+    return (sky() + hill(158, 130) + cloud(60, 50, 1.0) + bird(bx, by, s, legs=False)
+            + arcs(x + 6, y, -18, 12, 15, 19, 46))
 
 
 def svg(body, view="0 0 200 200"):
