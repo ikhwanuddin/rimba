@@ -1,6 +1,6 @@
 "use client";
 
-/* Way Canguk fork: home page dashboard. One panel per annotation project: team
+/* RIMBA: home page dashboard. One panel per annotation project: team
  * progress ring, the annotator's own numbers, answers per day over the last two
  * weeks (WIB) and a finish estimate; admins also see the answer mix and each
  * annotator's count. */

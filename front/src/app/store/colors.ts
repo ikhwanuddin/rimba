@@ -26,7 +26,7 @@ export const createColorsSlice: StateCreator<ColorsSlice> = (set, get) => ({
       },
     }));
   },
-  // Way Canguk fork: colours come from the tag itself (same for everyone),
+  // RIMBA: colours come from the tag itself (same for everyone),
   // not from a random pick stored per browser.
   getTagColor: (tag: Tag) => getTagColor(tag),
   clearTagColors: () => {

@@ -16,7 +16,7 @@ export default function Hero({
 }: {
   /** The text content to be displayed within the H1 heading. */
   text: string;
-  /** Way Canguk fork: optional one-line explanation under the heading. */
+  /** RIMBA: optional one-line explanation under the heading. */
   note?: string;
 }) {
   return (

@@ -2,11 +2,11 @@ front/src/old_components
 front/src/old_hooks
 old
 
-whombat.db
+rimba.db
 front/tests-examples
 front/playwright-report
 front/test-results
 .backups
-build/whombat
+build/rimba
 dist
 .env

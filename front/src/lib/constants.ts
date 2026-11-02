@@ -16,10 +16,10 @@ export const DEFAULT_OVERLAP = 0.5;
 export const DEFAULT_WINDOW = "hann";
 export const DEFAULT_SCALE = "dB";
 export const DEFAULT_FILTER_ORDER = 5;
-export const DEFAULT_CMAP = "viridis"; // Way Canguk fork (upstream: gray)
+export const DEFAULT_CMAP = "viridis"; // RIMBA (upstream: gray)
 
 /* Default settings for windows (viewing windows) */
-export const DEFAULT_VIEW_DURATION = 6; // Way Canguk fork: whole 6 s clip (upstream: 1)
+export const DEFAULT_VIEW_DURATION = 6; // RIMBA: whole 6 s clip (upstream: 1)
 export const DEFAULT_VIEW_MIN_FREQ: number | null = 0;
 export const DEFAULT_VIEW_MAX_FREQ: number | null = null;
 

@@ -9,7 +9,7 @@ import useActiveUser from "@/app/hooks/api/useActiveUser";
 
 import Loading from "@/app/loading";
 
-import { WhombatIcon } from "@/lib/components/icons";
+import { RimbaIcon } from "@/lib/components/icons";
 import { NavBar } from "@/lib/components/navigation/NavBar";
 
 import UserContext from "../contexts/user";
@@ -37,7 +37,7 @@ function WithLogIn({ children }: { children: React.ReactNode }) {
       <div className="flex justify-center items-center w-screen h-screen">
         <div className="flex flex-col items-center">
           <div>
-            <WhombatIcon width={128} height={128} className="w-32 h-32" />
+            <RimbaIcon width={128} height={128} className="w-32 h-32" />
           </div>
           <div>
             <Loading />
@@ -67,7 +67,7 @@ function Contents({ children }: { children: ReactNode }) {
     router.push("/login");
   }, [router]);
 
-  // Way Canguk fork: one top bar, no icon side menu; licence and credit are on
+  // RIMBA: one top bar, no icon side menu; licence and credit are on
   // the login and About pages instead of a footer on every page.
   return (
     <div className="flex flex-col w-full max-w-full min-h-screen">

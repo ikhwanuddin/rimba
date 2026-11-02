@@ -1,8 +1,8 @@
 /**
- * Whombat Javascript API
+ * RIMBA Javascript API
  *
- * This file is the entry point for the Whombat Javascript API.
- * Use the API to interact with the Whombat backend.
+ * This file is the entry point for the RIMBA Javascript API.
+ * Use the API to interact with the RIMBA backend.
  */
 import axios from "axios";
 
@@ -41,7 +41,7 @@ const DEFAULT_CONFIG: APIConfig = {
 };
 
 /**
- * Create an instance of the Whombat API.
+ * Create an instance of the RIMBA API.
  */
 export default function createAPI(config: APIConfig = DEFAULT_CONFIG) {
   let instance = axios.create(config);

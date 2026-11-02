@@ -1,9 +1,9 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from whombat import schemas
-from whombat.system import create_app
-from whombat.system.settings import Settings, get_settings
+from rimba import schemas
+from rimba.system import create_app
+from rimba.system.settings import Settings, get_settings
 
 
 @pytest.fixture

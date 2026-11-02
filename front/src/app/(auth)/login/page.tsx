@@ -1,6 +1,6 @@
 "use client";
 
-import logo from "@/assets/waycanguk_logo.svg";
+import logo from "@/assets/rimba_logo.svg";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -56,18 +56,15 @@ export default function LoginForm() {
       });
   };
 
-  // Way Canguk fork: project login page (no "create account" box; accounts are
+  // RIMBA: project login page (no "create account" box; accounts are
   // made by the administrator).
   return (
     <div className="flex flex-col min-h-screen bg-emerald-50 dark:bg-stone-900">
       <div className="flex flex-1 flex-col items-center justify-center gap-8 p-6">
-        <Image
-          src={logo}
-          alt="Anotasi Kicau Burung Way Canguk"
-          width={420}
-          height={131}
-          priority
-        />
+        <Image src={logo} alt="RIMBA" width={420} height={138} priority />
+        <p className="-mt-6 max-w-sm text-center text-xs font-semibold uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
+          Rainforest Identification and Monitoring through Bioacoustic Analysis
+        </p>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-80 flex flex-col gap-3 rounded-lg border border-emerald-200 bg-white p-6 shadow-sm dark:border-stone-700 dark:bg-stone-800"
@@ -107,10 +104,7 @@ export default function LoginForm() {
           Whombat
         </a>{" "}
         © Martínez Balvanera et al., GPL-3.0 ·{" "}
-        <a
-          className="underline"
-          href="https://github.com/ikhwanuddin/whombat/tree/waycanguk"
-        >
+        <a className="underline" href="https://github.com/ikhwanuddin/rimba">
           kode sumber
         </a>
       </footer>

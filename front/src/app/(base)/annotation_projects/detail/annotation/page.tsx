@@ -38,7 +38,7 @@ export default function Page() {
     [router, pathname, searchParams],
   );
 
-  // Way Canguk fork: annotators work from the shared clip queue.
+  // RIMBA: annotators work from the shared clip queue.
   if (!isAdmin) {
     return <AnnotatorView annotationProject={project} />;
   }

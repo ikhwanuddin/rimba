@@ -37,7 +37,7 @@ export default function ClipAnnotationSpectrogram({
   audioSettings: ReturnType<typeof useAudioSettings>;
   viewSettings: ReturnType<typeof useViewSettings>;
   tagPalette: ReturnType<typeof useAnnotationTagPallete>;
-  /** Way Canguk fork: annotator view, only player, small box tools and canvas */
+  /** RIMBA: annotator view, only player, small box tools and canvas */
   simple?: boolean;
   height?: number;
 }) {

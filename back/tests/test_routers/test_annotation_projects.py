@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 from soundevent import data
 from soundevent.io import aoef
 
-from whombat import schemas
+from rimba import schemas
 
 
 class TestExportAnnotationProject:

@@ -34,7 +34,7 @@ function drawFreqTick(
   ctx.lineTo(length, y);
   ctx.stroke();
   if (label != null && y > 14 && y < ctx.canvas.height - 8) {
-    // Way Canguk fork: horizontal labels with an outline, readable on any spectrogram
+    // RIMBA: horizontal labels with an outline, readable on any spectrogram
     setFontStyle(ctx, {
       fontColor: color,
       textBaseline: "middle",
@@ -56,7 +56,7 @@ export default function drawTimeAxis(
   const { height } = canvas;
   const { min, max } = interval;
   const range = max - min;
-  // Way Canguk fork: a major tick every 0.5, 1, 2, 5 or 10 kHz, at least 40 px apart
+  // RIMBA: a major tick every 0.5, 1, 2, 5 or 10 kHz, at least 40 px apart
   const mayorTickStep =
     [500, 1000, 2000, 5000, 10000, 20000].find(
       (step) => (height * step) / range >= 40,

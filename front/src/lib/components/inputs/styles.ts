@@ -1,4 +1,4 @@
-// Way Canguk fork: white fields with a clear border (upstream: grey filled)
+// RIMBA: white fields with a clear border (upstream: grey filled)
 export const BORDER_STYLE =
   "rounded-md border border-stone-300 dark:border-stone-600 shadow-sm";
 export const BACKGROUND_STYLE = "bg-white dark:bg-stone-800";

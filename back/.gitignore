@@ -161,11 +161,11 @@ cython_debug/
 
 old/
 
-whombat.db
+rimba.db
 .ruff_cache/
 .pdm-python
 
 scripts/
-src/whombat/statics/*
-src/whombat/user_guide/*
+src/rimba/statics/*
+src/rimba/user_guide/*
 .build_venv

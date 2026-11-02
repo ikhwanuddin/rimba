@@ -1,4 +1,4 @@
-/* Way Canguk fork: admins (is_superuser) see every menu; annotators only see
+/* RIMBA: admins (is_superuser) see every menu; annotators only see
  * annotation projects and the annotate page. This hides menus only: the API
  * itself is unchanged, so access control stays with the reverse proxy. */
 import { useContext } from "react";

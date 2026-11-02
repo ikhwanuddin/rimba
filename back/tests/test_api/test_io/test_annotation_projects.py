@@ -6,9 +6,9 @@ from soundevent import data, io, terms
 from soundevent.io.aoef import to_aeof
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from whombat import api, filters, schemas
-from whombat.api.io.aoef.annotation_projects import import_annotation_project
-from whombat.api.io.aoef.datasets import import_dataset
+from rimba import api, filters, schemas
+from rimba.api.io.aoef.annotation_projects import import_annotation_project
+from rimba.api.io.aoef.datasets import import_dataset
 
 
 @pytest.fixture

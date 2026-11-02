@@ -11,8 +11,9 @@ import "./globals.css";
 const mulish = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Anotasi Kicau Burung Way Canguk",
-  description: "Bird-call annotation for Way Canguk (built on Whombat)",
+  title: "RIMBA",
+  description:
+    "RIMBA: Rainforest Identification and Monitoring through Bioacoustic Analysis (built on Whombat)",
 };
 
 export default function RootLayout({

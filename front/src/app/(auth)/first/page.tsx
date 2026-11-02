@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
 
-import { WhombatIcon } from "@/lib/components/icons";
+import { RimbaIcon } from "@/lib/components/icons";
 import Info from "@/lib/components/ui/Info";
 import UserCreateForm from "@/lib/components/users/UserCreateForm";
 
@@ -39,9 +39,9 @@ export default function Page() {
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-col max-w-prose gap-4">
         <div className="mb-4 flex flex-col items-center gap-4 text-center text-7xl">
-          <WhombatIcon width={128} height={128} />
+          <RimbaIcon width={128} height={128} />
           <span className="font-sans font-bold text-emerald-500 underline decoration-8">
-            Whombat
+            RIMBA
           </span>
         </div>
         <h1 className="text-3xl font-bold text-center">Welcome!</h1>

@@ -1,6 +1,6 @@
 "use client";
 
-/* Way Canguk fork: contact goes through the project manager; see the About page. */
+/* RIMBA: contact goes through the project manager; see the About page. */
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 

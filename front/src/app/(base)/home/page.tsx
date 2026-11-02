@@ -1,6 +1,6 @@
 "use client";
 
-/* Way Canguk fork: the old placeholder page; the dashboard lives at "/". */
+/* RIMBA: the old placeholder page; the dashboard lives at "/". */
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 

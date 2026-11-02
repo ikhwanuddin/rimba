@@ -1,3 +1,0 @@
-# Schemas
-
-::: whombat.schemas

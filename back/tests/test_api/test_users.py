@@ -6,7 +6,7 @@ import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
-from whombat import api, exceptions, models, schemas
+from rimba import api, exceptions, models, schemas
 
 
 async def test_create_session():
@@ -158,14 +158,14 @@ async def test_get_all_users(session: AsyncSession):
         session=session,
         username="test",
         password="test",
-        email="test1@whombat.com",
+        email="test1@rimba.com",
     )
 
     await api.users.create(
         session=session,
         username="test2",
         password="test",
-        email="test2@whombat.com",
+        email="test2@rimba.com",
     )
 
     # Act
@@ -199,13 +199,13 @@ async def test_update_user(session: AsyncSession):
         session=session,
         username="test",
         password="test",
-        email="test@whombat.com",
+        email="test@rimba.com",
     )
 
-    assert user.email == "test@whombat.com"
+    assert user.email == "test@rimba.com"
 
     # Act
-    data = schemas.UserUpdate(email="foo@whombat.com")
+    data = schemas.UserUpdate(email="foo@rimba.com")
     updated_user = await api.users.update(
         session,
         user,
@@ -213,12 +213,12 @@ async def test_update_user(session: AsyncSession):
     )
 
     # Assert
-    assert updated_user.email == "foo@whombat.com"
+    assert updated_user.email == "foo@rimba.com"
 
     # Make sure the changes were saved to the database
     queried_user = await api.users.get(session, user.id)
 
-    assert queried_user.email == "foo@whombat.com"
+    assert queried_user.email == "foo@rimba.com"
 
 
 async def test_delete_user(session: AsyncSession):
@@ -228,7 +228,7 @@ async def test_delete_user(session: AsyncSession):
         session=session,
         username="test",
         password="test",
-        email="foo@whombat.com",
+        email="foo@rimba.com",
     )
 
     # Make sure the user exists

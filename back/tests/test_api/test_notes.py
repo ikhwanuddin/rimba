@@ -6,8 +6,8 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from whombat import exceptions, models, schemas
-from whombat.api import notes
+from rimba import exceptions, models, schemas
+from rimba.api import notes
 
 
 async def test_create_note(session: AsyncSession, user: schemas.SimpleUser):

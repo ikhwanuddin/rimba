@@ -33,7 +33,7 @@ export const ProgressSchema = z.object({
 });
 export type Progress = z.infer<typeof ProgressSchema>;
 
-/* Way Canguk fork: clip given by the shared queue, with progress numbers. */
+/* RIMBA: clip given by the shared queue, with progress numbers. */
 export const ClaimSchema = z.object({
   task: schemas.AnnotationTaskSchema.nullish(),
   done_by_me: z.number(),

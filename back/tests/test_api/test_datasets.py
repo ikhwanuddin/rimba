@@ -8,7 +8,7 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from whombat import api, exceptions, models, schemas
+from rimba import api, exceptions, models, schemas
 
 
 async def test_created_dataset_is_stored_in_the_database(
@@ -773,13 +773,13 @@ async def test_exported_datasets_paths_are_not_absolute(
     audio_dir = example_data_dir / "audio"
     assert audio_dir.is_dir()
 
-    whombat_dataset = await api.datasets.import_dataset(
+    rimba_dataset = await api.datasets.import_dataset(
         session,
         example_dataset,
         dataset_audio_dir=audio_dir,
         audio_dir=example_data_dir,
     )
-    exported = await api.datasets.export_dataset(session, whombat_dataset)
+    exported = await api.datasets.export_dataset(session, rimba_dataset)
 
     for recording in exported.data.recordings or []:
         # Check that paths are not absolute (full paths)

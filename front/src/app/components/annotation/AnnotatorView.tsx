@@ -1,4 +1,4 @@
-/* Way Canguk fork: simple annotation page for annotators.
+/* RIMBA: simple annotation page for annotators.
  *
  * One question per clip: is the sound inside the box the species on its label?
  * Yes / No / Not sure (keys 1, 2, 3). The answer is stored as a clip tag

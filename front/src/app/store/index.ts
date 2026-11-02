@@ -28,7 +28,7 @@ const useStore = create<Store>()(
       ...createViewSlice(...a),
     }),
     {
-      name: "whombat-storage",
+      name: "rimba-storage",
       storage: createJSONStorage(() => localStorage),
     },
   ),

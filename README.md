@@ -1,51 +1,53 @@
-# Whombat
+# RIMBA
 
-![GitHub License](https://img.shields.io/github/license/mbsantiago/whombat)
-![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fmbsantiago%2Fwhombat%2Fdev%2Fback%2Fpyproject.toml)
-![Static Badge](https://img.shields.io/badge/formatting-black-black)
-[![codecov](https://codecov.io/gh/mbsantiago/whombat/graph/badge.svg?token=WMzUfSXIyL)](https://codecov.io/gh/mbsantiago/whombat)
-![build](https://github.com/mbsantiago/whombat/actions/workflows/bundle.yml/badge.svg)
-![lint](https://github.com/mbsantiago/whombat/actions/workflows/lint.yml/badge.svg)
-![docs](https://github.com/mbsantiago/whombat/actions/workflows/docs.yml/badge.svg)
-![tests](https://github.com/mbsantiago/whombat/actions/workflows/test.yml/badge.svg)
-[![DOI](https://zenodo.org/badge/682458553.svg)](https://zenodo.org/doi/10.5281/zenodo.10604169)
+**Rainforest Identification and Monitoring through Bioacoustic Analysis**
+*Mendengar rimba, mengenali penghuninya.*
 
-**Whombat** is an open-source, web-based audio annotation tool designed to streamline audio data labeling and annotation, with a particular focus on supporting machine learning model development.
+RIMBA is a web app for checking and annotating sounds in rainforest recordings from Indonesia
+and Southeast Asia: machines detect the sounds, people confirm them. Annotators get one clip
+at a time from a shared queue and answer one question (is the sound in the box the species on
+its label?) with Yes / No / Not sure. The interface is in Indonesian.
 
-## Installation
+The first project is Way Canguk, Bukit Barisan Selatan National Park, Lampung, recorded with
+MAARU multichannel recorders, part of a PhD at the Dyson School of Design Engineering, Imperial
+College London, with the Wildlife Conservation Society – Indonesia Program.
 
-Visit the [Releases](https://github.com/mbsantiago/whombat/releases) section on GitHub to download the bundled version compatible with your operating system.
+## Built on Whombat
 
-If you prefer installing Whombat via Python, run the command
+RIMBA is a modified version of [Whombat](https://github.com/mbsantiago/whombat) 0.9.0 by
+Santiago Martínez Balvanera et al. (GPL-3.0). It keeps Whombat's database, API and
+spectrogram tools and adds:
+
+- a simple annotator page (Yes / No / Not sure, keys 1-3), with the answer stored as the clip tag `jawaban`;
+- a shared clip queue with a 30 min lease (`POST /api/v1/annotation_tasks/claim/`, `.../answer/`) and a progress endpoint;
+- a home dashboard (team progress, answers per day, finish estimate);
+- an Indonesian interface, readable tag colours, a kHz frequency axis and admin-only menus.
+
+If you use RIMBA in research, please also cite Whombat:
+
+> Balvanera, S. M., Mac Aodha, O., Weldy, M. J., Pringle, H., Browning, E., & Jones, K. E. (2023).
+> Whombat: An open-source annotation tool for machine learning development in bioacoustics.
+> arXiv preprint [arXiv:2308.12688](https://arxiv.org/abs/2308.12688).
+
+## Install and run
+
+Each release has a wheel with the front end built in:
 
 ```bash
-pip install whombat
+uv tool install --python 3.12 https://github.com/ikhwanuddin/rimba/releases/download/v0.1.0/rimba-0.1.0-py3-none-any.whl
+RIMBA_DATA_DIR=~/rimba-data rimba
 ```
 
-For detailed installation instructions, refer to the [Installation](https://mbsantiago.github.io/whombat/user_guide/installation/) section of the documentation.
+Settings live in `$RIMBA_DATA_DIR/settings.json`; every field can also be set with a `RIMBA_`
+environment variable.
 
-## Usage
-
-To run whombat either click on the bundled executable or run
+## Build
 
 ```bash
-python -m whombat
+scripts/rimba/build.sh                                        # front end + wheel in dist/ (needs node and uv)
+uv run -q --with fonttools python scripts/rimba/make_logo.py  # logo, icon, favicon
 ```
 
-We have prepared a [User Guide](https://mbsantiago.github.io/whombat/user_guide/) to accompany you in your annotation work.
-There you will be able to see all the features provided by Whombat, as well as clear instructions on how to use them.
+## Licence
 
-## Contribution
-
-As a open source project we are incredibly excited for having contributions from the community.
-Head over to the [Contributions](https://mbsantiago.github.io/whombat/CONTRIBUTING/) section of the documentation to see how you can contribute.
-
-## Citation
-
-If you want to use Whombat for your research, please cite as:
-
-> Balvanera, S. M., Mac Aodha, O., Weldy, M. J., Pringle, H., Browning, E., & Jones, K. E. (2023). Whombat: An open-source annotation tool for machine learning development in bioacoustics. arXiv preprint [arXiv:2308.12688](https://arxiv.org/abs/2308.12688).
-
-## Acknowledgements
-
-Whombat has been developed with the generous support of the Mexican Council of the Humanities, Science and Technology (**CONAHCyT**; Award Number 2020-000017-02EXTF-00334) and University College London (**UCL**).
+GPL-3.0, as Whombat (see `LICENSE`). Whombat's original authors are listed in `back/AUTHORS.md`.

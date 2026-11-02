@@ -2,7 +2,7 @@
 
 from fastapi.testclient import TestClient
 
-from whombat import schemas
+from rimba import schemas
 
 
 async def test_admin_can_login(client: TestClient, user: schemas.User):

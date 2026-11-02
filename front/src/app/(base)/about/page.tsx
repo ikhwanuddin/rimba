@@ -1,7 +1,7 @@
 "use client";
 
-/* Way Canguk fork: what the site is, what this version changes, and credits. */
-import logo from "@/assets/waycanguk_logo.svg";
+/* RIMBA: what the site is, what this version changes, and credits. */
+import logo from "@/assets/rimba_logo.svg";
 import Image from "next/image";
 
 import { version } from "@/app/version";
@@ -40,33 +40,48 @@ export default function Page() {
     <div>
       <Hero text="Tentang" />
       <div className="p-6 flex flex-col items-center gap-6">
-        <Image
-          src={logo}
-          alt="Anotasi Kicau Burung Way Canguk"
-          width={480}
-          height={150}
-        />
+        <Image src={logo} alt="RIMBA" width={480} height={158} />
         <div className="max-w-prose flex flex-col gap-8 text-stone-700 dark:text-stone-300">
+          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">
+            Rainforest Identification and Monitoring through Bioacoustic
+            Analysis
+          </p>
           <p className="text-lg">
-            Anotasi kicau burung untuk rekaman suara dari Way Canguk, Taman
-            Nasional Bukit Barisan Selatan, Lampung, yang direkam dengan perekam
-            multikanal MAARU. Bagian dari proyek PhD di Dyson School of Design
-            Engineering, Imperial College London, bersama Wildlife Conservation
-            Society – Indonesia Program.
+            RIMBA adalah platform anotasi bioakustik untuk rekaman suara hutan
+            hujan Indonesia dan Asia Tenggara: mesin mendeteksi suara, manusia
+            memastikan. Proyek pertamanya Way Canguk, Taman Nasional Bukit
+            Barisan Selatan, Lampung, dengan rekaman dari perekam multikanal
+            MAARU. Bagian dari proyek PhD di Dyson School of Design Engineering,
+            Imperial College London, bersama Wildlife Conservation Society –
+            Indonesia Program.
           </p>
           <section className="flex flex-col gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-700 dark:bg-stone-800">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
-                Tentang versi ini
+                Asal-usul
               </h2>
               <span className="rounded-full bg-emerald-100 px-3 py-1 font-mono text-xs font-semibold text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100">
                 {version}
               </span>
             </div>
             <p>
-              Situs ini adalah versi Whombat 0.9.0, alat anotasi audio sumber
-              terbuka, yang disesuaikan untuk pengecekan klip kicau burung oleh
-              tim anotator Way Canguk. Yang berbeda dari Whombat aslinya:
+              RIMBA dibangun di atas{" "}
+              <a
+                className="underline"
+                href="https://github.com/mbsantiago/whombat"
+              >
+                Whombat
+              </a>{" "}
+              0.9.0 karya Santiago Martínez Balvanera dkk., alat anotasi audio
+              sumber terbuka berlisensi GPL-3.0. RIMBA memakai lisensi yang
+              sama;{" "}
+              <a
+                className="underline"
+                href="https://github.com/ikhwanuddin/rimba"
+              >
+                kode sumbernya terbuka
+              </a>
+              . Yang berbeda dari Whombat:
             </p>
             <ul className="flex flex-col gap-3">
               {CHANGES.map(([title, text]) => (

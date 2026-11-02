@@ -1,4 +1,4 @@
-import icon from "@/assets/waycanguk_icon.svg";
+import icon from "@/assets/rimba_icon.svg";
 import {
   AcademicCapIcon,
   AdjustmentsVerticalIcon,
@@ -87,9 +87,9 @@ import {
 import Image from "next/image";
 import { type ComponentProps, type HTMLProps } from "react";
 
-function WhombatIcon(props: Omit<ComponentProps<typeof Image>, "src" | "alt">) {
-  // Way Canguk fork: project logo instead of the Whombat bat
-  return <Image alt="Anotasi Kicau Burung Way Canguk" src={icon} {...props} />;
+function RimbaIcon(props: Omit<ComponentProps<typeof Image>, "src" | "alt">) {
+  // RIMBA: project logo instead of the Whombat bat
+  return <Image alt="RIMBA" src={icon} {...props} />;
 }
 
 function BoundingBoxIcon(props: HTMLProps<SVGSVGElement>) {
@@ -309,7 +309,7 @@ export {
   TimeStampIcon,
   TrashIcon as DeleteIcon,
   UserIcon,
-  WhombatIcon,
+  RimbaIcon,
   WrenchIcon as MissingIcon,
   XMarkIcon as CloseIcon,
   CpuChipIcon as ModelIcon,

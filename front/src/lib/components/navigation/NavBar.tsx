@@ -1,8 +1,8 @@
-/* Way Canguk fork: one top bar with labelled links instead of the icon side
+/* RIMBA: one top bar with labelled links instead of the icon side
  * menu. Left: logo, Beranda, and for admins a "Kelola" menu that explains its two
  * parts (audio recordings are the material, annotation projects are the work).
  * Annotators reach their projects from Beranda. Right: About and the user menu. */
-import icon from "@/assets/waycanguk_icon.svg";
+import icon from "@/assets/rimba_icon.svg";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import classnames from "classnames";
@@ -172,7 +172,7 @@ export function NavBar({
         <a href="/" className="mr-4 flex items-center gap-2">
           <Image src={icon} alt="" width={36} height={36} priority />
           <span className="hidden whitespace-nowrap text-lg font-bold uppercase tracking-wide text-emerald-700 sm:inline dark:text-emerald-300">
-            Anotasi Way Canguk
+            RIMBA
           </span>
         </a>
         <NavLink href="/" label="Beranda" active={pathname === "/"} />

@@ -6,7 +6,7 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from whombat import api, exceptions, models, schemas
+from rimba import api, exceptions, models, schemas
 
 
 async def test_created_annotation_is_stored_in_the_database(

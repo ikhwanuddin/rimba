@@ -107,7 +107,7 @@ export function SoundEventSpectrogramTagsBase({
   );
 }
 
-/* Way Canguk fork: the label of a box is always visible (upstream shows a small
+/* RIMBA: the label of a box is always visible (upstream shows a small
  * dot and the name only on hover), in the same high-contrast colours as other
  * tags. Removing a tag needs a click on the small cross, not on the label. */
 export function SpectrogramTag({

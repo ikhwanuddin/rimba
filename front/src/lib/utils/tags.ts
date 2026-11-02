@@ -305,7 +305,7 @@ export function getTagKey(tag: Tag): string {
   return `${tag.key}-${tag.value}`;
 }
 
-/* Way Canguk fork: fixed, high-contrast tag palette.
+/* RIMBA: fixed, high-contrast tag palette.
  * Each tag gets a colour from a hash of its key and value, so a species has the
  * same colour in every browser and for every annotator. Text is the 900 shade on
  * the 100 shade (contrast at least 7:1, WCAG AAA). Class names are written out in

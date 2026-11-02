@@ -5,8 +5,8 @@ from pathlib import Path
 import pytest
 from sqlalchemy.engine import URL
 
-from whombat.system import database
-from whombat.system.settings import Settings
+from rimba.system import database
+from rimba.system.settings import Settings
 
 
 @pytest.fixture
