@@ -12,7 +12,7 @@ export default function Page() {
       <div className="p-6 flex flex-col items-center gap-6">
         <Image
           src="/waycanguk_logo.svg"
-          alt="Anotasi Way Canguk"
+          alt="Anotasi Kicau Burung Way Canguk"
           width={480}
           height={150}
         />

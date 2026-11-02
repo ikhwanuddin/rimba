@@ -37,9 +37,13 @@ export default function LoginForm() {
       .login(data)
       .catch(() => {
         reset();
-        setError("username", { message: "Invalid username or password" });
-        setError("password", { message: "Invalid username or password" });
-        return Promise.reject("Invalid username or password");
+        setError("username", {
+          message: "Nama pengguna atau kata sandi salah",
+        });
+        setError("password", {
+          message: "Nama pengguna atau kata sandi salah",
+        });
+        return Promise.reject("Nama pengguna atau kata sandi salah");
       })
       .then(() => {
         const back = params.get("back");
@@ -58,7 +62,7 @@ export default function LoginForm() {
       <div className="flex flex-1 flex-col items-center justify-center gap-8 p-6">
         <Image
           src="/waycanguk_logo.svg"
-          alt="Anotasi Suara Way Canguk"
+          alt="Anotasi Kicau Burung Way Canguk"
           width={420}
           height={131}
           priority
@@ -68,14 +72,14 @@ export default function LoginForm() {
           className="w-80 flex flex-col gap-3 rounded-lg border border-emerald-200 bg-white p-6 shadow-sm dark:border-stone-700 dark:bg-stone-800"
         >
           <Group
-            label="Username"
+            label="Nama pengguna"
             name="username"
             error={errors.username?.message}
           >
             <Input autoComplete="username" {...register("username")} />
           </Group>
           <Group
-            label="Password"
+            label="Kata sandi"
             name="password"
             error={errors.password?.message}
           >
@@ -89,15 +93,15 @@ export default function LoginForm() {
             type="submit"
             className="mt-2 rounded-md bg-emerald-700 px-4 py-2 font-bold text-white hover:bg-emerald-800 focus:outline-none focus:ring-4 focus:ring-emerald-300"
           >
-            Sign in
+            Masuk
           </button>
         </form>
         <p className="w-80 text-center text-sm text-stone-600 dark:text-stone-400">
-          No account yet? Ask the project administrator.
+          Belum punya akun? Hubungi pengelola proyek.
         </p>
       </div>
       <footer className="p-4 text-center text-xs text-stone-500">
-        Built on{" "}
+        Dibangun di atas{" "}
         <a className="underline" href="https://github.com/mbsantiago/whombat">
           Whombat
         </a>{" "}
@@ -106,7 +110,7 @@ export default function LoginForm() {
           className="underline"
           href="https://github.com/ikhwanuddin/whombat/tree/waycanguk"
         >
-          source code
+          kode sumber
         </a>
       </footer>
     </div>

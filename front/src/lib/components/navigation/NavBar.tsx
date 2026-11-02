@@ -113,7 +113,7 @@ export function NavBar({
             priority
           />
           <span className="hidden whitespace-nowrap text-lg font-bold uppercase tracking-wide text-emerald-700 sm:inline dark:text-emerald-300">
-            Anotasi Way Canguk
+            Anotasi Kicau Burung Way Canguk
           </span>
         </a>
         <NavLink href="/" label="Beranda" active={pathname === "/"} />

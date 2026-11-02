@@ -54,7 +54,7 @@ def text_paths(f, text, x, y, size, color, spacing=0.0, dys=None, rots=None):
 
 
 def wordmark(x=225, y=140, size=58):
-    sub = text_paths(font(500), "ANOTASI SUARA", x + 2, y - size * 0.95, size * 0.36, S.INK, spacing=size * 0.12)
+    sub = text_paths(font(500), "ANOTASI KICAU BURUNG", x + 2, y - size * 0.95, size * 0.36, S.INK, spacing=size * 0.12)
     big = text_paths(font(700), "WAY CANGUK", x, y, size, S.GREEN, spacing=3,
                      dys=[0, 8, -4, -4, 4, 6, -12, 10, -3, -5], rots=[0, -4, 3, 0, -3, 4, -3, 5, -4, 3])
     return sub + big

@@ -89,7 +89,7 @@ import { type ComponentProps, type HTMLProps } from "react";
 function WhombatIcon(props: Omit<ComponentProps<typeof Image>, "src" | "alt">) {
   // Way Canguk fork: project logo instead of the Whombat bat
   return (
-    <Image alt="Anotasi Way Canguk" src="/waycanguk_icon.svg" {...props} />
+    <Image alt="Anotasi Kicau Burung Way Canguk" src="/waycanguk_icon.svg" {...props} />
   );
 }
 

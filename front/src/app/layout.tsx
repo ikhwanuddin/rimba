@@ -11,7 +11,7 @@ import "./globals.css";
 const mulish = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Anotasi Way Canguk",
+  title: "Anotasi Kicau Burung Way Canguk",
   description: "Bird-call annotation for Way Canguk (built on Whombat)",
 };
 
