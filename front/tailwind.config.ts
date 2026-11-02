@@ -6,6 +6,8 @@ const config: Config = {
     "./src/lib/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  // RIMBA: dark mode follows the 'dark' class set from the theme choice (lib/theme.ts).
+  darkMode: "class",
   theme: {
     extend: {
       // Way Canguk fork: the accent (emerald in upstream) becomes forest green,

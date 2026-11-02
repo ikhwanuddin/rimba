@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 
-/** This hook returns true if the user has set their OS to dark mode. */
+/** True when the page is in dark mode (RIMBA: the "dark" class on <html>,
+ * set from the theme choice in lib/theme.ts). */
 export default function useTheme() {
-  const getCurrentTheme = () =>
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [isDarkTheme, setIsDarkTheme] = useState(getCurrentTheme());
-
-  const mqListener = (e: MediaQueryListEvent) => {
-    setIsDarkTheme(e.matches);
-  };
-
+  const isDark = () => document.documentElement.classList.contains("dark");
+  const [isDarkTheme, setIsDarkTheme] = useState(isDark());
   useEffect(() => {
-    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    darkThemeMq.addEventListener("change", mqListener);
-    return () => darkThemeMq.removeEventListener("change", mqListener);
+    const obs = new MutationObserver(() => setIsDarkTheme(isDark()));
+    obs.observe(document.documentElement, { attributeFilter: ["class"] });
+    return () => obs.disconnect();
   }, []);
-
   return isDarkTheme;
 }

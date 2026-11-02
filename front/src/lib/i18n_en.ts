@@ -1,5 +1,10 @@
 /* RIMBA: English interface texts, keyed by the Indonesian text in the code (see i18n.ts). */
 const EN: Record<string, string> = {
+  // theme (0.6)
+  "Mode tampilan": "Appearance",
+  Terang: "Light",
+  Gelap: "Dark",
+  Sistem: "System",
   // project page (0.4)
   "{done} dari {total} klip selesai": "{done} of {total} clips done",
   Ubah: "Edit",

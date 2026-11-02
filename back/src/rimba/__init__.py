@@ -4,4 +4,4 @@ Built on Whombat by Santiago Martinez Balvanera (GPL-3.0).
 """
 
 __author__ = "Rifqi Ikhwanuddin"
-__version__ = "0.5.0"
+__version__ = "0.6.0"

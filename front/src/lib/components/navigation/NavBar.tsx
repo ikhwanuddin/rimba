@@ -12,6 +12,8 @@ import { Fragment } from "react";
 
 import useActiveUser from "@/app/hooks/api/useActiveUser";
 
+import ThemeSwitch from "@/lib/components/navigation/ThemeSwitch";
+
 import { t } from "@/lib/i18n";
 import type { User } from "@/lib/types";
 
@@ -65,7 +67,7 @@ function UserMenu({ user, onLogout }: { user?: User; onLogout?: () => void }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-50 mt-1 w-44 rounded-md border border-stone-200 bg-white p-1 shadow-lg dark:border-stone-700 dark:bg-stone-800">
+        <Menu.Items className="absolute right-0 z-50 mt-1 w-60 rounded-md border border-stone-200 bg-white p-1 shadow-lg dark:border-stone-700 dark:bg-stone-800">
           <Menu.Item>
             {({ active }) => (
               <a
@@ -79,6 +81,8 @@ function UserMenu({ user, onLogout }: { user?: User; onLogout?: () => void }) {
               </a>
             )}
           </Menu.Item>
+          <ThemeSwitch />
+          <div className="my-1 border-t border-stone-200 dark:border-stone-700" />
           <Menu.Item>
             {({ active }) => (
               <button
