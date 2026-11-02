@@ -1,6 +1,6 @@
 """Way Canguk fork: logo mark (MAARU art style). Used by make_logo.py.
 
-A slim songbird with a fanned tail sings three thick sound arcs, turned 18 degrees upwards,
+A robin-like songbird sings three thick sound arcs, turned 18 degrees upwards,
 under a dawn sky (peach to cream) with two clouds and a curved green hill. Shapes are kept thick so the bird,
 the arcs and the clouds still read at 32 px. favicon_mark() drops the branch and the legs
 for the 16-32 px browser tab.
@@ -13,13 +13,15 @@ INK = "#1A1A1A"        # sound arcs, small text
 BRANCH = "#5B3A1E"
 WHITE = "#FFFFFF"
 
-# slim songbird facing right, ~100x100 box: tip of the beak at (94, 37), a fanned tail of
-# three rounded feathers that stays inside the circle. beak() keeps (91, 38) as the anchor
-# for the sound arcs.
-BIRD = ("M94 37 L80 33.5 C80 27 73 21.5 66 22 C58.5 22.5 54.5 28.5 53.5 35 "
-        "C46 36 38 39 31 44 L14 38.5 Q8 38 8.5 42.5 L16 46.5 Q6 46.5 6.5 51.5 L16 52.5 "
-        "Q9 55.5 11.5 59.5 L32 53 C38 60 46 63 56 62.5 C70 61 78.5 54 79.8 43 Z")
-BIRD_LEGS = "M55 61 L53 72 M62 60.5 L62 72"
+# robin-like songbird facing right, ~100x100 box: round head and breast, short sharp beak
+# (tip at (92, 26)), long straight tail down to the lower left, thin legs, a cream eye
+BIRD = ("M92 26 L85 23.3 C83 18 76 15 71 15.5 C64 16 60 20 57 25 C54 30 51 31 47 34 "
+        "C38 41 30 50 20.5 63 C19.5 64.5 21 65 25.5 65.7 L9.5 80 C8.5 81.5 11 83.5 14 82.5 "
+        "L36 67 C40 66 44 68.5 47 69.3 C52 70.5 60 70.5 63 70 C74 67 82 57 83 46 "
+        "C83.5 41 82.5 37 83.5 34 L85.5 29.5 Z")
+BIRD_LEGS = "M49.5 69.5 L55 79.5 L61 79.5 M56 69.5 L61.5 78 L67 78"
+EYE = (77, 24.5, 2.2)
+EYE_COLOUR = "#FBEBD8"
 
 # dawn sky: warm peach at the top fading to cream (matches the warm greys of the site)
 SKY_TOP, SKY_LOW = "#F9D3A8", "#FBEBD8"
@@ -29,14 +31,17 @@ CLIP = ('<defs><clipPath id="c"><circle cx="100" cy="100" r="96"/></clipPath>'
 
 
 def bird(x, y, s, legs=True):
-    g = f'<g transform="translate({x} {y}) scale({s}) translate(-50 -45)"><path d="{BIRD}" fill="{GREEN}"/>'
+    g = (f'<g transform="translate({x} {y}) scale({s}) translate(-50 -45)"><path d="{BIRD}" fill="{GREEN}"/>'
+         f'<circle cx="{EYE[0]}" cy="{EYE[1]}" r="{EYE[2]}" fill="{EYE_COLOUR}"/>')
     if legs:
-        g += f'<path d="{BIRD_LEGS}" stroke="{GREEN}" stroke-width="5" stroke-linecap="round" fill="none"/>'
+        g += (f'<path d="{BIRD_LEGS}" stroke="{GREEN}" stroke-width="3" stroke-linecap="round" '
+              f'stroke-linejoin="round" fill="none"/>')
     return g + "</g>"
 
 
 def beak(x, y, s):
-    return x + s * 41, y - s * 7
+    """Tip of the beak for a bird drawn with bird(x, y, s)."""
+    return x + s * 42, y - s * 19
 
 
 def arcs(x, y, rot, sw, r0, step, ang=48):
@@ -71,19 +76,19 @@ def sky():
 
 def mark():
     """Full mark in a 200x200 box (logo, top bar, login page)."""
-    bx, by, s = 72, 127.7, 1.38   # feet on the branch, whole tail inside the circle
+    bx, by, s = 78, 160 - 1.22 * 34.5, 1.22   # feet on the branch, tail and arcs inside the circle
     x, y = beak(bx, by, s)
-    return (sky() + hill(160, 128) + cloud(40, 54, 0.9) + cloud(116, 44, 0.7)
-            + f'<path d="M-10 168 Q70 162 150 170" stroke="{BRANCH}" stroke-width="9" fill="none" stroke-linecap="round"/>'
-            + bird(bx, by, s) + arcs(x + 5, y, -18, 10, 15, 18))
+    return (sky() + hill(152, 122) + cloud(28, 56, 0.85) + cloud(96, 34, 0.7)
+            + f'<path d="M-10 162 Q70 156 150 164" stroke="{BRANCH}" stroke-width="9" fill="none" stroke-linecap="round"/>'
+            + bird(bx, by, s) + arcs(x + 6, y, -18, 10, 15, 18))
 
 
 def favicon_mark():
     """Browser-tab mark: no branch, no legs, one cloud."""
-    bx, by, s = 70, 122, 1.3
+    bx, by, s = 78, 114, 1.2
     x, y = beak(bx, by, s)
-    return (sky() + hill(158, 130) + cloud(60, 50, 1.0) + bird(bx, by, s, legs=False)
-            + arcs(x + 6, y, -18, 12, 15, 19, 46))
+    return (sky() + hill(158, 130) + cloud(44, 48, 1.0) + bird(bx, by, s, legs=False)
+            + arcs(x + 6, y, -18, 12, 13, 18, 46))
 
 
 def svg(body, view="0 0 200 200"):
