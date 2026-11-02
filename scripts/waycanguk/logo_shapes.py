@@ -72,7 +72,7 @@ def mark():
     x, y = beak(bx, by, s)
     return (sky() + hill(160, 128) + cloud(40, 54, 0.9) + cloud(116, 44, 0.7)
             + f'<path d="M-10 168 Q70 162 150 170" stroke="{BRANCH}" stroke-width="9" fill="none" stroke-linecap="round"/>'
-            + bird(bx, by, s) + arcs(x + 5, y, -18, 10, 15, 15))
+            + bird(bx, by, s) + arcs(x + 5, y, -18, 10, 15, 18))
 
 
 def favicon_mark():
@@ -80,7 +80,7 @@ def favicon_mark():
     bx, by, s = 58, 124, 1.5
     x, y = beak(bx, by, s)
     return (sky() + hill(166, 136) + cloud(60, 50, 1.0) + bird(bx, by, s, legs=False)
-            + arcs(x + 6, y, -18, 12, 15, 18, 46))
+            + arcs(x + 6, y, -18, 12, 15, 21, 46))
 
 
 def svg(body, view="0 0 200 200"):
