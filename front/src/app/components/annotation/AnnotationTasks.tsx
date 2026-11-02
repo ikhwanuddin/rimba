@@ -13,6 +13,7 @@ import AnnotationTaskFilter from "@/lib/components/filters/AnnotationTaskFilter"
 import useAnnotateTasks from "@/lib/hooks/annotation/useAnnotateTasks";
 import useAnnotationTagPallete from "@/lib/hooks/annotation/useAnnotationTagPalette";
 
+import { localized } from "@/lib/i18n";
 import type { AnnotationProject, AnnotationTask } from "@/lib/types";
 
 import ClipAnnotationNotes from "../clip_annotations/ClipAnnotationNotes";
@@ -90,7 +91,9 @@ export default function AnnotateTasks({
         <AnnotationProgress
           currentTask={tasks.task ?? undefined}
           tasks={tasks.tasks}
-          instructions={annotationProject.annotation_instructions || ""}
+          instructions={localized(
+            annotationProject.annotation_instructions || "",
+          )}
           onNext={tasks.nextTask}
           onPrevious={tasks.prevTask}
           current={tasks.current}

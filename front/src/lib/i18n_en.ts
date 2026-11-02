@@ -5,8 +5,8 @@ const EN: Record<string, string> = {
   "Nama pengguna": "Username",
   "Kata sandi": "Password",
   Masuk: "Log in",
-  "Belum punya akun? Hubungi pengelola proyek.":
-    "No account yet? Contact the project manager.",
+  "Belum punya akun?": "No account yet?",
+  "Hubungi pengelola proyek": "Contact the project manager",
   Profil: "Profile",
   "Profil kamu": "Your profile",
   "Nama tampil di bagian atas halaman. Nama pengguna dipakai untuk masuk dan tidak bisa diubah di sini.":
@@ -45,6 +45,38 @@ const EN: Record<string, string> = {
   "RIMBA adalah platform anotasi bioakustik untuk rekaman suara hutan hujan Indonesia dan Asia Tenggara: mesin mendeteksi suara, manusia memastikan. Proyek pertamanya Way Canguk, Taman Nasional Bukit Barisan Selatan, Lampung, dengan rekaman dari perekam multikanal MAARU. Bagian dari proyek PhD di Dyson School of Design Engineering, Imperial College London, bersama Wildlife Conservation Society – Indonesia Program.":
     "RIMBA is a bioacoustic annotation platform for rainforest sound recordings from Indonesia and Southeast Asia: machines detect the sounds, people confirm them. Its first project is Way Canguk, Bukit Barisan Selatan National Park, Lampung, with recordings from MAARU multichannel recorders. Part of a PhD project at the Dyson School of Design Engineering, Imperial College London, with the Wildlife Conservation Society – Indonesia Program.",
   "Asal-usul": "Origins",
+  "Arah pengembangan": "Where RIMBA is heading",
+  "RIMBA berkembang mengikuti kebutuhan penelitian. Fitur Whombat yang sekarang disembunyikan tetap ada di kode dan bisa dihidupkan lagi saat diperlukan.":
+    "RIMBA grows with the needs of the research. Whombat features that are hidden for now remain in the code and can be switched back on when needed.",
+  "Sekarang: Validasi Deteksi Way Canguk":
+    "Now: Way Canguk Detection Validation",
+  "Klip mono dan beam diacak dalam satu antrean, lalu jawaban diekspor untuk menghitung precision per metode dan per rentang skor.":
+    "Mono and beam clips shuffled in one queue, with answers exported to compute precision per method and per score range.",
+  "Anotasi Penuh di RIMBA": "Full Annotation in RIMBA",
+  "Tahap Anotasi Penuh (dengar utuh rekaman pagi dan memberi kotak pada semua suara) juga dikerjakan di sini, dengan kotak usulan otomatis sebagai titik awal.":
+    "The Full Annotation stage (listening to whole dawn recordings and boxing every sound) done here too, starting from automatic candidate boxes.",
+  "Mutu jawaban": "Answer quality",
+  "Sebagian klip dijawab dua orang untuk mengukur kesepakatan antar-anotator, dan klip Tidak yakin dibahas bersama langsung di aplikasi.":
+    "Some clips answered by two people to measure inter-annotator agreement, and Not sure clips discussed together inside the app.",
+  "Evaluasi model": "Model evaluation",
+  "Fitur evaluasi Whombat dihidupkan lagi: impor deteksi BirdNET dan Perch, precision dan recall per spesies, dan ambang skor per spesies.":
+    "Whombat's evaluation features back on: import BirdNET and Perch detections, precision and recall per species, and score thresholds per species.",
+  "Nama spesies lokal": "Local species names",
+  "Nama Indonesia, nama ilmiah, dan padanan nama BirdNET dalam satu daftar spesies per situs.":
+    "Indonesian, scientific and BirdNET names matched in one species list per site.",
+  "Audio multikanal dan spasial": "Multichannel and spatial audio",
+  "Memutar tiap kanal dan beam perekam MAARU, menampilkan arah datang suara, dan peta titik rekam.":
+    "Play each channel and beam of the MAARU recorders, show where a sound came from, and map the recording points.",
+  "Situs dan lembaga lain": "More sites and partners",
+  "Proyek untuk hutan lain di Indonesia dan Asia Tenggara, dengan peran admin per proyek.":
+    "Projects for other forests in Indonesia and Southeast Asia, with admin roles per project.",
+  "Latihan anotator": "Annotator practice",
+  "Sesi latihan dari klip yang sudah terverifikasi, supaya anggota tim baru cepat mengenali suara.":
+    "Practice sessions from verified clips, so new team members learn the sounds quickly.",
+  "Terbuka dan bisa dirujuk": "Open and citable",
+  "Rilis bertag dengan DOI, serta ekspor ke format umum (AOEF, CSV, tabel seleksi Raven).":
+    "Tagged releases with a DOI, and export to common formats (AOEF, CSV, Raven selection tables).",
+
   "RIMBA dibangun di atas": "RIMBA is built on",
   "0.9.0 karya Santiago Martínez Balvanera dkk., alat anotasi audio sumber terbuka berlisensi GPL-3.0. RIMBA memakai lisensi yang sama;":
     "0.9.0 by Santiago Martínez Balvanera et al., an open-source audio annotation tool licensed under GPL-3.0. RIMBA uses the same licence;",

@@ -5,6 +5,7 @@ import useAnnotationProjects from "@/app/hooks/api/useAnnotationProjects";
 
 import SearchMenu from "@/lib/components/search/SearchMenu";
 
+import { localized } from "@/lib/i18n";
 import type { AnnotationProject, AnnotationProjectFilter } from "@/lib/types";
 
 export default function AnnotationProjectSearch({
@@ -42,8 +43,8 @@ export default function AnnotationProjectSearch({
       onChange={setQuery}
       onSelect={onSelect}
       static={false}
-      displayValue={(project) => project.name}
-      renderOption={(option) => option.name}
+      displayValue={(project) => localized(project.name)}
+      renderOption={(option) => localized(option.name)}
       getOptionKey={(option) => option.uuid}
     />
   );

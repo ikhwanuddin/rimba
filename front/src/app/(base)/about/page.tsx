@@ -1,11 +1,9 @@
 "use client";
 
 /* RIMBA: what the site is, what this version changes, and credits. */
-import logo from "@/assets/rimba_logo.svg";
-import Image from "next/image";
-
 import { version } from "@/app/version";
 
+import RimbaLogo from "@/lib/components/RimbaLogo";
 import Hero from "@/lib/components/ui/Hero";
 
 import { t } from "@/lib/i18n";
@@ -37,12 +35,52 @@ const CHANGES: [string, string][] = [
   ],
 ];
 
+// RIMBA: where development is heading (also in the README, "Roadmap").
+const ROADMAP: [string, string][] = [
+  [
+    "Sekarang: Validasi Deteksi Way Canguk",
+    "Klip mono dan beam diacak dalam satu antrean, lalu jawaban diekspor untuk menghitung precision per metode dan per rentang skor.",
+  ],
+  [
+    "Anotasi Penuh di RIMBA",
+    "Tahap Anotasi Penuh (dengar utuh rekaman pagi dan memberi kotak pada semua suara) juga dikerjakan di sini, dengan kotak usulan otomatis sebagai titik awal.",
+  ],
+  [
+    "Mutu jawaban",
+    "Sebagian klip dijawab dua orang untuk mengukur kesepakatan antar-anotator, dan klip Tidak yakin dibahas bersama langsung di aplikasi.",
+  ],
+  [
+    "Evaluasi model",
+    "Fitur evaluasi Whombat dihidupkan lagi: impor deteksi BirdNET dan Perch, precision dan recall per spesies, dan ambang skor per spesies.",
+  ],
+  [
+    "Nama spesies lokal",
+    "Nama Indonesia, nama ilmiah, dan padanan nama BirdNET dalam satu daftar spesies per situs.",
+  ],
+  [
+    "Audio multikanal dan spasial",
+    "Memutar tiap kanal dan beam perekam MAARU, menampilkan arah datang suara, dan peta titik rekam.",
+  ],
+  [
+    "Situs dan lembaga lain",
+    "Proyek untuk hutan lain di Indonesia dan Asia Tenggara, dengan peran admin per proyek.",
+  ],
+  [
+    "Latihan anotator",
+    "Sesi latihan dari klip yang sudah terverifikasi, supaya anggota tim baru cepat mengenali suara.",
+  ],
+  [
+    "Terbuka dan bisa dirujuk",
+    "Rilis bertag dengan DOI, serta ekspor ke format umum (AOEF, CSV, tabel seleksi Raven).",
+  ],
+];
+
 export default function Page() {
   return (
     <div>
       <Hero text={t("Tentang")} />
       <div className="p-6 flex flex-col items-center gap-6">
-        <Image src={logo} alt="RIMBA" width={480} height={158} />
+        <RimbaLogo height={158} />
         <div className="max-w-prose flex flex-col gap-8 text-stone-700 dark:text-stone-300">
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">
             Rainforest Identification and Monitoring through Bioacoustic
@@ -94,6 +132,31 @@ export default function Page() {
                 </li>
               ))}
             </ul>
+          </section>
+          <section className="flex flex-col gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-700 dark:bg-stone-800">
+            <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
+              {t("Arah pengembangan")}
+            </h2>
+            <p>
+              {t(
+                "RIMBA berkembang mengikuti kebutuhan penelitian. Fitur Whombat yang sekarang disembunyikan tetap ada di kode dan bisa dihidupkan lagi saat diperlukan.",
+              )}
+            </p>
+            <ol className="flex flex-col gap-3">
+              {ROADMAP.map(([title, text], i) => (
+                <li key={title} className="flex gap-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100">
+                    {i + 1}
+                  </span>
+                  <span>
+                    <b className="text-stone-900 dark:text-stone-100">
+                      {t(title)}.
+                    </b>{" "}
+                    {t(text)}
+                  </span>
+                </li>
+              ))}
+            </ol>
           </section>
         </div>
       </div>

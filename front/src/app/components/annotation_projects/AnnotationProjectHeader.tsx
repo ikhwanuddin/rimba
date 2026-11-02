@@ -15,7 +15,7 @@ import {
 import SectionTabs from "@/lib/components/navigation/SectionTabs";
 import Tab from "@/lib/components/ui/Tab";
 
-import { t } from "@/lib/i18n";
+import { localized, t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 export default function AnnotationProjectHeader({
@@ -30,7 +30,7 @@ export default function AnnotationProjectHeader({
 
   return (
     <SectionTabs
-      title={annotationProject.name}
+      title={localized(annotationProject.name)}
       tabs={[
         <Tab
           key="overview"

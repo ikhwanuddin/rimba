@@ -1,14 +1,13 @@
 "use client";
 
-import logo from "@/assets/rimba_logo.svg";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import api from "@/app/api";
 
+import RimbaLogo from "@/lib/components/RimbaLogo";
 import { Group, Input } from "@/lib/components/inputs/index";
 import LanguageSwitch from "@/lib/components/navigation/LanguageSwitch";
 
@@ -67,7 +66,7 @@ export default function LoginForm() {
         <LanguageSwitch />
       </div>
       <div className="flex flex-1 flex-col items-center justify-center gap-8 p-6">
-        <Image src={logo} alt="RIMBA" width={420} height={138} priority />
+        <RimbaLogo height={138} priority />
         <p className="-mt-6 max-w-sm text-center text-xs font-semibold uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
           Rainforest Identification and Monitoring through Bioacoustic Analysis
         </p>
@@ -101,7 +100,14 @@ export default function LoginForm() {
           </button>
         </form>
         <p className="w-80 text-center text-sm text-stone-600 dark:text-stone-400">
-          {t("Belum punya akun? Hubungi pengelola proyek.")}
+          {t("Belum punya akun?")}{" "}
+          <a
+            className="font-semibold text-emerald-700 underline dark:text-emerald-300"
+            href="mailto:ri322@ic.ac.uk?subject=RIMBA"
+          >
+            {t("Hubungi pengelola proyek")}
+          </a>
+          .
         </p>
       </div>
     </div>

@@ -1,5 +1,5 @@
 """RIMBA: build the logo files (the bird mark of logo_shapes.py, "RIMBA" in MAARU-style
-bouncy condensed capitals, the Indonesian tagline underneath). Text is converted to
+bouncy condensed capitals, the tagline underneath, Indonesian or English). Text is converted to
 outlines so no font is needed at run time. Font: Oswald (SIL Open Font License), fetched
 on demand.
 
@@ -56,14 +56,14 @@ def text_paths(f, text, x, y, size, color, spacing=0.0, dys=None, rots=None):
     return "".join(out), x
 
 
-TAGLINE = "Mendengar rimba, mengenali penghuninya"
+TAGLINES = {"": "Mendengar rimba, mengenali penghuninya", "_en": "Hear the forest, know who's calling"}
 
 
-def wordmark(x=228, y=118, size=92):
+def wordmark(tagline, x=228, y=118, size=92):
     """'RIMBA' and the tagline; returns the SVG and the right edge."""
     big, x1 = text_paths(font(700), "RIMBA", x, y, size, S.GREEN, spacing=5,
                          dys=[0, 7, -5, 6, -4], rots=[-3, 3, -2, 4, -3])
-    sub, x2 = text_paths(font(500), TAGLINE, x + 3, y + 38, size * 0.215, S.INK, spacing=size * 0.012)
+    sub, x2 = text_paths(font(500), tagline, x + 3, y + 38, size * 0.215, S.INK, spacing=size * 0.012)
     # the site follows the system light/dark setting; an SVG shown with <img> sees the same
     # media query, so the words switch to light colours on a dark page
     style = ("<style>@media (prefers-color-scheme: dark)"
@@ -72,10 +72,12 @@ def wordmark(x=228, y=118, size=92):
 
 
 mark = f'{S.CLIP}<g clip-path="url(#c)">{S.mark()}</g>'
-words, right = wordmark()
-full = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {right + 12:.0f} 200">'
-        f'{mark}{words}</svg>\n')
-(OUT_ASSETS / "rimba_logo.svg").write_text(full)
+# one logo per interface language: rimba_logo.svg (Indonesian tagline), rimba_logo_en.svg
+for suffix, tagline in TAGLINES.items():
+    words, right = wordmark(tagline)
+    full = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {right + 12:.0f} 200">'
+            f'{mark}{words}</svg>\n')
+    (OUT_ASSETS / f"rimba_logo{suffix}.svg").write_text(full)
 (OUT_ASSETS / "rimba_icon.svg").write_text(S.svg(S.mark()))
 (OUT_PUBLIC / "favicon.svg").write_text(S.svg(S.favicon_mark()))
 (OUT_APP / "icon.svg").write_text(S.svg(S.favicon_mark()))

@@ -44,6 +44,17 @@ export function t(
   return out;
 }
 
+/**
+ * Pick one language from a two-language project text (name, description,
+ * instructions): Indonesian first, then a line "=== EN ===", then English.
+ * Texts without that line are shown as they are.
+ */
+export function localized(text: string): string {
+  const parts = text.split(/\n?^=== EN ===$\n?/m);
+  if (parts.length < 2) return text;
+  return (lang === "en" ? parts[1] : parts[0]).trim();
+}
+
 export function savedLang(): Lang | null {
   const s = localStorage.getItem(SAVED);
   return s === "id" || s === "en" ? s : null;

@@ -7,7 +7,7 @@ import {
 import Alert from "@/lib/components/ui/Alert";
 import Button from "@/lib/components/ui/Button";
 
-import { t } from "@/lib/i18n";
+import { localized, t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 export default function ProjectActions({
@@ -64,7 +64,7 @@ function DeleteProject({
         return (
           <>
             <h2 className="p-4 font-extrabold text-center">
-              {annotationProject.name}
+              {localized(annotationProject.name)}
             </h2>
             <div className="flex flex-col gap-2">
               <p>

@@ -13,7 +13,7 @@ import api from "@/app/api";
 import UserContext from "@/app/contexts/user";
 
 import type { Progress } from "@/lib/api/annotation_tasks";
-import { locale, t } from "@/lib/i18n";
+import { locale, localized, t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 const ANSWERS = [
@@ -281,10 +281,10 @@ function ProjectPanel({
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
-            {project.name}
+            {localized(project.name)}
           </h2>
           <p className="text-stone-600 dark:text-stone-400">
-            {project.description}
+            {localized(project.description)}
           </p>
         </div>
         <a

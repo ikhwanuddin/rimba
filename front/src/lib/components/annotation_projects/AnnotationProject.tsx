@@ -3,7 +3,7 @@ import { type ReactNode } from "react";
 import { AnnotationProjectIcon, CalendarIcon } from "@/lib/components/icons";
 import Button from "@/lib/components/ui/Button";
 
-import { locale } from "@/lib/i18n";
+import { locale, localized } from "@/lib/i18n";
 import type { AnnotationProject as AnnotationProjectType } from "@/lib/types";
 
 function Atom({ label, value }: { label: ReactNode; value: string }) {
@@ -35,11 +35,11 @@ export default function AnnotationProject({
             className="inline-block"
             onClick={onClickAnnotationProject}
           >
-            {annotationProject.name}
+            {localized(annotationProject.name)}
           </Button>
         </h3>
         <p className="mt-1 text-sm whitespace-pre-wrap leading-5 text-stone-600 dark:text-stone-400">
-          {annotationProject.description}
+          {localized(annotationProject.description)}
         </p>
       </div>
       <div className="flex flex-row py-4">

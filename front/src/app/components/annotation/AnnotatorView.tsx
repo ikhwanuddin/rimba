@@ -25,7 +25,7 @@ import api from "@/app/api";
 import useAnnotationTagPallete from "@/lib/hooks/annotation/useAnnotationTagPalette";
 
 import type { Claim } from "@/lib/api/annotation_tasks";
-import { t } from "@/lib/i18n";
+import { localized, t } from "@/lib/i18n";
 import type {
   AnnotationProject,
   AnnotationTask,
@@ -202,8 +202,8 @@ export default function AnnotatorView({
       </div>
       {showHelp && (
         <div className="flex flex-col gap-1 rounded-md border border-emerald-200 bg-emerald-50 p-4 text-stone-800 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200">
-          {annotationProject.annotation_instructions
-            ?.split("\n")
+          {localized(annotationProject.annotation_instructions ?? "")
+            .split("\n")
             .map((line, i) =>
               line.trim() === "" ? (
                 <div key={i} className="h-2" />
