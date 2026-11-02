@@ -43,8 +43,8 @@ export default function DatasetImportComponent({
     >
       <Group
         name="dataset"
-        label="Select a dataset file to import"
-        help="The file must be in AOEF format"
+        label="Pilih berkas rekaman untuk diimpor"
+        help="Berkas harus berformat AOEF"
         error={errors.dataset?.message?.toString()}
       >
         <Input
@@ -57,19 +57,19 @@ export default function DatasetImportComponent({
       </Group>
       <Group
         name="audio_dir"
-        label="Audio directory"
-        help="Folder where all the dataset recordings are stored"
+        label="Folder audio"
+        help="Folder tempat semua berkas audio disimpan"
         error={errors.audio_dir?.message}
       >
         <Input
           {...register("audio_dir")}
-          placeholder="Path to audio directory..."
+          placeholder="Path folder audio..."
           required
         />
       </Group>
       <Submit>
         <UploadIcon className="inline-block mr-2 w-6 h-6 align-middle" />
-        Import
+        Impor
       </Submit>
     </form>
   );

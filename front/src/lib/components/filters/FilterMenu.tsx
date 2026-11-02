@@ -26,7 +26,7 @@ function FilterCombobox<T extends Object>({
   return (
     <>
       <div className="mb-2 underline text-stone-700 underline-offset-2 decoration-amber-500 decoration-2 dark:text-stone-300">
-        Apply Filter
+        Terapkan
       </div>
       <SearchMenu
         options={filterDefs}
@@ -43,7 +43,7 @@ function FilterCombobox<T extends Object>({
         onSelect={onChange}
         empty={
           <div className="w-full text-center text-stone-500">
-            No filters found
+            Tidak ada saringan
           </div>
         }
         autoFocus
@@ -76,7 +76,7 @@ function FilterPanel<T extends Object>({
     <>
       <div className="flex flex-row justify-between items-center mb-2">
         <div>
-          <span className="mr-2 text-stone-500">Filter by</span>
+          <span className="mr-2 text-stone-500">Saring menurut</span>
           <span className="underline text-stone-700 underline-offset-2 decoration-amber-500 decoration-2 dark:text-stone-300">
             {selectedFilter.name}
           </span>

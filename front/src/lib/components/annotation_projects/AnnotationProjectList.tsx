@@ -80,7 +80,7 @@ function NoProjects() {
       <WarningIcon className="w-16 h-16 text-stone-500" />
       <p>Belum ada proyek anotasi.</p>
       <p>
-        To create a new project, click on the
+        Untuk membuat proyek baru, klik tombol
         <span className="text-emerald-500">
           <AddIcon className="inline-block mr-1 ml-2 w-4 h-4" />
           Create{" "}

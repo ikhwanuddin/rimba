@@ -24,7 +24,7 @@ import type { RecordingFilter } from "@/lib/types";
 // TODO: Create custom filter for integer, date, time, tags and boolean values
 const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
   {
-    name: "Duration",
+    name: "Durasi",
     field: "duration",
     selector: ({ setFilter }) => (
       <FloatFilter
@@ -33,18 +33,18 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
       />
     ),
     render: ({ value, clear }) => (
-      <NumberFilterBadge field="Duration" value={value} onRemove={clear} />
+      <NumberFilterBadge field="Durasi" value={value} onRemove={clear} />
     ),
-    description: "Select recordings by duration. Duration is in seconds.",
+    description: "Saring berkas menurut durasi (detik).",
     icon: (
       <TimeIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
     ),
   },
   {
-    name: "Sample Rate",
+    name: "Laju sampel",
     field: "samplerate",
     render: ({ value, clear }) => (
-      <NumberFilterBadge field="Sample Rate" value={value} onRemove={clear} />
+      <NumberFilterBadge field="Laju sampel" value={value} onRemove={clear} />
     ),
     selector: ({ setFilter }) => (
       <FloatFilter onChange={(val) => setFilter("samplerate", val)} />
@@ -54,10 +54,10 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
     ),
   },
   {
-    name: "Channels",
+    name: "Kanal",
     field: "channels",
     render: ({ value, clear }) => (
-      <NumberFilterBadge field="Channels" value={value} onRemove={clear} />
+      <NumberFilterBadge field="Kanal" value={value} onRemove={clear} />
     ),
     selector: ({ setFilter }) => (
       <FloatFilter onChange={(val) => setFilter("channels", val)} />
@@ -68,10 +68,10 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
   },
   {
     field: "time_expansion",
-    name: "Time Expansion",
+    name: "Ekspansi waktu",
     render: ({ value, clear }) => (
       <NumberFilterBadge
-        field="Time Expansion"
+        field="Ekspansi waktu"
         value={value}
         onRemove={clear}
       />
@@ -85,9 +85,9 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
   },
   {
     field: "latitude",
-    name: "Latitude",
+    name: "Lintang",
     render: ({ value, clear }) => (
-      <NumberFilterBadge field="Latitude" value={value} onRemove={clear} />
+      <NumberFilterBadge field="Lintang" value={value} onRemove={clear} />
     ),
     selector: ({ setFilter }) => (
       <NullableFloatFilter
@@ -101,9 +101,9 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
   },
   {
     field: "longitude",
-    name: "Longitude",
+    name: "Bujur",
     render: ({ value, clear }) => (
-      <NumberFilterBadge field="Longitude" value={value} onRemove={clear} />
+      <NumberFilterBadge field="Bujur" value={value} onRemove={clear} />
     ),
     selector: ({ setFilter }) => (
       <NullableFloatFilter
@@ -117,7 +117,7 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
   },
   {
     field: "tag",
-    name: "Has Tag",
+    name: "Punya label",
     render: ({ value, clear }) => (
       <FilterBadge
         field="Tag"
@@ -134,10 +134,10 @@ const recordingFilterDefs: FilterDef<RecordingFilter>[] = [
   },
   {
     field: "has_issues",
-    name: "Has Issues",
+    name: "Ada masalah",
     render: ({ value, clear }) => (
       <FilterBadge
-        field="Has Issues"
+        field="Ada masalah"
         value={value ? "Yes" : "No"}
         onRemove={clear}
       />

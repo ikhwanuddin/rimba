@@ -65,7 +65,7 @@ export default function Note({
               onClick={onResolveNote}
             >
               <IssueIcon className="inline-block mr-1 w-4 h-4" />
-              Resolve
+              Selesaikan
             </Button>
           )}
           {canDelete ? (
@@ -77,7 +77,7 @@ export default function Note({
                 onClick={onDeleteNote}
               >
                 <DeleteIcon className="inline-block mr-1 w-4 h-4" />
-                Remove
+                Hapus
               </Button>
             </>
           ) : null}

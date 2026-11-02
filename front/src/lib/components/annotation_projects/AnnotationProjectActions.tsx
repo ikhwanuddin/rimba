@@ -47,7 +47,7 @@ function DeleteProject({
       title={
         <>
           <WarningIcon className="inline-block mr-2 w-8 h-8 text-red-500" />
-          Are you sure you want to delete this project?
+          Yakin mau menghapus proyek ini?
         </>
       }
       button={
@@ -67,19 +67,19 @@ function DeleteProject({
             </h2>
             <div className="flex flex-col gap-2">
               <p>
-                This action cannot be undone. All annotations and recordings
-                associated with this project will be deleted.
+                Tindakan ini tidak bisa dibatalkan. Semua anotasi dan jawaban di
+                proyek ini ikut terhapus.
               </p>
-              <p>Do you want to proceed?</p>
+              <p>Lanjutkan?</p>
             </div>
             <div className="flex flex-row gap-2 justify-end mt-4">
               <Button mode="outline" variant="primary" onClick={close}>
                 <CloseIcon className="inline-block mr-2 w-5 h-5" />
-                Cancel
+                Batal
               </Button>
               <Button mode="text" variant="danger" onClick={onDelete}>
                 <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-                Delete
+                Hapus
               </Button>
             </div>
           </>

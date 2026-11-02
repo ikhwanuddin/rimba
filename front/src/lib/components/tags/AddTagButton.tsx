@@ -23,7 +23,7 @@ import Button from "@/lib/components/ui/Button";
  *
  * ```tsx
  * <AddTagButton
- *   text="Add Tag"
+ *   text="Tambah label"
  *   variant="primary"
  *   placement="top-end"
  *   TagSearchBar={(props) => <CustomTagBarWithHooks {...props} />}
@@ -31,7 +31,7 @@ import Button from "@/lib/components/ui/Button";
  * ```
  */
 const AddTagButton = memo(function AddTagButton({
-  text = "add",
+  text = "tambah",
   variant = "secondary",
   placement = "bottom-start",
   onKeyDown,

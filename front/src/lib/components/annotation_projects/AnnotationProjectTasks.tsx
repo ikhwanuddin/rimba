@@ -44,10 +44,8 @@ export default function AnnotationProjectTasks(props: {
       <div className="flex flex-row gap-8">
         <div className="flex flex-col gap-y-6 max-w-prose">
           <p className="max-w-prose text-stone-500">
-            On this page, you can add tasks to your annotation project. Choose a
-            dataset to pull recordings from, apply filters to narrow down your
-            selection, and configure how audio clips are extracted from the
-            chosen recordings.
+            Di sini klip ditambahkan ke proyek anotasi: pilih kumpulan rekaman,
+            saring berkasnya bila perlu, lalu atur cara memotong klip.
           </p>
           <SelectDataset DatasetSearch={props.DatasetSearch} />
           {props.dataset != null && (
@@ -97,9 +95,7 @@ function SelectDataset({ DatasetSearch }: { DatasetSearch: JSX.Element }) {
     <ui.Card>
       <div>
         <ui.H3 className="text-lg">Pilih rekaman audio</ui.H3>
-        <p className="text-stone-500">
-          Choose a dataset from which to source recordings.
-        </p>
+        <p className="text-stone-500">Pilih kumpulan rekaman sumber klip.</p>
       </div>
       {DatasetSearch}
     </ui.Card>
@@ -129,17 +125,17 @@ function SelectRecordings({
   return (
     <ui.Card>
       <div>
-        <ui.H3 className="text-lg">Select Recordings</ui.H3>
+        <ui.H3 className="text-lg">Pilih berkas</ui.H3>
         <p className="text-stone-500">
-          Pick recordings to extract clips for your annotation project.
-          Optionally, filter and choose a subset for clip extraction.
+          Pilih berkas yang akan dipotong jadi klip. Bisa disaring dan diambil
+          sebagian.
         </p>
       </div>
       <div className="flex flex-col gap-4">
         <inputs.Group
           name="recording-filter"
-          label="Filter recordings"
-          help="Select a subset for clip extraction by applying filters."
+          label="Saring berkas"
+          help="Ambil sebagian berkas lewat saringan."
         >
           <div className="flex flex-row gap-2 items-center">
             <div className="grow">
@@ -156,7 +152,7 @@ function SelectRecordings({
               mode="text"
               button={
                 <>
-                  Add filters{" "}
+                  Tambah saringan{" "}
                   <icons.FilterIcon className="inline-block w-4 h-4 stroke-2" />
                 </>
               }
@@ -165,8 +161,8 @@ function SelectRecordings({
         </inputs.Group>
         <inputs.Group
           name="subsample"
-          label="Subsample recordings"
-          help="Set a maximum for clip extraction. A random subset will be selected; all if not specified."
+          label="Ambil sebagian berkas"
+          help="Batas jumlah berkas; diambil acak, semua kalau kosong."
         >
           <div className="inline-flex gap-3 items-center w-full">
             <inputs.Toggle
@@ -176,7 +172,7 @@ function SelectRecordings({
             <inputs.Input
               className="grow"
               type="number"
-              placeholder="Maximum number of recordings"
+              placeholder="Maksimum jumlah berkas"
               value={subsample ? maxRecordings : undefined}
               onChange={(event) =>
                 onSetMaxRecordings?.(parseInt(event.target.value))
@@ -217,15 +213,15 @@ function ExtractClips({
   return (
     <ui.Card>
       <div>
-        <ui.H3>Clip Extraction</ui.H3>
+        <ui.H3>Pemotongan klip</ui.H3>
         <p className="text-stone-500">
-          Customize how to extract clips from the selected recordings.
+          Atur cara memotong klip dari berkas terpilih.
         </p>
       </div>
       <inputs.Group
         name="clip"
-        label="Should Clip"
-        help="Enable to extract smaller clips from the recordings; disable to use the entire recording as a clip."
+        label="Potong jadi klip"
+        help="Nyalakan untuk memotong berkas jadi klip pendek; matikan untuk memakai seluruh berkas sebagai satu klip."
       >
         <inputs.Toggle isSelected={shouldClip} onChange={onToggleClip} />
       </inputs.Group>
@@ -233,8 +229,8 @@ function ExtractClips({
         <>
           <inputs.Group
             name="clipLength"
-            label="Clip Length"
-            help="Specify the duration of each clip in seconds."
+            label="Panjang klip"
+            help="Panjang tiap klip, dalam detik."
           >
             <inputs.Input
               type="number"
@@ -246,8 +242,8 @@ function ExtractClips({
           </inputs.Group>
           <inputs.Group
             name="overlap"
-            label="Overlap"
-            help="Define the overlap duration between clips in seconds."
+            label="Tumpang tindih"
+            help="Tumpang tindih antar klip, dalam detik."
           >
             <inputs.Input
               type="number"
@@ -258,8 +254,8 @@ function ExtractClips({
           </inputs.Group>
           <inputs.Group
             name="subsample"
-            label="Subsample clips"
-            help="Set a maximum number of clips to extract from each recording. A random subset will be selected. Leave empty to use all clips."
+            label="Ambil sebagian klip"
+            help="Batas klip per berkas; diambil acak, semua kalau kosong."
           >
             <div className="inline-flex gap-3 items-center w-full">
               <inputs.Toggle
@@ -269,7 +265,7 @@ function ExtractClips({
               <inputs.Input
                 className="grow"
                 type="number"
-                placeholder="Maximum clips per recording"
+                placeholder="Maksimum klip per berkas"
                 value={subsampleClip ? maxClipsPerRecording : undefined}
                 onChange={(e) => onSetMaxClips?.(e.target.valueAsNumber)}
                 required={subsampleClip}
@@ -298,32 +294,32 @@ function ReviewClips({
 }) {
   return (
     <ui.Card>
-      <ui.H3>Summary</ui.H3>
+      <ui.H3>Ringkasan</ui.H3>
       {dataset == null ? (
-        <p className="text-stone-500">Select a dataset to continue.</p>
+        <p className="text-stone-500">Pilih kumpulan rekaman dulu.</p>
       ) : isLoading ? (
         <ui.Loading />
       ) : (
         <>
           <ul className="list-disc list-inside">
             <li>
-              Selected dataset:{" "}
+              Rekaman terpilih:{" "}
               <span className="text-emerald-500">{dataset.name}</span>
             </li>
             <li>
-              Selected recordings:{" "}
+              Berkas terpilih:{" "}
               <span className="text-emerald-500">{numRecordings}</span>
             </li>
             <li>
-              Tasks to add:{" "}
+              Klip yang ditambahkan:{" "}
               <span className="font-bold text-emerald-500">{numClips}</span>
             </li>
           </ul>
           <p className="text-stone-500">
-            Once satisfied with your selections, click the button below to add
-            the chosen clips to the annotation project.
+            Kalau pilihan sudah pas, klik tombol di bawah untuk menambahkan klip
+            ke proyek.
           </p>
-          <ui.Button onClick={onAdd}>Add Clips</ui.Button>
+          <ui.Button onClick={onAdd}>Tambahkan klip</ui.Button>
         </>
       )}
     </ui.Card>

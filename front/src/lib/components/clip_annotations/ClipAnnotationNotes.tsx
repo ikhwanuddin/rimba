@@ -6,9 +6,11 @@ import Empty from "@/lib/components/ui/Empty";
 export default function ClipAnnotationNotes(
   props: Omit<ComponentProps<typeof NotesPanel>, "title" | "EmptyNotes">,
 ) {
-  return <NotesPanel title="Clip Notes" EmptyNotes={<NoNotes />} {...props} />;
+  return (
+    <NotesPanel title="Catatan klip" EmptyNotes={<NoNotes />} {...props} />
+  );
 }
 
 function NoNotes() {
-  return <Empty outerClassName="p-2">No notes</Empty>;
+  return <Empty outerClassName="p-2">Belum ada catatan</Empty>;
 }

@@ -40,7 +40,7 @@ function FloatField({
       <div className="relative rounded-md">
         <div className="flex absolute inset-y-0 left-0 items-center">
           <label htmlFor={`${name}-operation`} className="sr-only">
-            Operation
+            Operasi
           </label>
           <select
             className="pr-3 pl-2 h-full bg-transparent rounded-l-md border-0 focus:ring-2 focus:ring-inset focus:ring-emerald-600 text-stone-500"
@@ -94,7 +94,7 @@ function IsNullField({
         htmlFor={`${name}-isnull`}
         className="text-sm font-medium text-stone-700 dark:text-stone-300"
       >
-        Is null?
+        Kosong?
       </label>
       <Checkbox
         id={`${name}-isnull`}
@@ -202,7 +202,7 @@ export function BooleanFilter({
     <div className="flex flex-row gap-2 justify-center w-full">
       <Button mode="text" variant="primary" onClick={() => onChange(true)}>
         <CheckIcon className="mr-1 w-5 h-5 group-hover:stroke-3" />
-        Yes
+        Ya
       </Button>
       <Button mode="text" variant="danger" onClick={() => onChange(false)}>
         <CloseIcon className="mr-1 w-5 h-5 group-hover:stroke-3" />

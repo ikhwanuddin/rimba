@@ -32,8 +32,8 @@ export default function DatasetList({
       DatasetImport={<DatasetImport onImportDataset={onCreateDataset} />}
       DatasetSearch={
         <Search
-          label="Search"
-          placeholder="Search project..."
+          label="Cari"
+          placeholder="Cari..."
           value={filter.get("search")}
           onChange={(value) => filter.set("search", value as string)}
           onSubmit={filter.submit}

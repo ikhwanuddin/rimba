@@ -10,15 +10,11 @@ export default function ClipAnnotationTags(
 ) {
   return (
     <Card>
-      <TagPanel title="Clip Tags" {...props} EmptyTags={<NoTags />} />
+      <TagPanel title="Label klip" {...props} EmptyTags={<NoTags />} />
     </Card>
   );
 }
 
 function NoTags() {
-  return (
-    <Empty outerClassName="p-2">
-      No tags currently registered in this clip.
-    </Empty>
-  );
+  return <Empty outerClassName="p-2">Belum ada label di klip ini.</Empty>;
 }

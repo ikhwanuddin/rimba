@@ -29,30 +29,30 @@ export default function CreateProject({
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <Group
-        label="Name"
+        label="Nama"
         name="name"
-        help="Please provide a name for the Annotation Project."
+        help="Beri nama proyek anotasi ini."
         error={errors.name?.message}
       >
         <Input {...register("name")} />
       </Group>
       <Group
-        label="Description"
+        label="Deskripsi"
         name="description"
-        help="Describe the purpose of the project"
+        help="Jelaskan tujuan proyek ini"
         error={errors.description?.message}
       >
         <TextArea rows={6} {...register("description")} />
       </Group>
       <Group
-        label="Instructions"
+        label="Petunjuk"
         name="annotation_instructions"
-        help="Write instructions for annotators."
+        help="Tulis petunjuk untuk anotator."
         error={errors.annotation_instructions?.message}
       >
         <TextArea rows={10} {...register("annotation_instructions")} />
       </Group>
-      <Submit>Create Project</Submit>
+      <Submit>Buat proyek</Submit>
     </form>
   );
 }

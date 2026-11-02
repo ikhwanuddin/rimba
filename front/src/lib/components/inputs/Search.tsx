@@ -14,7 +14,7 @@ import Input from "./Input";
  * and clear button functionality.
  */
 export default function Search({
-  label = "Search",
+  label = "Cari",
   placeholder = "Search...",
   isLoading = false,
   icon,

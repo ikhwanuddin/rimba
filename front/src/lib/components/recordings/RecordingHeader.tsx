@@ -46,7 +46,7 @@ export default function RecordingHeader({
           <Tooltip
             tooltip={
               <div className="w-96 text-sm font-thin tracking-tighter whitespace-normal break-all dark:bg-stone-700 dark:border-stone-800">
-                <span className="font-normal text-blue-500">Full path:</span>{" "}
+                <span className="font-normal text-blue-500">Path lengkap:</span>{" "}
                 {path}
               </div>
             }

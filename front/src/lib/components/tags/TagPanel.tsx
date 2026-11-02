@@ -64,7 +64,7 @@ export default function TagPanel({
             mode="text"
             variant="danger"
           >
-            Clear tags <DeleteIcon className="w-5 h-5 ms-2" />
+            Hapus semua label <DeleteIcon className="w-5 h-5 ms-2" />
           </Button>
         )}
         <AddTagButton
@@ -80,5 +80,5 @@ export default function TagPanel({
 }
 
 function NoTags() {
-  return <Empty outerClassName="p-2">No tags</Empty>;
+  return <Empty outerClassName="p-2">Belum ada label</Empty>;
 }

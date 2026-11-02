@@ -24,11 +24,11 @@ export default function RecordingMap({
     <Card>
       <div className="flex flex-row justify-center items-center">
         <MapIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        Recorded at
+        Lokasi rekam
       </div>
       {!hasLocation ? (
         <div className="text-sm text-stone-400 dark:text-stone-600">
-          No location provided.
+          Lokasi belum diisi.
         </div>
       ) : (
         <div className="relative">

@@ -13,7 +13,7 @@ export default function DatasetRecordingSummary({
 }: { dataset: Dataset } & ComponentProps<typeof DatasetExport>) {
   return (
     <SecondaryNavBar
-      title="Recordings"
+      title="Berkas audio"
       icon={
         <>
           <RecordingsIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
@@ -25,13 +25,13 @@ export default function DatasetRecordingSummary({
       buttons={[
         <Dialog
           key="export"
-          title="Export Recording Metadata"
+          title="Ekspor metadata berkas"
           mode="text"
           variant="secondary"
           label={
             <>
               <DownloadIcon className="inline-block mr-1 w-5 h-5 text-emerald-500 align-middle" />
-              export
+              ekspor
             </>
           }
         >

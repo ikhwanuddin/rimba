@@ -79,8 +79,8 @@ export default function RecordingDate({
         <Card className="bg-stone-100 dark:bg-stone-800">
           <Group
             name="date"
-            label="Date"
-            help="Change date of recording. Format: YYYY-MM-DD"
+            label="Tanggal"
+            help="Ubah tanggal rekam. Format: YYYY-MM-DD"
           >
             <Input type="date" {...register("date")} value={value} />
           </Group>
@@ -90,7 +90,7 @@ export default function RecordingDate({
             onClick={() => onChange?.({ date: null })}
           >
             <CloseIcon className="inline-block mr-1 w-5 h-5" />
-            Clear
+            Kosongkan
           </Button>
         </Card>
       )}

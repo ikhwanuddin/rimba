@@ -130,7 +130,7 @@ export default function ClipAnnotationSpectrogram({
           />
         ) : (
           <Empty>
-            No annotation selected, click on an annotation to view details
+            Belum ada kotak terpilih; klik kotak untuk melihat detailnya.
           </Empty>
         )
       }

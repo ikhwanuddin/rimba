@@ -39,7 +39,9 @@ export default function Info({
       </svg>
       <span className="sr-only">Info</span>
       <div>
-        <span className="font-medium">{title == null ? "Info!" : title}</span>{" "}
+        <span className="font-medium">
+          {title == null ? "Catatan:" : title}
+        </span>{" "}
         {children}
       </div>
     </div>

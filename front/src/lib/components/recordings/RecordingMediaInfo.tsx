@@ -25,24 +25,24 @@ export default function RecordingMediaInfo({
     <Card>
       <div className="inline-flex items-center">
         <TimeIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Duration" />
+        <Label label="Durasi" />
         {recording.duration.toFixed(3)}
         <Units units="s" />
       </div>
       <div className="inline-flex items-center">
         <ChannelsIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Channels" />
+        <Label label="Kanal" />
         {recording.channels}
       </div>
       <div className="inline-flex items-center">
         <SampleRateIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Sample rate" />
+        <Label label="Laju sampel" />
         {recording.samplerate.toLocaleString()}
         <Units units="Hz" />
       </div>
       <div className="inline-flex items-center">
         <TimeExpansionIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Time expansion" />
+        <Label label="Ekspansi waktu" />
         {recording.time_expansion}
       </div>
     </Card>

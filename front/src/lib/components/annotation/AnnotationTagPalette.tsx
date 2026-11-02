@@ -35,18 +35,17 @@ export default function AnnotationTagPalette({
         <Tooltip
           tooltip={
             <div className="w-48 text-center">
-              The tags selected here will be automatically attached to newly
-              created annotations.
+              Label yang dipilih di sini otomatis menempel ke kotak baru.
             </div>
           }
           placement="top"
         >
           <ToolsIcon className="inline-block mr-1 w-5 h-5" />
-          <span className="cursor-help">Tag Palette</span>
+          <span className="cursor-help">Palet label</span>
         </Tooltip>
       </H4>
       <div className="flex flex-row gap-1 w-full">
-        <Tooltip tooltip="Clear tags" placement="top">
+        <Tooltip tooltip="Hapus semua label" placement="top">
           <Button onClick={onClearTags} mode="text" variant="danger">
             <DeleteIcon className="w-5 h-5" />
           </Button>

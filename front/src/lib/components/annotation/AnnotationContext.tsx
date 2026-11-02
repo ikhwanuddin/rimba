@@ -75,7 +75,7 @@ export default function AnnotationContext({
         </div>
       </div>
       <RecordingTagBar
-        label="Recording Tags"
+        label="Label berkas"
         tags={recording.tags ?? []}
         onClickTag={onTagClick}
         tagColorFn={tagColorFn}

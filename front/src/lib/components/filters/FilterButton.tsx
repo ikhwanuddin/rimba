@@ -13,7 +13,7 @@ export default function FilterButton({
       label={
         <span className="inline-flex gap-2 items-center">
           <FilterIcon className="w-4 h-4 stroke-2" />
-          Filter
+          Saring
         </span>
       }
       width="max-w-3xl"

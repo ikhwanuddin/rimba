@@ -24,45 +24,41 @@ import Search from "../inputs/Search";
 
 const SHORTCUTS: Shortcut[] = [
   {
-    label: "Previous Task",
+    label: "Klip sebelumnya",
     shortcut: "p",
-    description:
-      "Go to the previous task. The state of the current task will be preserved.",
+    description: "Ke klip sebelumnya. Keadaan klip ini tetap tersimpan.",
   },
   {
-    label: "Next Task",
+    label: "Klip berikutnya",
     shortcut: "n",
-    description:
-      "Go to the next task. The state of the current task will be preserved.",
+    description: "Ke klip berikutnya. Keadaan klip ini tetap tersimpan.",
   },
   {
-    label: "Select Annotation",
+    label: "Pilih kotak",
     shortcut: "s",
-    description:
-      "Toggle the selection tool for annotations. When toggled, clicking on an annotation will select it.",
+    description: "Mode pilih: klik kotak untuk memilihnya.",
   },
   {
-    label: "Add Annotation",
+    label: "Tambah kotak",
     shortcut: "a",
     description:
-      "Toggle the creation of new annotations. When toggled, clicking on the spectrogram will create a new annotation.",
+      "Mode gambar kotak: klik di spektrogram untuk membuat kotak baru.",
   },
   {
-    label: "Delete Annotation",
+    label: "Hapus kotak",
     shortcut: "d",
-    description:
-      "Toggle the deletion tool. When toggled, clicking on an annotation will delete it.",
+    description: "Mode hapus: klik kotak untuk menghapusnya.",
   },
   {
-    label: "Zoom",
+    label: "Perbesar",
     shortcut: "z",
     description:
-      "Toggle the zoom tool. When toggled, draw a rectangle to zoom in on a region of the spectrogram.",
+      "Mode perbesar: tarik persegi untuk memperbesar bagian spektrogram.",
   },
   {
-    label: "Toggle Play",
+    label: "Putar/jeda",
     shortcut: "space",
-    description: "Toggle the play/pause of the audio",
+    description: "Putar atau jeda audio",
   },
 ];
 
@@ -75,19 +71,18 @@ function SearchTask({
     <Dialog
       mode="text"
       variant="info"
-      title="Search Task"
-      label="Seach"
+      title="Cari klip"
+      label="Cari"
       width="max-w-prose"
     >
       {() => (
         <div className="flex flex-col gap-2 w-full">
           <div className="space-y-1">
             <p className="text-sm leading-relaxed text-stone-500 dark:text-stone-400">
-              Search for a task by its UUID. Paste the UUID in the search bar
-              and press enter to navigate to the task.
+              Cari klip lewat UUID-nya: tempel lalu tekan Enter.
             </p>
           </div>
-          <Search placeholder="Task UUID" onSubmit={onSubmit} />
+          <Search placeholder="UUID klip" onSubmit={onSubmit} />
         </div>
       )}
     </Dialog>
@@ -102,7 +97,7 @@ function CurrentTask({ currentTask }: { currentTask?: AnnotationTask }) {
           <div className="flex flex-col gap-2 p-1 min-w-[200px]">
             <div className="flex justify-between items-center">
               <span className="font-bold text-stone-400 dark:text-stone-500">
-                Task ID
+                ID klip
               </span>
             </div>
             <div className="relative group">
@@ -112,7 +107,7 @@ function CurrentTask({ currentTask }: { currentTask?: AnnotationTask }) {
             </div>
             <div className="flex gap-1.5 items-center italic text-stone-500">
               <KeyboardKey keys={["Click"]} />
-              <span>to copy to clipboard</span>
+              <span>untuk menyalin</span>
             </div>
           </div>
         }
@@ -125,11 +120,11 @@ function CurrentTask({ currentTask }: { currentTask?: AnnotationTask }) {
           onClick={() => {
             if (currentTask == null) return;
             navigator.clipboard.writeText(currentTask.uuid);
-            toast.success("Task ID copied to clipboard");
+            toast.success("ID klip disalin");
           }}
           disabled={currentTask == null}
         >
-          Current
+          Sekarang
         </Button>
       </Tooltip>
     </div>
@@ -173,7 +168,7 @@ export default function AnnotationProgress({
       let task = tasks.find((t) => t.uuid === value);
 
       if (task == null) {
-        toast.error("Task not found");
+        toast.error("Klip tidak ditemukan");
         return;
       }
 
@@ -187,7 +182,7 @@ export default function AnnotationProgress({
       <Tooltip
         tooltip={
           <div className="inline-flex gap-2 items-center">
-            Previous Task
+            Klip sebelumnya
             <div className="text-xs">
               <KeyboardKey keys={["p"]} />
             </div>
@@ -212,8 +207,8 @@ export default function AnnotationProgress({
           <Dialog
             mode="text"
             variant="info"
-            title="Annotation Instructions"
-            label="Instructions"
+            title="Petunjuk anotator"
+            label="Petunjuk"
             width="max-w-prose"
           >
             {() => (
@@ -221,7 +216,7 @@ export default function AnnotationProgress({
             )}
           </Dialog>
           <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap">
-            <span className="text-stone-500">Progress:</span>
+            <span className="text-stone-500">Progres:</span>
             <div className="w-36">
               <ProgressBar
                 error={needReview}
@@ -234,15 +229,15 @@ export default function AnnotationProgress({
           </span>
         </div>
         <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap text-stone-500">
-          <span>Remaining:</span>
+          <span>Sisa:</span>
           <span className="font-medium text-blue-500">{pending}</span>/{total}
         </span>
         <SearchTask onSubmit={handleSearch} />
         <Dialog
           mode="text"
           variant="info"
-          title="Task Map"
-          label="Map"
+          title="Peta klip"
+          label="Peta"
           width="max-w-prose"
         >
           {() => (
@@ -253,7 +248,7 @@ export default function AnnotationProgress({
             />
           )}
         </Dialog>
-        <FilterButton title="Filter Tasks">
+        <FilterButton title="Saring klip">
           {({ close }) =>
             FilterMenu == null ? null : <FilterMenu close={close} />
           }
@@ -271,7 +266,7 @@ export default function AnnotationProgress({
       <Tooltip
         tooltip={
           <div className="inline-flex gap-2 items-center">
-            Next Task
+            Klip berikutnya
             <div className="text-xs">
               <KeyboardKey keys={["n"]} />
             </div>

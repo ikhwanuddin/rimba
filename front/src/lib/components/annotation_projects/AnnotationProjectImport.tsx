@@ -33,15 +33,15 @@ export default function AnnotationProjectImport({
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <Group
         name="annotation_project"
-        label="Select a project file to import"
-        help="The file must be in AOEF format"
+        label="Pilih berkas proyek untuk diimpor"
+        help="Berkas harus berformat AOEF"
         error={errors.annotation_project?.message?.toString()}
       >
         <Input type="file" {...register("annotation_project")} required />
       </Group>
       <Submit>
         <UploadIcon className="inline-block mr-2 w-6 h-6 align-middle" />
-        Import
+        Impor
       </Submit>
     </form>
   );

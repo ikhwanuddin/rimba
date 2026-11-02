@@ -107,7 +107,7 @@ function SetPageSize({
 }) {
   return (
     <Select
-      label="Page Size:"
+      label="Per halaman:"
       selected={{ label: pageSize.toString(), value: pageSize, id: pageSize }}
       onChange={(value) => onSetPageSize?.(value)}
       options={pageSizeOptions.map((value) => ({

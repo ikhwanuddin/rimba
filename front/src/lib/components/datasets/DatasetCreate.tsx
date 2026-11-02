@@ -35,30 +35,30 @@ export default function CreateDataset({
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <Group
         name="name"
-        label="Name"
-        help="Please provide a name for the dataset."
+        label="Nama"
+        help="Beri nama kumpulan rekaman ini."
         error={errors.name?.message}
       >
         <Input {...register("name")} />
       </Group>
       <Group
         name="description"
-        label="Description"
-        help="Describe the dataset."
+        label="Deskripsi"
+        help="Jelaskan isi rekaman ini."
         error={errors.description?.message}
       >
         <TextArea {...register("description")} />
       </Group>
       <Group
         name="audio_dir"
-        label="Audio Directory"
-        help="Provide the path to the folder where the dataset recordings reside."
+        label="Folder audio"
+        help="Path folder tempat berkas audio disimpan di server."
         error={errors.name?.message}
       >
         <Input {...register("audio_dir")} />
       </Group>
       <div className="mb-3">
-        <Submit>Create Dataset</Submit>
+        <Submit>Daftarkan</Submit>
       </div>
     </form>
   );

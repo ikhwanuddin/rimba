@@ -53,11 +53,8 @@ export default function ProjectTagsSummary({
           <TagsIcon className="inline-block mr-2 w-5 h-5" />
           Label proyek
           <Help>
-            Here you can see the tags used in the project and their respective
-            frequencies. &quot;Clip Count&quot; represent the number of clips
-            tagged with the tag, and &quot;Sound Event Count&quot; represent the
-            number of sound events tagged with the tag. Click on a tag to see
-            more details.
+            Label yang dipakai di proyek ini. &quot;Klip&quot; = jumlah klip
+            berlabel itu, &quot;Kotak&quot; = jumlah kotak berlabel itu.
           </Help>
         </H4>
         <Button mode="text" variant="primary" onClick={onAddTags}>
@@ -190,8 +187,7 @@ function TagCounts({
 function NoAnnotationTags() {
   return (
     <div className="text-stone-500">
-      There are no tags in any of the annotations in this project. Consider
-      creating more annotations, or adding tags to existing annotations.
+      Belum ada label pada anotasi di proyek ini.
     </div>
   );
 }

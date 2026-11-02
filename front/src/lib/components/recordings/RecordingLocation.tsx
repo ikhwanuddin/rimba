@@ -24,7 +24,7 @@ function LocationButton({
         formatLocation({ latitude, longitude })
       ) : (
         <span className="text-sm text-stone-400 dark:text-stone-600">
-          No location
+          Tanpa lokasi
         </span>
       )}
     </Button>
@@ -66,7 +66,7 @@ export default function RecordingLocation({
               onClick={() => onChange?.({ latitude: null, longitude: null })}
             >
               <CloseIcon className="inline-block mr-1 w-5 h-5" />
-              Clear
+              Kosongkan
             </Button>
           )}
         </Card>

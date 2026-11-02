@@ -16,14 +16,14 @@ export default function CreateNoteForm({
   return (
     <div className="flex flex-col p-4 w-full">
       <Group
-        label="Add a note"
+        label="Tulis catatan"
         name="message"
-        help="Write the note message and click on the type of note you want to create."
+        help="Tulis catatannya, lalu pilih simpan sebagai catatan atau masalah."
       >
         <TextArea
           name="message"
           value={message}
-          placeholder="Type your note here..."
+          placeholder="Tulis catatan di sini..."
           onChange={(e) => setMessage(e.target.value)}
         />
       </Group>
@@ -40,7 +40,7 @@ export default function CreateNoteForm({
           }}
         >
           <IssueIcon className="inline-block mr-1 w-5 h-5" />
-          Add Issue
+          Tandai masalah
         </Button>
         <Button
           variant="primary"
@@ -54,7 +54,7 @@ export default function CreateNoteForm({
           }}
         >
           <NotesIcon className="inline-block mr-1 w-5 h-5" />
-          Add Note
+          Simpan catatan
         </Button>
       </div>
     </div>

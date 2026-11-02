@@ -124,8 +124,8 @@ export default function RecordingTable({
         <div className="flex flex-row space-x-3 basis-1/2">
           <div className="grow">
             <Search
-              label="Search"
-              placeholder="Search recordings..."
+              label="Cari"
+              placeholder="Cari berkas..."
               onChange={onSearchChange}
             />
           </div>

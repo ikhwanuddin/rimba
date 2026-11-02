@@ -83,9 +83,9 @@ function NoDatasets() {
   return (
     <Empty>
       <WarningIcon className="w-8 h-8 text-stone-500" />
-      <p>No datasets found.</p>
+      <p>Belum ada rekaman audio.</p>
       <p>
-        To create a dataset, click on the
+        Untuk mendaftarkan rekaman, klik tombol
         <span className="text-emerald-500">
           <AddIcon className="inline-block mr-1 ml-2 w-4 h-4" />
           Create{" "}

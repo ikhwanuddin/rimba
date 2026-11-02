@@ -44,7 +44,11 @@ export default function AnnotationProject({
       <div className="flex flex-row py-4">
         <Atom
           label={<CalendarIcon className="w-4 h-4 align-middle" />}
-          value={annotationProject.created_on.toDateString()}
+          value={annotationProject.created_on.toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
         />
       </div>
     </div>

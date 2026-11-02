@@ -52,7 +52,11 @@ export default function Dataset({
         />
         <Atom
           label={<CalendarIcon className="w-4 h-4 align-middle" />}
-          value={dataset.created_on.toDateString()}
+          value={dataset.created_on.toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
         />
       </div>
     </div>

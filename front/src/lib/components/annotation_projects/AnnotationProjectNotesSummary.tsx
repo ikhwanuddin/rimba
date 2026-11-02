@@ -46,7 +46,7 @@ function IssuesSummary({
     <div className="flex flex-col gap-4">
       {clipNotes.length === 0 ? null : (
         <div className="flex flex-col gap-2">
-          <span className="font-thin">Latest Clip Issues</span>
+          <span className="font-thin">Masalah klip terbaru</span>
           <ul className="flex flex-col gap-2 p-2 pl-4 rounded-md border divide-y divide-dashed divide-stone-300 dark:border-stone-800 dark:divide-stone-800">
             {clipNotes.map((issue) => (
               <ClipAnnotationNote
@@ -59,7 +59,7 @@ function IssuesSummary({
       )}
       {soundEventNotes.length === 0 ? null : (
         <div className="flex flex-col gap-2">
-          <span className="font-thin">Latest Sound Event Issues</span>
+          <span className="font-thin">Masalah kotak terbaru</span>
           <ul className="flex flex-col gap-2 p-2 pl-4 rounded-md border divide-y divide-dashed divide-stone-300 dark:border-stone-800 dark:divide-stone-800">
             {soundEventNotes.map((issue) => (
               <SoundEventAnnotationNote

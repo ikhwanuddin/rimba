@@ -29,9 +29,9 @@ export default function TagList({
     <div className="flex flex-col gap-4">
       <Search onChange={(value) => setSearch(value as string)} />
       <div className="flex overflow-hidden flex-col gap-2 w-full">
-        {tags.length === 0 && <p className="text-stone-500">No tags</p>}
+        {tags.length === 0 && <p className="text-stone-500">Belum ada label</p>}
         {items.length === 0 && tags.length > 0 && (
-          <p className="text-stone-500">No tags found</p>
+          <p className="text-stone-500">Label tidak ditemukan</p>
         )}
         {items.map((tag) => (
           <TagComponent
@@ -49,7 +49,7 @@ export default function TagList({
             className="w-full"
             onClick={() => setLimit((limit) => limit + 10)}
           >
-            Show more
+            Tampilkan lagi
           </Button>
         )}
       </div>

@@ -24,7 +24,7 @@ const _emptyTags: Tag[] = [];
  * ```tsx
  * <RecordingTagBar
  *   tags={[{ key: '1', value: 'example' }]}
- *   label="Recording Tags"
+ *   label="Label berkas"
  *   onClickTag={(tag) => console.log(tag)}
  *   onDeleteTag={(tag) => console.log(tag)}
  *   disabled={false}
@@ -33,7 +33,7 @@ const _emptyTags: Tag[] = [];
  */
 export default function RecordingTagBar({
   tags = _emptyTags,
-  label = "Tags",
+  label = "Label",
   disabled = false,
   canClose = true,
   onClickTag,
@@ -83,7 +83,7 @@ export default function RecordingTagBar({
         ))}
         {tags?.length === 0 && (
           <span className="text-sm text-stone-400 dark:text-stone-600">
-            No tags
+            Belum ada label
           </span>
         )}
         {!disabled && (

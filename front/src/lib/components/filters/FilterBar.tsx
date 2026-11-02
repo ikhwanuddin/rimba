@@ -41,13 +41,13 @@ export default function FilterBar<T extends Object>({
   return (
     <div className="flex flex-row items-center">
       {total != null && (
-        <span className="mr-3 text-stone-500">{total} results</span>
+        <span className="mr-3 text-stone-500">{total} hasil</span>
       )}
       <div className="flex flex-row items-center space-x-2">
         {withLabel && (
           <span className="mr-2 text-blue-200">
             <FilterIcon className="inline-block mr-1 w-5 h-5" />
-            filters:
+            saringan:
           </span>
         )}
         {Object.entries(filter)

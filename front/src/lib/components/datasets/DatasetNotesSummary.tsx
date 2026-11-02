@@ -67,7 +67,7 @@ function IssuesSummary({
 
   return (
     <>
-      Latest Issues
+      Masalah terbaru
       <ul className="flex flex-col gap-2 p-2 pl-4 rounded-md border divide-y divide-dashed divide-stone-300 dark:border-stone-800 dark:divide-stone-800">
         {issues.map((recordingNote) => (
           <NoteComponent

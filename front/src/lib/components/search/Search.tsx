@@ -22,7 +22,7 @@ import Loading from "@/lib/components/ui/Loading";
 import useListWithSearch from "@/lib/hooks/lists/useListWithSearch";
 
 function EmptyMessage({}: { state: ComboBoxState<any> }) {
-  return <div className="p-2">No results</div>;
+  return <div className="p-2">Tidak ada hasil</div>;
 }
 
 export default function Search<T extends object>({

@@ -86,7 +86,7 @@ export default function useRecordingTable({
       header: () => (
         <TableHeader>
           <TagIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
-          Tags
+          Label
         </TableHeader>
       ),
       accessorFn: (row) => row.tags,
@@ -188,7 +188,7 @@ export default function useRecordingTable({
   const durationRow: ColumnDef<Recording> = useMemo(
     () => ({
       id: "duration",
-      header: () => <TableHeader>Duration</TableHeader>,
+      header: () => <TableHeader>Durasi</TableHeader>,
       enableResizing: true,
       size: 100,
       accessorFn: (row) => row.duration.toFixed(2),
@@ -204,7 +204,7 @@ export default function useRecordingTable({
     () => ({
       id: "samplerate",
       accessorKey: "samplerate",
-      header: () => <TableHeader>Sample Rate</TableHeader>,
+      header: () => <TableHeader>Laju sampel</TableHeader>,
       enableResizing: true,
       size: 120,
       footer: (props) => props.column.id,
@@ -220,7 +220,7 @@ export default function useRecordingTable({
     () => ({
       id: "time_expansion",
       accessorKey: "time_expansion",
-      header: () => <TableHeader>Time Expansion</TableHeader>,
+      header: () => <TableHeader>Ekspansi waktu</TableHeader>,
       enableResizing: true,
       size: 120,
       footer: (props) => props.column.id,
@@ -254,7 +254,7 @@ export default function useRecordingTable({
         return (
           <TableHeader>
             <DateIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
-            Date
+            Tanggal
           </TableHeader>
         );
       },
@@ -289,7 +289,7 @@ export default function useRecordingTable({
         return (
           <TableHeader>
             <TimeIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
-            Time
+            Jam
           </TableHeader>
         );
       },
@@ -324,7 +324,7 @@ export default function useRecordingTable({
         return (
           <TableHeader>
             <LocationIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
-            Location
+            Lokasi
           </TableHeader>
         );
       },
@@ -363,7 +363,7 @@ export default function useRecordingTable({
         return (
           <TableHeader>
             <NotesIcon className="inline-block mr-2 w-5 h-5 align-middle text-stone-500" />
-            Notes
+            Catatan
           </TableHeader>
         );
       },

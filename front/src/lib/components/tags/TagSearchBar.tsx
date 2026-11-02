@@ -83,7 +83,7 @@ function CreateNewTag({
             className="inline-flex"
             padding="p-1"
           >
-            click here
+            klik di sini
           </Button>
         </span>
       </div>
@@ -98,7 +98,7 @@ function NoTagsFound() {
   return (
     <ComboBoxSection>
       <div className="relative py-2 px-4 cursor-default select-none">
-        No tags found.{" "}
+        Label tidak ditemukan.{" "}
       </div>
     </ComboBoxSection>
   );

@@ -53,7 +53,7 @@ export default function RecordingTime({
         time: z
           .string()
           .regex(/^\d{2}:\d{2}(:\d{2}(\.\d+)?)?$/, {
-            message: "Time must be in hh:mm:ss.ddd format",
+            message: "Format jam: hh:mm:ss.ddd",
           })
           .nullable()
           .optional(),
@@ -82,7 +82,7 @@ export default function RecordingTime({
     <Popover button={<TimeButton time={time} />}>
       {() => (
         <Card className="bg-stone-100 dark:bg-stone-800">
-          <Group name="time" label="Time" error={errors.time?.message}>
+          <Group name="time" label="Jam" error={errors.time?.message}>
             <Input
               type="text"
               {...register("time")}
@@ -95,7 +95,7 @@ export default function RecordingTime({
             onClick={() => onChange?.({ time: null })}
           >
             <CloseIcon className="inline-block mr-1 w-5 h-5" />
-            Clear
+            Kosongkan
           </Button>
         </Card>
       )}
