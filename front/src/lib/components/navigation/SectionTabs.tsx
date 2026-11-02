@@ -23,9 +23,9 @@ export default function SectionTabs({
 }) {
   return (
     <Header>
-      <div className="flex overflow-x-auto flex-row space-x-4 w-full">
+      <div className="flex overflow-x-auto flex-row flex-wrap items-center gap-x-6 gap-y-2 w-full">
         {title != null && <H1>{title}</H1>}
-        <ul className="flex space-x-4">
+        <ul className="flex gap-1">
           {tabs.map((tab, index) => (
             <li key={index}>{tab}</li>
           ))}

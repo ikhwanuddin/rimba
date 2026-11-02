@@ -41,7 +41,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <AnnotationProjectContext.Provider value={project.data}>
       <ProjectHeader annotationProject={project.data} />
-      <div className="p-4 w-full">{children}</div>
+      <div className="mx-auto w-full max-w-7xl px-4 py-6">{children}</div>
     </AnnotationProjectContext.Provider>
   );
 }

@@ -11,8 +11,8 @@ import type { ReactNode } from "react";
  */
 export default function Header({ children }: { children: ReactNode }) {
   return (
-    <header className="shadow bg-stone-50 dark:bg-stone-800">
-      <div className="py-3 px-2 max-w-7xl sm:px-3 lg:px-6">{children}</div>
+    <header className="border-b border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="mx-auto max-w-7xl px-4 py-4">{children}</div>
     </header>
   );
 }

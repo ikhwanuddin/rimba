@@ -30,7 +30,7 @@ export default function Page() {
 
   return (
     <>
-      <Hero text="Datasets" />
+      <Hero text="Data rekaman" />
       <DatasetList
         onCreateDataset={goToDatasetDetail}
         onClickDataset={goToDatasetDetail}

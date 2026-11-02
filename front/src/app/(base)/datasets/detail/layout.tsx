@@ -50,7 +50,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <DatasetContext.Provider value={dataset.data}>
       <DatasetTabs dataset={dataset.data} />
-      <div className="py-4 px-8">{children}</div>
+      <div className="mx-auto w-full max-w-7xl px-4 py-6">{children}</div>
     </DatasetContext.Provider>
   );
 }

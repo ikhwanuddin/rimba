@@ -27,7 +27,9 @@ function ProjectCard({
   });
   const answered = p ? p.total - p.remaining : 0;
   const pct = p && p.total ? Math.round((100 * answered) / p.total) : 0;
-  const href = `/annotation_projects/detail/annotation/?annotation_project_uuid=${project.uuid}`;
+  const href = isAdmin
+    ? `/annotation_projects/detail/?annotation_project_uuid=${project.uuid}`
+    : `/annotation_projects/detail/annotation/?annotation_project_uuid=${project.uuid}`;
   return (
     <div className="flex flex-col gap-4 rounded-xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-700 dark:bg-stone-800">
       <div>
@@ -63,7 +65,11 @@ function ProjectCard({
         href={href}
         className="w-fit rounded-lg bg-emerald-700 px-5 py-3 font-bold text-white hover:bg-emerald-800"
       >
-        {p && p.done_by_me > 0 ? "Lanjutkan anotasi →" : "Mulai anotasi →"}
+        {isAdmin
+          ? "Buka proyek →"
+          : p && p.done_by_me > 0
+            ? "Lanjutkan anotasi →"
+            : "Mulai anotasi →"}
       </a>
     </div>
   );

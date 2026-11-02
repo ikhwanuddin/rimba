@@ -28,7 +28,7 @@ export default function AnnotationProjects() {
 
   return (
     <>
-      <Hero text="Annotation Projects" />
+      <Hero text="Proyek anotasi" />
       <AnnotationProjectList
         onClickAnnotationProject={handleClickAnnotationProject}
         onCreateAnnotationProject={handleClickAnnotationProject}

@@ -8,7 +8,7 @@ import Hero from "@/lib/components/ui/Hero";
 export default function Page() {
   return (
     <div>
-      <Hero text="About" />
+      <Hero text="Tentang" />
       <div className="p-6 flex flex-col items-center gap-6">
         <Image
           src="/waycanguk_logo.svg"

@@ -24,7 +24,7 @@ export default function RootLayout({
     <StrictMode>
       <html lang="en">
         <body
-          className={`${mulish.className} font-sans bg-stone-100 dark:bg-stone-900 text-stone-900 dark:text-stone-100 min-h-screen w-screen overflow-x-hidden`}
+          className={`${mulish.className} font-sans bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-stone-100 min-h-screen w-screen overflow-x-hidden`}
         >
           <ClientProvider>
             {children}

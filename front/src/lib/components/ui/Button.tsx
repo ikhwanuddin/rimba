@@ -9,7 +9,7 @@ const FOCUS_STYLE = "focus:ring-4 focus:ring-emerald-500/50 focus:outline-none";
 export const CLASS_NAMES = {
   filled: {
     primary:
-      "border-emerald-500 bg-emerald-300 hover:bg-emerald-500 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:ring-offset-opacity-50 disabled:bg-emerald-300 dark:disabled:bg-emerald-700",
+      "border-emerald-700 bg-emerald-700 hover:bg-emerald-800 !text-white dark:bg-emerald-600 dark:hover:bg-emerald-700 disabled:bg-emerald-300 dark:disabled:bg-emerald-800",
     secondary:
       "border-stone-300 dark:border-stone-600 bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 dark:hover:bg-stone-800 disabled:bg-stone-300 dark:disabled:bg-stone-700 dark:text-stone-400",
     danger:
@@ -34,7 +34,7 @@ export const CLASS_NAMES = {
   },
   text: {
     primary:
-      "text-emerald-500 stroke-emerald-500 hover:stroke-emerald-300 dark:hover:stroke-emerald-800",
+      "text-emerald-700 stroke-emerald-700 dark:text-emerald-300 dark:stroke-emerald-300",
     secondary:
       "text-stone-500 stroke-stone-500 hover:stroke-stone-800 dark:hover:stroke-stone-300 disabled:stroke-stone-500 dark:disabled:stroke-stone-500",
     danger:

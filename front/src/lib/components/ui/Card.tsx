@@ -9,7 +9,7 @@ export default function Card({
   return (
     <div
       className={classNames(
-        "border flex flex-col gap-3 p-4 rounded-md border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300",
+        "border flex flex-col gap-3 p-5 rounded-xl border-stone-200 bg-white shadow-sm dark:border-stone-700 dark:bg-stone-800 text-stone-700 dark:text-stone-300",
         className,
       )}
       {...rest}

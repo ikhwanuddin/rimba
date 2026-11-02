@@ -21,8 +21,8 @@ export default function ListLayout({
   Pagination: JSX.Element;
 } & ComponentProps<typeof StackedList>) {
   return (
-    <div className="flex flex-col p-8 space-y-2 w-full">
-      <div className="flex flex-row space-x-4">
+    <div className="mx-auto flex w-full max-w-7xl flex-col space-y-4 px-4 py-6">
+      <div className="flex flex-row items-center space-x-4">
         <div className="flex-grow">{Search}</div>
         {Actions?.map((action, index) => (
           <div className="h-full" key={index}>
