@@ -1,7 +1,7 @@
 """Way Canguk fork: logo mark (MAARU art style). Used by make_logo.py.
 
-A robin-like songbird sits in the middle with two thick sound arcs on each side,
-under a dawn sky (peach to cream) with two clouds and a curved green hill. Shapes are kept thick so the bird,
+A robin-like songbird sings two sound arcs (the first turned 5 degrees down, the second
+5 degrees up), under a dawn sky (peach to cream) with two clouds and a curved green hill. Shapes are kept thick so the bird,
 the arcs and the clouds still read at 32 px. favicon_mark() drops the branch and the legs
 for the 16-32 px browser tab.
 """
@@ -39,15 +39,20 @@ def bird(x, y, s, legs=True):
     return g + "</g>"
 
 
-def waves(cx, cy, r0, step, ang, sw):
-    """Two sound arcs on each side of (cx, cy): ( ( bird ) )."""
+def beak(x, y, s):
+    """Tip of the beak for a bird drawn with bird(x, y, s)."""
+    return x + s * 42, y - s * 19
+
+
+def arcs(x, y, layers, sw, ang=48):
+    """Sound arcs centred on (x, y), opening to the right; layers = [(radius, turn in degrees)]."""
+    a = math.radians(ang)
     out = []
-    for r in (r0, r0 + step):
-        for a0, a1 in ((-ang, ang), (180 - ang, 180 + ang)):
-            x0, y0 = cx + r * math.cos(math.radians(a0)), cy + r * math.sin(math.radians(a0))
-            x1, y1 = cx + r * math.cos(math.radians(a1)), cy + r * math.sin(math.radians(a1))
-            out.append(f'<path d="M{x0:.1f} {y0:.1f} A{r} {r} 0 0 1 {x1:.1f} {y1:.1f}" stroke="{INK}" '
-                       f'stroke-width="{sw}" fill="none" stroke-linecap="round"/>')
+    for r, rot in layers:
+        x0, y0 = x + r * math.cos(a), y - r * math.sin(a)
+        x1, y1 = x + r * math.cos(a), y + r * math.sin(a)
+        out.append(f'<g transform="rotate({rot} {x:.1f} {y:.1f})"><path d="M{x0:.1f} {y0:.1f} A{r} {r} 0 0 1 '
+                   f'{x1:.1f} {y1:.1f}" stroke="{INK}" stroke-width="{sw}" fill="none" stroke-linecap="round"/></g>')
     return "".join(out)
 
 
@@ -69,24 +74,20 @@ def sky():
 
 
 def mark():
-    """Full mark in a 200x200 box (logo, top bar, login page): the bird in the middle on a
-    branch, two sound arcs on each side."""
-    s = 1.1
-    bx, by = 94, 108 - s * 2.5          # body centred (the long tail pulls the box to the left)
-    feet = by + s * 34.5
-    return (sky() + hill(feet + 8, feet - 6) + cloud(52, 36, 0.6) + cloud(112, 28, 0.55)
-            + f'<path d="M-10 {feet + 3:.0f} Q100 {feet - 5:.0f} 210 {feet + 3:.0f}" stroke="{BRANCH}" '
-              f'stroke-width="8" fill="none" stroke-linecap="round"/>'
-            + bird(bx, by, s) + waves(100, 104, 56, 18, 30, 10))
+    """Full mark in a 200x200 box (logo, top bar, login page)."""
+    bx, by, s = 78, 160 - 1.22 * 34.5, 1.22   # feet on the branch, tail and arcs inside the circle
+    x, y = beak(bx, by, s)
+    return (sky() + hill(152, 122) + cloud(28, 56, 0.85) + cloud(96, 34, 0.7)
+            + f'<path d="M-10 162 Q70 156 150 164" stroke="{BRANCH}" stroke-width="9" fill="none" stroke-linecap="round"/>'
+            + bird(bx, by, s) + arcs(x + 6, y, [(17, 5), (35, -5)], 7))
 
 
 def favicon_mark():
-    """Browser-tab mark: no branch, no legs, one cloud, thicker arcs."""
-    s = 1.1
-    bx, by = 94, 108 - s * 2.5
-    feet = by + s * 34.5
-    return (sky() + hill(feet + 8, feet - 6) + cloud(72, 30, 0.7) + bird(bx, by, s, legs=False)
-            + waves(100, 104, 56, 20, 30, 12))
+    """Browser-tab mark: no branch, no legs, one cloud."""
+    bx, by, s = 78, 114, 1.2
+    x, y = beak(bx, by, s)
+    return (sky() + hill(158, 130) + cloud(44, 48, 1.0) + bird(bx, by, s, legs=False)
+            + arcs(x + 6, y, [(17, 5), (35, -5)], 9, 46))
 
 
 def svg(body, view="0 0 200 200"):
