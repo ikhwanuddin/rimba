@@ -10,6 +10,8 @@ import Popover from "@/lib/components/ui/Popover";
 
 import useDebounceSubmit from "@/lib/hooks/forms/useDebounceSubmit";
 
+import { t } from "@/lib/i18n";
+
 function DateButton({
   date,
   disabled,
@@ -79,8 +81,8 @@ export default function RecordingDate({
         <Card className="bg-stone-100 dark:bg-stone-800">
           <Group
             name="date"
-            label="Tanggal"
-            help="Ubah tanggal rekam. Format: YYYY-MM-DD"
+            label={t("Tanggal")}
+            help={t("Ubah tanggal rekam. Format: YYYY-MM-DD")}
           >
             <Input type="date" {...register("date")} value={value} />
           </Group>
@@ -90,7 +92,7 @@ export default function RecordingDate({
             onClick={() => onChange?.({ date: null })}
           >
             <CloseIcon className="inline-block mr-1 w-5 h-5" />
-            Kosongkan
+            {t("Kosongkan")}
           </Button>
         </Card>
       )}

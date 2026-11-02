@@ -15,6 +15,7 @@ import Loading from "@/lib/components/ui/Loading";
 import MetricBadge from "@/lib/components/ui/MetricBadge";
 import ProgressBar from "@/lib/components/ui/ProgressBar";
 
+import { t } from "@/lib/i18n";
 import type { AnnotationTask } from "@/lib/types";
 import { computeAnnotationTasksProgress } from "@/lib/utils/annotation_tasks";
 
@@ -52,9 +53,9 @@ export default function ProjectProgress({
   return (
     <Card>
       <div className="flex flex-row justify-between items-center">
-        <H3>Progres anotasi</H3>
+        <H3>{t("Progres anotasi")}</H3>
         <Button mode="text" variant="primary" onClick={onAddTasks}>
-          <AddIcon className="inline-block mr-2 w-5 h-5" /> Tambah klip
+          <AddIcon className="inline-block mr-2 w-5 h-5" /> {t(" Tambah klip")}
         </Button>
       </div>
       {isLoading ? (
@@ -83,8 +84,9 @@ function NoTasks() {
   return (
     <Empty>
       <p>
-        Proyek ini belum punya klip. Tambahkan lewat tombol{" "}
-        <span className="inline text-emerald-500">Tambah klip</span> di atas.
+        {t("Proyek ini belum punya klip. Tambahkan lewat tombol")}{" "}
+        <span className="inline text-emerald-500">{t("Tambah klip")}</span>{" "}
+        {t(" di atas.")}
       </p>
     </Empty>
   );
@@ -118,7 +120,7 @@ function ProgressReport({
       <div className="flex flex-row gap-2 justify-around">
         <MetricBadge
           icon={<EditIcon className="inline-block w-8 h-8 text-blue-500" />}
-          title="Belum dijawab"
+          title={t("Belum dijawab")}
           value={missing}
           isLoading={isLoading}
           onClick={onClickPending}
@@ -127,7 +129,7 @@ function ProgressReport({
           icon={
             <NeedsReviewIcon className="inline-block w-8 h-8 text-red-500" />
           }
-          title="Perlu ditinjau"
+          title={t("Perlu ditinjau")}
           value={needReview}
           isLoading={isLoading}
           onClick={onClickReview}
@@ -136,7 +138,7 @@ function ProgressReport({
           icon={
             <CompleteIcon className="inline-block w-8 h-8 text-emerald-500" />
           }
-          title="Selesai"
+          title={t("Selesai")}
           value={completed}
           isLoading={isLoading}
           onClick={onClickCompleted}
@@ -145,7 +147,7 @@ function ProgressReport({
           icon={
             <VerifiedIcon className="inline-block w-8 h-8 text-amber-500" />
           }
-          title="Diverifikasi"
+          title={t("Diverifikasi")}
           value={verified}
           isLoading={isLoading}
           onClick={onClickVerified}
@@ -153,7 +155,8 @@ function ProgressReport({
       </div>
       <div className="mt-4">
         <div className="mb-2 text-stone-500">
-          Total klip: {annotationTasks.length}
+          {t("Total klip: ")}
+          {annotationTasks.length}
         </div>
         <ProgressBar
           total={annotationTasks.length}

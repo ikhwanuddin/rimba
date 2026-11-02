@@ -3,6 +3,8 @@ import Select from "@/lib/components/inputs/Select";
 import { Input } from "@/lib/components/inputs/index";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
+
 const defaultPageSizeOptions = [1, 5, 10, 25, 50, 100];
 
 /**
@@ -107,7 +109,7 @@ function SetPageSize({
 }) {
   return (
     <Select
-      label="Per halaman:"
+      label={t("Per halaman:")}
       selected={{ label: pageSize.toString(), value: pageSize, id: pageSize }}
       onChange={(value) => onSetPageSize?.(value)}
       options={pageSizeOptions.map((value) => ({

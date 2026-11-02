@@ -7,6 +7,8 @@ import { CloseIcon, SearchIcon } from "@/lib/components/icons";
 import Button from "@/lib/components/ui/Button";
 import Loading from "@/lib/components/ui/Loading";
 
+import { t } from "@/lib/i18n";
+
 import Input from "./Input";
 
 /**
@@ -14,7 +16,7 @@ import Input from "./Input";
  * and clear button functionality.
  */
 export default function Search({
-  label = "Cari",
+  label = t("Cari"),
   placeholder = "Search...",
   isLoading = false,
   icon,

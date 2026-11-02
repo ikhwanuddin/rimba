@@ -12,6 +12,7 @@ import KeyboardKey from "@/lib/components/ui/KeyboardKey";
 import ProgressBar from "@/lib/components/ui/ProgressBar";
 import Tooltip from "@/lib/components/ui/Tooltip";
 
+import { t } from "@/lib/i18n";
 import type {
   AnnotationTask,
   AnnotationTaskFilter,
@@ -71,18 +72,18 @@ function SearchTask({
     <Dialog
       mode="text"
       variant="info"
-      title="Cari klip"
-      label="Cari"
+      title={t("Cari klip")}
+      label={t("Cari")}
       width="max-w-prose"
     >
       {() => (
         <div className="flex flex-col gap-2 w-full">
           <div className="space-y-1">
             <p className="text-sm leading-relaxed text-stone-500 dark:text-stone-400">
-              Cari klip lewat UUID-nya: tempel lalu tekan Enter.
+              {t("Cari klip lewat UUID-nya: tempel lalu tekan Enter.")}
             </p>
           </div>
-          <Search placeholder="UUID klip" onSubmit={onSubmit} />
+          <Search placeholder={t("UUID klip")} onSubmit={onSubmit} />
         </div>
       )}
     </Dialog>
@@ -97,7 +98,7 @@ function CurrentTask({ currentTask }: { currentTask?: AnnotationTask }) {
           <div className="flex flex-col gap-2 p-1 min-w-[200px]">
             <div className="flex justify-between items-center">
               <span className="font-bold text-stone-400 dark:text-stone-500">
-                ID klip
+                {t("ID klip")}
               </span>
             </div>
             <div className="relative group">
@@ -107,7 +108,7 @@ function CurrentTask({ currentTask }: { currentTask?: AnnotationTask }) {
             </div>
             <div className="flex gap-1.5 items-center italic text-stone-500">
               <KeyboardKey keys={["Click"]} />
-              <span>untuk menyalin</span>
+              <span>{t("untuk menyalin")}</span>
             </div>
           </div>
         }
@@ -120,11 +121,11 @@ function CurrentTask({ currentTask }: { currentTask?: AnnotationTask }) {
           onClick={() => {
             if (currentTask == null) return;
             navigator.clipboard.writeText(currentTask.uuid);
-            toast.success("ID klip disalin");
+            toast.success(t("ID klip disalin"));
           }}
           disabled={currentTask == null}
         >
-          Sekarang
+          {t("Sekarang")}
         </Button>
       </Tooltip>
     </div>
@@ -168,7 +169,7 @@ export default function AnnotationProgress({
       let task = tasks.find((t) => t.uuid === value);
 
       if (task == null) {
-        toast.error("Klip tidak ditemukan");
+        toast.error(t("Klip tidak ditemukan"));
         return;
       }
 
@@ -182,7 +183,7 @@ export default function AnnotationProgress({
       <Tooltip
         tooltip={
           <div className="inline-flex gap-2 items-center">
-            Klip sebelumnya
+            {t("Klip sebelumnya")}
             <div className="text-xs">
               <KeyboardKey keys={["p"]} />
             </div>
@@ -203,12 +204,18 @@ export default function AnnotationProgress({
               {currentTask != null && tasks.indexOf(currentTask) + 1}
             </span>
           </span>
-          <ShortcutHelper shortcuts={SHORTCUTS} />
+          <ShortcutHelper
+            shortcuts={SHORTCUTS.map((s) => ({
+              ...s,
+              label: t(s.label),
+              description: t(s.description),
+            }))}
+          />
           <Dialog
             mode="text"
             variant="info"
-            title="Petunjuk anotator"
-            label="Petunjuk"
+            title={t("Petunjuk anotator")}
+            label={t("Petunjuk")}
             width="max-w-prose"
           >
             {() => (
@@ -216,7 +223,7 @@ export default function AnnotationProgress({
             )}
           </Dialog>
           <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap">
-            <span className="text-stone-500">Progres:</span>
+            <span className="text-stone-500">{t("Progres:")}</span>
             <div className="w-36">
               <ProgressBar
                 error={needReview}
@@ -229,15 +236,15 @@ export default function AnnotationProgress({
           </span>
         </div>
         <span className="inline-flex gap-1 items-center text-sm whitespace-nowrap text-stone-500">
-          <span>Sisa:</span>
+          <span>{t("Sisa:")}</span>
           <span className="font-medium text-blue-500">{pending}</span>/{total}
         </span>
         <SearchTask onSubmit={handleSearch} />
         <Dialog
           mode="text"
           variant="info"
-          title="Peta klip"
-          label="Peta"
+          title={t("Peta klip")}
+          label={t("Peta")}
           width="max-w-prose"
         >
           {() => (
@@ -248,7 +255,7 @@ export default function AnnotationProgress({
             />
           )}
         </Dialog>
-        <FilterButton title="Saring klip">
+        <FilterButton title={t("Saring klip")}>
           {({ close }) =>
             FilterMenu == null ? null : <FilterMenu close={close} />
           }
@@ -266,7 +273,7 @@ export default function AnnotationProgress({
       <Tooltip
         tooltip={
           <div className="inline-flex gap-2 items-center">
-            Klip berikutnya
+            {t("Klip berikutnya")}
             <div className="text-xs">
               <KeyboardKey keys={["n"]} />
             </div>

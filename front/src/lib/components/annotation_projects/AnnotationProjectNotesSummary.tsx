@@ -6,6 +6,7 @@ import Empty from "@/lib/components/ui/Empty";
 import { H3 } from "@/lib/components/ui/Headings";
 import Loading from "@/lib/components/ui/Loading";
 
+import { t } from "@/lib/i18n";
 import type * as types from "@/lib/types";
 
 export default function ProjectNotesSummary({
@@ -18,7 +19,7 @@ export default function ProjectNotesSummary({
     <Card>
       <H3>
         <IssuesIcon className="inline-block mr-2 w-5 h-5" />
-        Masalah proyek
+        {t("Masalah proyek")}
       </H3>
       {isLoading ? <Loading /> : <IssuesSummary {...props} />}
     </Card>
@@ -46,7 +47,7 @@ function IssuesSummary({
     <div className="flex flex-col gap-4">
       {clipNotes.length === 0 ? null : (
         <div className="flex flex-col gap-2">
-          <span className="font-thin">Masalah klip terbaru</span>
+          <span className="font-thin">{t("Masalah klip terbaru")}</span>
           <ul className="flex flex-col gap-2 p-2 pl-4 rounded-md border divide-y divide-dashed divide-stone-300 dark:border-stone-800 dark:divide-stone-800">
             {clipNotes.map((issue) => (
               <ClipAnnotationNote
@@ -59,7 +60,7 @@ function IssuesSummary({
       )}
       {soundEventNotes.length === 0 ? null : (
         <div className="flex flex-col gap-2">
-          <span className="font-thin">Masalah kotak terbaru</span>
+          <span className="font-thin">{t("Masalah kotak terbaru")}</span>
           <ul className="flex flex-col gap-2 p-2 pl-4 rounded-md border divide-y divide-dashed divide-stone-300 dark:border-stone-800 dark:divide-stone-800">
             {soundEventNotes.map((issue) => (
               <SoundEventAnnotationNote
@@ -78,7 +79,7 @@ function NoIssues() {
   return (
     <Empty>
       <CheckIcon className="w-8 h-8 text-emerald-500" />
-      Tidak ada masalah tercatat.
+      {t("Tidak ada masalah tercatat.")}
     </Empty>
   );
 }

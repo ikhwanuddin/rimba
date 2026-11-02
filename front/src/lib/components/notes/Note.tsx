@@ -6,6 +6,7 @@ import {
 } from "@/lib/components/icons";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
 import type * as types from "@/lib/types";
 
 export type NoteProps = {
@@ -65,7 +66,7 @@ export default function Note({
               onClick={onResolveNote}
             >
               <IssueIcon className="inline-block mr-1 w-4 h-4" />
-              Selesaikan
+              {t("Selesaikan")}
             </Button>
           )}
           {canDelete ? (
@@ -77,7 +78,7 @@ export default function Note({
                 onClick={onDeleteNote}
               >
                 <DeleteIcon className="inline-block mr-1 w-4 h-4" />
-                Hapus
+                {t("Hapus")}
               </Button>
             </>
           ) : null}

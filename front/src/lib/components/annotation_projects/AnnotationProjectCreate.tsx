@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { Group, Input, Submit, TextArea } from "@/lib/components/inputs/index";
 
+import { t } from "@/lib/i18n";
 import { AnnotationProjectCreateSchema } from "@/lib/schemas";
 import type { AnnotationProject, AnnotationProjectCreate } from "@/lib/types";
 
@@ -29,30 +30,30 @@ export default function CreateProject({
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <Group
-        label="Nama"
+        label={t("Nama")}
         name="name"
-        help="Beri nama proyek anotasi ini."
+        help={t("Beri nama proyek anotasi ini.")}
         error={errors.name?.message}
       >
         <Input {...register("name")} />
       </Group>
       <Group
-        label="Deskripsi"
+        label={t("Deskripsi")}
         name="description"
-        help="Jelaskan tujuan proyek ini"
+        help={t("Jelaskan tujuan proyek ini")}
         error={errors.description?.message}
       >
         <TextArea rows={6} {...register("description")} />
       </Group>
       <Group
-        label="Petunjuk"
+        label={t("Petunjuk")}
         name="annotation_instructions"
-        help="Tulis petunjuk untuk anotator."
+        help={t("Tulis petunjuk untuk anotator.")}
         error={errors.annotation_instructions?.message}
       >
         <TextArea rows={10} {...register("annotation_instructions")} />
       </Group>
-      <Submit>Buat proyek</Submit>
+      <Submit>{t("Buat proyek")}</Submit>
     </form>
   );
 }

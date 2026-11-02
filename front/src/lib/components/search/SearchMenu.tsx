@@ -6,6 +6,8 @@ import { Fragment, type ReactNode, useEffect, useMemo, useState } from "react";
 import Search from "@/lib/components/inputs/Search";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
+
 /** A search menu.
  * @component
  * Use this component when you have a list of options that you want to filter
@@ -209,7 +211,7 @@ function MenuContents<T>({
           onClick={() => setLimit(total)}
         >
           <div className="flex flex-row w-full justify-between items-center text-stone-500">
-            <span className="flex-grow text-left">Tampilkan semua</span>
+            <span className="flex-grow text-left">{t("Tampilkan semua")}</span>
             <span>{total - options.length} more</span>
           </div>
         </Button>
@@ -220,7 +222,9 @@ function MenuContents<T>({
           onClick={() => setLimit(initialLimit)}
         >
           <div className="flex flex-row w-full justify-between items-center text-stone-500">
-            <span className="flex-grow text-left">Tampilkan lebih sedikit</span>
+            <span className="flex-grow text-left">
+              {t("Tampilkan lebih sedikit")}
+            </span>
           </div>
         </Button>
       ) : null}

@@ -4,6 +4,7 @@ import { IssueIcon, NotesIcon } from "@/lib/components/icons";
 import { Group, TextArea } from "@/lib/components/inputs/index";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
 import type { NoteCreate } from "@/lib/types";
 
 export default function CreateNoteForm({
@@ -16,14 +17,16 @@ export default function CreateNoteForm({
   return (
     <div className="flex flex-col p-4 w-full">
       <Group
-        label="Tulis catatan"
+        label={t("Tulis catatan")}
         name="message"
-        help="Tulis catatannya, lalu pilih simpan sebagai catatan atau masalah."
+        help={t(
+          "Tulis catatannya, lalu pilih simpan sebagai catatan atau masalah.",
+        )}
       >
         <TextArea
           name="message"
           value={message}
-          placeholder="Tulis catatan di sini..."
+          placeholder={t("Tulis catatan di sini...")}
           onChange={(e) => setMessage(e.target.value)}
         />
       </Group>
@@ -40,7 +43,7 @@ export default function CreateNoteForm({
           }}
         >
           <IssueIcon className="inline-block mr-1 w-5 h-5" />
-          Tandai masalah
+          {t("Tandai masalah")}
         </Button>
         <Button
           variant="primary"
@@ -54,7 +57,7 @@ export default function CreateNoteForm({
           }}
         >
           <NotesIcon className="inline-block mr-1 w-5 h-5" />
-          Simpan catatan
+          {t("Simpan catatan")}
         </Button>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Button from "@/lib/components/ui/Button";
 
 import useListWithSearch from "@/lib/hooks/lists/useListWithSearch";
 
+import { t } from "@/lib/i18n";
 import type { Tag } from "@/lib/types";
 import { Color, getTagColor } from "@/lib/utils/tags";
 
@@ -29,9 +30,11 @@ export default function TagList({
     <div className="flex flex-col gap-4">
       <Search onChange={(value) => setSearch(value as string)} />
       <div className="flex overflow-hidden flex-col gap-2 w-full">
-        {tags.length === 0 && <p className="text-stone-500">Belum ada label</p>}
+        {tags.length === 0 && (
+          <p className="text-stone-500">{t("Belum ada label")}</p>
+        )}
         {items.length === 0 && tags.length > 0 && (
-          <p className="text-stone-500">Label tidak ditemukan</p>
+          <p className="text-stone-500">{t("Label tidak ditemukan")}</p>
         )}
         {items.map((tag) => (
           <TagComponent
@@ -49,7 +52,7 @@ export default function TagList({
             className="w-full"
             onClick={() => setLimit((limit) => limit + 10)}
           >
-            Tampilkan lagi
+            {t("Tampilkan lagi")}
           </Button>
         )}
       </div>

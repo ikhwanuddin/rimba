@@ -4,6 +4,7 @@ import Feed from "@/lib/components/notes/Feed";
 import Card from "@/lib/components/ui/Card";
 import { H3 } from "@/lib/components/ui/Headings";
 
+import { t } from "@/lib/i18n";
 import type { Note, NoteCreate, NoteUpdate, User } from "@/lib/types";
 
 export default function NotesPanel({
@@ -49,10 +50,11 @@ function NoNotes() {
     <div className="p-4 w-full">
       <div className="flex flex-col justify-center items-center p-8 w-full rounded-lg border border-dashed border-stone-500 bg-stone-300 dark:bg-stone-800">
         <span className="text-stone-700 dark:text-stone-300">
-          <NotesIcon className="inline-block mr-1 w-5 h-5" /> Belum ada catatan
+          <NotesIcon className="inline-block mr-1 w-5 h-5" />{" "}
+          {t(" Belum ada catatan")}
         </span>
         <span className="text-sm text-stone-500">
-          Tulis catatan di atas untuk memulai diskusi.
+          {t("Tulis catatan di atas untuk memulai diskusi.")}
         </span>
       </div>
     </div>

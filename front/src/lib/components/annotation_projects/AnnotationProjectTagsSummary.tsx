@@ -17,6 +17,7 @@ import Loading from "@/lib/components/ui/Loading";
 
 import useListWithSearch from "@/lib/hooks/lists/useListWithSearch";
 
+import { t } from "@/lib/i18n";
 import type * as types from "@/lib/types";
 import { Color, getTagColor, getTagKey } from "@/lib/utils/tags";
 
@@ -51,14 +52,15 @@ export default function ProjectTagsSummary({
       <div className="flex flex-row justify-between items-center">
         <H4 className="inline-flex items-center">
           <TagsIcon className="inline-block mr-2 w-5 h-5" />
-          Label proyek
+          {t("Label proyek")}
           <Help>
-            Label yang dipakai di proyek ini. &quot;Klip&quot; = jumlah klip
-            berlabel itu, &quot;Kotak&quot; = jumlah kotak berlabel itu.
+            {t(
+              'Label yang dipakai di proyek ini. "Klip" = jumlah klip berlabel itu, "Kotak" = jumlah kotak berlabel itu.',
+            )}
           </Help>
         </H4>
         <Button mode="text" variant="primary" onClick={onAddTags}>
-          <AddIcon className="inline-block mr-2 w-5 h-5" /> Tambah label
+          <AddIcon className="inline-block mr-2 w-5 h-5" /> {t(" Tambah label")}
         </Button>
       </div>
       {isLoading ? (
@@ -73,7 +75,7 @@ export default function ProjectTagsSummary({
 }
 
 function NoTags() {
-  return <Empty>Belum ada label di proyek ini.</Empty>;
+  return <Empty>{t("Belum ada label di proyek ini.")}</Empty>;
 }
 
 function TagCounts({
@@ -130,11 +132,11 @@ function TagCounts({
   return (
     <div className="flex flex-col gap-2 w-full">
       <div>
-        Ada{" "}
+        {t("Ada")}{" "}
         <span className="font-bold text-emerald-700 dark:text-emerald-400">
           {counts.length}
         </span>{" "}
-        label di proyek ini.
+        {t("label di proyek ini.")}
       </div>
       <ListSearch
         limit={limit}
@@ -187,7 +189,7 @@ function TagCounts({
 function NoAnnotationTags() {
   return (
     <div className="text-stone-500">
-      Belum ada label pada anotasi di proyek ini.
+      {t("Belum ada label pada anotasi di proyek ini.")}
     </div>
   );
 }
@@ -293,7 +295,7 @@ function TagTable({
           </th>
           <th scope="col" className="py-2 w-20">
             <Button padding="p-0" mode="text" onClick={onSortByClip}>
-              Klip
+              {t("Klip")}
               {sortBy == "clip" ? (
                 <DescendingIcon className="inline-block ml-2 w-5 h-5" />
               ) : sortBy == "-clip" ? (
@@ -305,7 +307,7 @@ function TagTable({
           </th>
           <th scope="col" className="py-2 w-20">
             <Button padding="p-0" mode="text" onClick={onSortBySoundEvent}>
-              Kotak
+              {t("Kotak")}
               {sortBy == "soundEvent" ? (
                 <DescendingIcon className="inline-block ml-2 w-5 h-5" />
               ) : sortBy == "-soundEvent" ? (

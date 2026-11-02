@@ -2,6 +2,7 @@ import { RecordingIcon } from "@/lib/components/icons";
 import { H3 } from "@/lib/components/ui/Headings";
 import Tooltip from "@/lib/components/ui/Tooltip";
 
+import { t } from "@/lib/i18n";
 import type { Recording } from "@/lib/types";
 
 import RecordingDate from "./RecordingDate";
@@ -46,7 +47,9 @@ export default function RecordingHeader({
           <Tooltip
             tooltip={
               <div className="w-96 text-sm font-thin tracking-tighter whitespace-normal break-all dark:bg-stone-700 dark:border-stone-800">
-                <span className="font-normal text-blue-500">Path lengkap:</span>{" "}
+                <span className="font-normal text-blue-500">
+                  {t("Path lengkap:")}
+                </span>{" "}
                 {path}
               </div>
             }

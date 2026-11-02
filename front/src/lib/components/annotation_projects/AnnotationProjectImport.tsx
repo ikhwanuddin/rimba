@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { UploadIcon } from "@/lib/components/icons";
 import { Group, Input, Submit } from "@/lib/components/inputs/index";
 
+import { t } from "@/lib/i18n";
 import { AnnotationProjectImportSchema } from "@/lib/schemas";
 import type { AnnotationProjectImport } from "@/lib/types";
 
@@ -33,15 +34,15 @@ export default function AnnotationProjectImport({
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <Group
         name="annotation_project"
-        label="Pilih berkas proyek untuk diimpor"
-        help="Berkas harus berformat AOEF"
+        label={t("Pilih berkas proyek untuk diimpor")}
+        help={t("Berkas harus berformat AOEF")}
         error={errors.annotation_project?.message?.toString()}
       >
         <Input type="file" {...register("annotation_project")} required />
       </Group>
       <Submit>
         <UploadIcon className="inline-block mr-2 w-6 h-6 align-middle" />
-        Impor
+        {t("Impor")}
       </Submit>
     </form>
   );

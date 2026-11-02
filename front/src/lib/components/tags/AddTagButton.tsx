@@ -8,6 +8,8 @@ import TagSearchBarBase, {
 } from "@/lib/components/tags/TagSearchBar";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
+
 /**
  * AddTagButton Component
  *
@@ -31,7 +33,7 @@ import Button from "@/lib/components/ui/Button";
  * ```
  */
 const AddTagButton = memo(function AddTagButton({
-  text = "tambah",
+  text = t("tambah"),
   variant = "secondary",
   placement = "bottom-start",
   onKeyDown,

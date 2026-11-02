@@ -12,7 +12,10 @@ import { Fragment } from "react";
 
 import useActiveUser from "@/app/hooks/api/useActiveUser";
 
+import { t } from "@/lib/i18n";
 import type { User } from "@/lib/types";
+
+import LanguageSwitch from "./LanguageSwitch";
 
 function NavLink({
   href,
@@ -70,7 +73,7 @@ function UserMenu({ user, onLogout }: { user?: User; onLogout?: () => void }) {
                   active && "bg-stone-100 dark:bg-stone-700",
                 )}
               >
-                Profil
+                {t("Profil")}
               </a>
             )}
           </Menu.Item>
@@ -84,7 +87,7 @@ function UserMenu({ user, onLogout }: { user?: User; onLogout?: () => void }) {
                   active && "bg-stone-100 dark:bg-stone-700",
                 )}
               >
-                Keluar
+                {t("Keluar")}
               </button>
             )}
           </Menu.Item>
@@ -118,7 +121,7 @@ function ManageMenu({ active }: { active: boolean }) {
             : "text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700",
         )}
       >
-        Kelola
+        {t("Kelola")}
         <ChevronDownIcon className="h-4 w-4" />
       </Menu.Button>
       <Transition
@@ -142,10 +145,10 @@ function ManageMenu({ active }: { active: boolean }) {
                   )}
                 >
                   <span className="text-sm font-semibold text-stone-900 dark:text-stone-100">
-                    {m.label}
+                    {t(m.label)}
                   </span>
                   <span className="text-xs text-stone-500 dark:text-stone-400">
-                    {m.note}
+                    {t(m.note)}
                   </span>
                 </a>
               )}
@@ -175,7 +178,7 @@ export function NavBar({
             RIMBA
           </span>
         </a>
-        <NavLink href="/" label="Beranda" active={pathname === "/"} />
+        <NavLink href="/" label={t("Beranda")} active={pathname === "/"} />
         {isAdmin && (
           <ManageMenu
             active={
@@ -187,9 +190,10 @@ export function NavBar({
         <div className="ml-auto flex items-center gap-1">
           <NavLink
             href="/about/"
-            label="Tentang"
+            label={t("Tentang")}
             active={pathname.startsWith("/about")}
           />
+          <LanguageSwitch />
           <UserMenu user={user} onLogout={onLogout} />
         </div>
       </div>

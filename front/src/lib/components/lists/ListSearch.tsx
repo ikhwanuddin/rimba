@@ -4,6 +4,8 @@ import InputGroup from "@/lib/components/inputs/InputGroup";
 import Search from "@/lib/components/inputs/Search";
 import Select from "@/lib/components/inputs/Select";
 
+import { t } from "@/lib/i18n";
+
 const DEFAULT_LIMIT_OPTIONS = [5, 10, 20, 50, 100];
 
 /**
@@ -37,12 +39,12 @@ export default function ListSearch({
   return (
     <div className="inline-flex gap-2 justify-between items-center w-full">
       <div className="grow">
-        <InputGroup name="search" label="Cari">
+        <InputGroup name="search" label={t("Cari")}>
           <Search onChange={(value) => onChangeSearch?.(value as string)} />
         </InputGroup>
       </div>
       <div className="w-24">
-        <InputGroup name="limit" label="Tampilkan">
+        <InputGroup name="limit" label={t("Tampilkan")}>
           <Select
             selected={{ id: limit, label: limit, value: limit }}
             onChange={(value) => onChangeLimit?.(value as number)}

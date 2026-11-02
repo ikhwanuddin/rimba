@@ -10,6 +10,7 @@ import Button from "@/lib/components/ui/Button";
 import Empty from "@/lib/components/ui/Empty";
 import { H4 } from "@/lib/components/ui/Headings";
 
+import { t } from "@/lib/i18n";
 import type { Tag } from "@/lib/types";
 import { type Color, getTagColor } from "@/lib/utils/tags";
 
@@ -64,7 +65,8 @@ export default function TagPanel({
             mode="text"
             variant="danger"
           >
-            Hapus semua label <DeleteIcon className="w-5 h-5 ms-2" />
+            {t("Hapus semua label ")}
+            <DeleteIcon className="w-5 h-5 ms-2" />
           </Button>
         )}
         <AddTagButton
@@ -80,5 +82,5 @@ export default function TagPanel({
 }
 
 function NoTags() {
-  return <Empty outerClassName="p-2">Belum ada label</Empty>;
+  return <Empty outerClassName="p-2">{t("Belum ada label")}</Empty>;
 }

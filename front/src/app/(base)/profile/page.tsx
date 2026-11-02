@@ -7,6 +7,8 @@ import Card from "@/lib/components/ui/Card";
 import Hero from "@/lib/components/ui/Hero";
 import UserProfile from "@/lib/components/users/UserProfile";
 
+import { t } from "@/lib/i18n";
+
 import UserContext from "../../contexts/user";
 
 export default function Page() {
@@ -14,7 +16,7 @@ export default function Page() {
 
   return (
     <>
-      <Hero text="Profil" />
+      <Hero text={t("Profil")} />
       <Center>
         <Card className="max-w-prose">
           <UserProfile user={user} />

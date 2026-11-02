@@ -6,6 +6,7 @@ import {
 } from "@/lib/components/icons";
 import Card from "@/lib/components/ui/Card";
 
+import { t } from "@/lib/i18n";
 import type { Recording } from "@/lib/types";
 
 function Label({ label }: { label: string }) {
@@ -25,24 +26,24 @@ export default function RecordingMediaInfo({
     <Card>
       <div className="inline-flex items-center">
         <TimeIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Durasi" />
+        <Label label={t("Durasi")} />
         {recording.duration.toFixed(3)}
         <Units units="s" />
       </div>
       <div className="inline-flex items-center">
         <ChannelsIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Kanal" />
+        <Label label={t("Kanal")} />
         {recording.channels}
       </div>
       <div className="inline-flex items-center">
         <SampleRateIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Laju sampel" />
+        <Label label={t("Laju sampel")} />
         {recording.samplerate.toLocaleString()}
         <Units units="Hz" />
       </div>
       <div className="inline-flex items-center">
         <TimeExpansionIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        <Label label="Ekspansi waktu" />
+        <Label label={t("Ekspansi waktu")} />
         {recording.time_expansion}
       </div>
     </Card>

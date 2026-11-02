@@ -25,6 +25,7 @@ import api from "@/app/api";
 import useAnnotationTagPallete from "@/lib/hooks/annotation/useAnnotationTagPalette";
 
 import type { Claim } from "@/lib/api/annotation_tasks";
+import { t } from "@/lib/i18n";
 import type {
   AnnotationProject,
   AnnotationTask,
@@ -98,7 +99,9 @@ export default function AnnotatorView({
         };
       });
     } catch {
-      toast.error("Gagal mengambil klip berikutnya. Coba muat ulang halaman.");
+      toast.error(
+        t("Gagal mengambil klip berikutnya. Coba muat ulang halaman."),
+      );
       setQ((s) => ({ ...s, loading: false }));
     }
   }, [annotationProject]);
@@ -155,12 +158,19 @@ export default function AnnotatorView({
           onClick={goPrev}
           disabled={q.pos <= 0}
         >
-          ← Sebelumnya
+          {t("← Sebelumnya")}
         </button>
         <div className="flex flex-col grow min-w-48">
           <span className="text-sm text-stone-600 dark:text-stone-400">
             {c
-              ? `Kamu sudah menjawab ${c.done_by_me} · sisa proyek ${c.remaining} dari ${c.total}`
+              ? t(
+                  "Kamu sudah menjawab {mine} · sisa proyek {left} dari {total}",
+                  {
+                    mine: c.done_by_me,
+                    left: c.remaining,
+                    total: c.total,
+                  },
+                )
               : "…"}
           </span>
           <div className="h-2 w-full rounded-full bg-stone-200 dark:bg-stone-700">
@@ -178,7 +188,7 @@ export default function AnnotatorView({
           onClick={goNext}
           disabled={q.loading}
         >
-          Berikutnya →
+          {t("Berikutnya →")}
         </button>
         {annotationProject.annotation_instructions ? (
           <button
@@ -186,7 +196,7 @@ export default function AnnotatorView({
             className="text-emerald-700 underline dark:text-emerald-300"
             onClick={() => setShowHelp((s) => !s)}
           >
-            {showHelp ? "Tutup petunjuk" : "Petunjuk"}
+            {showHelp ? t("Tutup petunjuk") : t("Petunjuk")}
           </button>
         ) : null}
       </div>
@@ -213,11 +223,13 @@ export default function AnnotatorView({
       {task == null ? (
         <div className="p-8 text-center text-stone-500">
           {q.loading
-            ? "Memuat klip…"
-            : "Tidak ada klip tersisa untukmu. Terima kasih!"}
+            ? t("Memuat klip…")
+            : t("Tidak ada klip tersisa untukmu. Terima kasih!")}
         </div>
       ) : annotations.data == null ? (
-        <div className="p-8 text-center text-stone-500">Memuat klip…</div>
+        <div className="p-8 text-center text-stone-500">
+          {t("Memuat klip…")}
+        </div>
       ) : (
         <>
           <ClipAnnotationSpectrogram
@@ -296,11 +308,13 @@ function AnswerPanel({
       } catch (e) {
         if (isAxiosError(e) && e.response?.status === 409) {
           toast.error(
-            "Klip ini sudah dialihkan ke anotator lain karena terlalu lama dibuka. Lanjut ke klip berikutnya.",
+            t(
+              "Klip ini sudah dialihkan ke anotator lain karena terlalu lama dibuka. Lanjut ke klip berikutnya.",
+            ),
           );
           onSkip();
         } else {
-          toast.error("Gagal menyimpan jawaban. Coba lagi.");
+          toast.error(t("Gagal menyimpan jawaban. Coba lagi."));
         }
       } finally {
         setBusy(false);
@@ -335,9 +349,9 @@ function AnswerPanel({
           }
         }
         setShowSpecies(false);
-        toast.success(`Label diganti: ${tag.value}`);
+        toast.success(t("Label diganti: {v}", { v: tag.value }));
       } catch {
-        toast.error("Gagal mengganti label. Coba lagi.");
+        toast.error(t("Gagal mengganti label. Coba lagi."));
       } finally {
         setBusy(false);
       }
@@ -349,14 +363,14 @@ function AnswerPanel({
   useHotkeys("2", () => handleAnswer("tidak"), [handleAnswer]);
   useHotkeys("3", () => handleAnswer("tidak yakin"), [handleAnswer]);
 
-  const labelText = labels.length > 0 ? labels.join(" / ") : "(tanpa label)";
+  const labelText = labels.length > 0 ? labels.join(" / ") : t("(tanpa label)");
 
   return (
     <>
       {/* the question and the answer buttons stay pinned to the bottom of the window */}
       <div className="sticky bottom-0 z-[60] -mx-1 flex flex-col gap-3 rounded-lg border border-stone-200 bg-white/95 p-4 shadow-[0_-6px_16px_-8px_rgba(0,0,0,0.25)] backdrop-blur dark:border-stone-700 dark:bg-stone-800/95">
         <p className="text-lg">
-          Apakah suara di dalam kotak adalah{" "}
+          {t("Apakah suara di dalam kotak adalah")}{" "}
           <span className="font-bold">{labelText}</span>?
         </p>
         <div className="flex flex-row flex-wrap items-center gap-3">
@@ -373,15 +387,17 @@ function AnswerPanel({
                   "ring-4 ring-offset-2 ring-stone-900 dark:ring-stone-100",
               )}
             >
-              {a.label}{" "}
+              {t(a.label)}{" "}
               <kbd className="ml-1 rounded bg-black/15 px-1.5 text-sm font-normal">
                 {a.hotkey}
               </kbd>
             </button>
           ))}
           <p className="text-sm text-stone-500 dark:text-stone-400">
-            Spasi = putar/jeda.
-            {answer ? ` Jawaban tersimpan: "${answer}".` : ""}
+            {t("Spasi = putar/jeda.")}
+            {answer
+              ? " " + t('Jawaban tersimpan: "{a}".', { a: t(answer) })
+              : ""}
           </p>
         </div>
       </div>
@@ -391,7 +407,9 @@ function AnswerPanel({
           className="w-fit text-sm text-emerald-700 underline dark:text-emerald-300"
           onClick={() => setShowSpecies((s) => !s)}
         >
-          {showSpecies ? "Tutup" : "Yakin itu spesies lain? Ganti label kotak"}
+          {showSpecies
+            ? t("Tutup")
+            : t("Yakin itu spesies lain? Ganti label kotak")}
         </button>
         {showSpecies && (
           <div className="flex flex-row flex-wrap gap-2">
@@ -420,7 +438,7 @@ function AnswerPanel({
         )}
         <details className="text-sm">
           <summary className="cursor-pointer text-emerald-700 underline dark:text-emerald-300 w-fit">
-            Catatan (opsional)
+            {t("Catatan (opsional)")}
           </summary>
           <div className="mt-2">
             <ClipAnnotationNotes clipAnnotation={data} />

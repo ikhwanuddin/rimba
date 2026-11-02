@@ -7,6 +7,7 @@ import {
 import Alert from "@/lib/components/ui/Alert";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 export default function DatasetActions({
@@ -22,7 +23,7 @@ export default function DatasetActions({
     <div className="flex flex-row gap-2 justify-center">
       {onDownloadDataset != null ? (
         <Button mode="text" variant="primary" onClick={onDownloadDataset}>
-          <DownloadIcon className="inline-block mr-2 w-5 h-5" /> Unduh
+          <DownloadIcon className="inline-block mr-2 w-5 h-5" /> {t(" Unduh")}
         </Button>
       ) : null}
       <DeleteDataset dataset={dataset} onDeleteDataset={onDeleteDataset} />
@@ -42,13 +43,13 @@ function DeleteDataset({
       title={
         <>
           <WarningIcon className="inline-block mr-2 w-8 h-8 text-red-500" />
-          Yakin mau menghapus rekaman ini?
+          {t("Yakin mau menghapus rekaman ini?")}
         </>
       }
       button={
         <>
           <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-          Hapus rekaman
+          {t("Hapus rekaman")}
         </>
       }
       mode="text"
@@ -60,14 +61,14 @@ function DeleteDataset({
             <div className="flex flex-col gap-2 text-center">
               <h2 className="p-4 font-extrabold text-center">{dataset.name}</h2>
               <p>
-                Tindakan ini tidak bisa dibatalkan. Semua berkas audio di
-                kumpulan ini terhapus permanen, beserta anotasi, catatan, dan
-                label yang terkait.
+                {t(
+                  "Tindakan ini tidak bisa dibatalkan. Semua berkas audio di kumpulan ini terhapus permanen, beserta anotasi, catatan, dan label yang terkait.",
+                )}
               </p>
               <p className="font-semibold text-red-600 dark:text-red-400">
-                Sebaiknya jangan hapus rekaman yang sudah dianotasi.
+                {t("Sebaiknya jangan hapus rekaman yang sudah dianotasi.")}
               </p>
-              <p>Lanjutkan?</p>
+              <p>{t("Lanjutkan?")}</p>
             </div>
             <div className="flex flex-row gap-2 justify-end mt-4">
               <Button
@@ -77,7 +78,7 @@ function DeleteDataset({
                 onClick={onDeleteDataset}
               >
                 <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-                Hapus
+                {t("Hapus")}
               </Button>
               <Button
                 tabIndex={1}
@@ -86,7 +87,7 @@ function DeleteDataset({
                 onClick={close}
               >
                 <CloseIcon className="inline-block mr-2 w-5 h-5" />
-                Batal
+                {t("Batal")}
               </Button>
             </div>
           </>

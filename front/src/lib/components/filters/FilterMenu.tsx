@@ -7,6 +7,8 @@ import { BackIcon, FilterIcon } from "@/lib/components/icons";
 import SearchMenu from "@/lib/components/search/SearchMenu";
 import Button, { getButtonClassName } from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
+
 export type FilterDef<T extends Object> = {
   field: keyof T;
   name: string;
@@ -26,7 +28,7 @@ function FilterCombobox<T extends Object>({
   return (
     <>
       <div className="mb-2 underline text-stone-700 underline-offset-2 decoration-amber-500 decoration-2 dark:text-stone-300">
-        Terapkan
+        {t("Terapkan")}
       </div>
       <SearchMenu
         options={filterDefs}
@@ -34,7 +36,7 @@ function FilterCombobox<T extends Object>({
         renderOption={(filter) => (
           <>
             {filter.icon ?? filter.icon}
-            {filter.name}
+            {t(filter.name)}
           </>
         )}
         limit={5}
@@ -43,7 +45,7 @@ function FilterCombobox<T extends Object>({
         onSelect={onChange}
         empty={
           <div className="w-full text-center text-stone-500">
-            Tidak ada saringan
+            {t("Tidak ada saringan")}
           </div>
         }
         autoFocus
@@ -76,9 +78,9 @@ function FilterPanel<T extends Object>({
     <>
       <div className="flex flex-row justify-between items-center mb-2">
         <div>
-          <span className="mr-2 text-stone-500">Saring menurut</span>
+          <span className="mr-2 text-stone-500">{t("Saring menurut")}</span>
           <span className="underline text-stone-700 underline-offset-2 decoration-amber-500 decoration-2 dark:text-stone-300">
-            {selectedFilter.name}
+            {t(selectedFilter.name)}
           </span>
         </div>
         <Button
@@ -92,7 +94,7 @@ function FilterPanel<T extends Object>({
       {selectedFilter.description != null ? (
         <div className="mb-4">
           <span className="text-sm text-stone-600 dark:text-stone-400">
-            {selectedFilter.description}
+            {t(selectedFilter.description)}
           </span>
         </div>
       ) : null}

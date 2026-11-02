@@ -7,6 +7,7 @@ import useActiveUser from "@/app/hooks/api/useActiveUser";
 
 import { Group, Input } from "@/lib/components/inputs/index";
 
+import { t } from "@/lib/i18n";
 import type { User } from "@/lib/types";
 
 const schema = z
@@ -38,7 +39,7 @@ export default function UserChangePassword(props: { user: User }) {
   const handleChangePassword = (data: FormData) => {
     updateUser(
       { password: data.password },
-      { onSuccess: () => toast.success("Kata sandi diganti.") },
+      { onSuccess: () => toast.success(t("Kata sandi diganti.")) },
     );
   };
 
@@ -46,24 +47,24 @@ export default function UserChangePassword(props: { user: User }) {
     <form onSubmit={handleSubmit(handleChangePassword)}>
       <div className="mb-3">
         <Group
-          label="Kata sandi baru"
+          label={t("Kata sandi baru")}
           name="password"
-          error={errors.password?.message}
+          error={errors.password?.message && t(errors.password.message)}
         >
           <Input type="password" {...register("password")} />
         </Group>
       </div>
       <div className="mb-3">
         <Group
-          label="Ulangi kata sandi baru"
+          label={t("Ulangi kata sandi baru")}
           name="password2"
-          error={errors.password2?.message}
+          error={errors.password2?.message && t(errors.password2.message)}
         >
           <Input type="password" {...register("password2")} />
         </Group>
       </div>
       <div>
-        <Input type="submit" value="Simpan" />
+        <Input type="submit" value={t("Simpan")} />
       </div>
     </form>
   );

@@ -20,6 +20,7 @@ import useSpectrogramAudio from "@/lib/hooks/spectrogram/useSpectrogramAudio";
 import useSpectrogramState from "@/lib/hooks/spectrogram/useSpectrogramState";
 import useClipViewport from "@/lib/hooks/window/useClipViewport";
 
+import { t } from "@/lib/i18n";
 import type { ClipAnnotation } from "@/lib/types";
 
 export default function ClipAnnotationSpectrogram({
@@ -146,7 +147,7 @@ export default function ClipAnnotationSpectrogram({
           />
         ) : (
           <Empty>
-            Belum ada kotak terpilih; klik kotak untuk melihat detailnya.
+            {t("Belum ada kotak terpilih; klik kotak untuk melihat detailnya.")}
           </Empty>
         )
       }

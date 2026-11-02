@@ -5,6 +5,7 @@ import { DownloadIcon, RecordingsIcon } from "@/lib/components/icons";
 import SecondaryNavBar from "@/lib/components/navigation/SecondaryNavBar";
 import Dialog from "@/lib/components/ui/Dialog";
 
+import { t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 export default function DatasetRecordingSummary({
@@ -13,7 +14,7 @@ export default function DatasetRecordingSummary({
 }: { dataset: Dataset } & ComponentProps<typeof DatasetExport>) {
   return (
     <SecondaryNavBar
-      title="Berkas audio"
+      title={t("Berkas audio")}
       icon={
         <>
           <RecordingsIcon className="inline-block mr-1 w-5 h-5 align-middle text-stone-500" />
@@ -25,13 +26,13 @@ export default function DatasetRecordingSummary({
       buttons={[
         <Dialog
           key="export"
-          title="Ekspor metadata berkas"
+          title={t("Ekspor metadata berkas")}
           mode="text"
           variant="secondary"
           label={
             <>
               <DownloadIcon className="inline-block mr-1 w-5 h-5 text-emerald-500 align-middle" />
-              ekspor
+              {t("ekspor")}
             </>
           }
         >

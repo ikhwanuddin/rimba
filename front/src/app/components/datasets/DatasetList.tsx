@@ -8,6 +8,7 @@ import DatasetListBase from "@/lib/components/datasets/DatasetList";
 import { AnnotationProjectIcon } from "@/lib/components/icons";
 import Search from "@/lib/components/inputs/Search";
 
+import { t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 /**
@@ -32,8 +33,8 @@ export default function DatasetList({
       DatasetImport={<DatasetImport onImportDataset={onCreateDataset} />}
       DatasetSearch={
         <Search
-          label="Cari"
-          placeholder="Cari..."
+          label={t("Cari")}
+          placeholder={t("Cari...")}
           value={filter.get("search")}
           onChange={(value) => filter.set("search", value as string)}
           onSubmit={filter.submit}

@@ -9,6 +9,7 @@ import useIsAdmin from "@/app/hooks/useIsAdmin";
 
 import Hero from "@/lib/components/ui/Hero";
 
+import { t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 export default function AnnotationProjects() {
@@ -29,8 +30,10 @@ export default function AnnotationProjects() {
   return (
     <>
       <Hero
-        text="Proyek anotasi"
-        note="Pekerjaan anotasi: klip yang ditanyakan ke anotator, label yang boleh dipakai, petunjuk, dan semua jawaban. Dibuat dari rekaman audio."
+        text={t("Proyek anotasi")}
+        note={t(
+          "Pekerjaan anotasi: klip yang ditanyakan ke anotator, label yang boleh dipakai, petunjuk, dan semua jawaban. Dibuat dari rekaman audio.",
+        )}
       />
       <AnnotationProjectList
         onClickAnnotationProject={handleClickAnnotationProject}

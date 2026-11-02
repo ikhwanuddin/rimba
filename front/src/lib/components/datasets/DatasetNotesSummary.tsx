@@ -6,6 +6,7 @@ import Card from "@/lib/components/ui/Card";
 import { H3 } from "@/lib/components/ui/Headings";
 import Loading from "@/lib/components/ui/Loading";
 
+import { t } from "@/lib/i18n";
 import type * as types from "@/lib/types";
 
 /**
@@ -24,7 +25,7 @@ export default function DatasetNotesSumary({
     <Card>
       <H3>
         <NotesIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
-        Catatan dan masalah
+        {t("Catatan dan masalah")}
       </H3>
       {isLoading ? <Loading /> : <IssuesSummary {...props} />}
     </Card>
@@ -67,7 +68,7 @@ function IssuesSummary({
 
   return (
     <>
-      Masalah terbaru
+      {t("Masalah terbaru")}
       <ul className="flex flex-col gap-2 p-2 pl-4 rounded-md border divide-y divide-dashed divide-stone-300 dark:border-stone-800 dark:divide-stone-800">
         {issues.map((recordingNote) => (
           <NoteComponent
@@ -94,7 +95,7 @@ function NoIssues() {
   return (
     <div>
       <CheckIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
-      Tidak ada masalah
+      {t("Tidak ada masalah")}
     </div>
   );
 }

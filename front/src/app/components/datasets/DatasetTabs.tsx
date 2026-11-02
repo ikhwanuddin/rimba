@@ -8,6 +8,7 @@ import { DatasetIcon, RecordingsIcon } from "@/lib/components/icons";
 import SectionTabs from "@/lib/components/navigation/SectionTabs";
 import Tab from "@/lib/components/ui/Tab";
 
+import { t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 /**
@@ -36,7 +37,7 @@ export default function DatasetTabs({ dataset }: { dataset: Dataset }) {
           onClick={() => router.push(`/datasets/detail/?${params.toString()}`)}
         >
           <DatasetIcon className="w-4 h-4 align-middle" />
-          Ringkasan
+          {t("Ringkasan")}
         </Tab>,
         <Tab
           key="recordings"
@@ -46,7 +47,7 @@ export default function DatasetTabs({ dataset }: { dataset: Dataset }) {
           }
         >
           <RecordingsIcon className="w-4 h-4 align-middle" />
-          Berkas audio
+          {t("Berkas audio")}
         </Tab>,
       ]}
     />

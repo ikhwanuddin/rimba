@@ -8,6 +8,8 @@ import Alert from "@/lib/components/ui/Alert";
 import Button from "@/lib/components/ui/Button";
 import Link from "@/lib/components/ui/Link";
 
+import { t } from "@/lib/i18n";
+
 export default function RecordingActions({
   onDeleteRecording,
   onDownloadRecording,
@@ -20,7 +22,7 @@ export default function RecordingActions({
     <div className="flex flex-row gap-2 justify-center">
       <Button mode="text" variant="primary" onClick={onDownloadRecording}>
         <DownloadIcon className="inline-block mr-2 w-5 h-5" />
-        Unduh
+        {t("Unduh")}
       </Button>
       <DeleteRecording onDelete={onDeleteRecording} />
     </div>
@@ -33,13 +35,13 @@ function DeleteRecording({ onDelete }: { onDelete?: () => void }) {
       title={
         <>
           <WarningIcon className="inline-block mr-2 w-8 h-8 text-red-500" />
-          Yakin mau menghapus berkas ini?
+          {t("Yakin mau menghapus berkas ini?")}
         </>
       }
       button={
         <>
           <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-          Hapus berkas
+          {t("Hapus berkas")}
         </>
       }
       mode="text"
@@ -50,14 +52,14 @@ function DeleteRecording({ onDelete }: { onDelete?: () => void }) {
           <>
             <div className="flex flex-col gap-2">
               <p>
-                Tindakan ini tidak bisa dibatalkan. Berkas terhapus permanen
-                dari basis data beserta metadata, anotasi, catatan, dan
-                labelnya.
+                {t(
+                  "Tindakan ini tidak bisa dibatalkan. Berkas terhapus permanen dari basis data beserta metadata, anotasi, catatan, dan labelnya.",
+                )}
               </p>
               <p className="font-semibold text-red-600 dark:text-red-400">
-                Sebaiknya jangan hapus berkas yang sudah dianotasi.
+                {t("Sebaiknya jangan hapus berkas yang sudah dianotasi.")}
               </p>
-              <p>Lanjutkan?</p>
+              <p>{t("Lanjutkan?")}</p>
             </div>
             <div className="flex flex-row gap-2 justify-end mt-4">
               <Button
@@ -67,7 +69,7 @@ function DeleteRecording({ onDelete }: { onDelete?: () => void }) {
                 onClick={onDelete}
               >
                 <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-                Hapus
+                {t("Hapus")}
               </Button>
               <Button
                 tabIndex={1}
@@ -76,7 +78,7 @@ function DeleteRecording({ onDelete }: { onDelete?: () => void }) {
                 onClick={close}
               >
                 <CloseIcon className="inline-block mr-2 w-5 h-5" />
-                Batal
+                {t("Batal")}
               </Button>
             </div>
           </>

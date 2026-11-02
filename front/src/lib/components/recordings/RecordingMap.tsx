@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { MapIcon } from "@/lib/components/icons";
 import Card from "@/lib/components/ui/Card";
 
+import { t } from "@/lib/i18n";
 import type { Recording } from "@/lib/types";
 
 // NOTE: The use of dynamic imports is necessary to avoid importing the leaflet
@@ -24,11 +25,11 @@ export default function RecordingMap({
     <Card>
       <div className="flex flex-row justify-center items-center">
         <MapIcon className="inline-block mr-1 w-5 h-5 text-stone-500" />
-        Lokasi rekam
+        {t("Lokasi rekam")}
       </div>
       {!hasLocation ? (
         <div className="text-sm text-stone-400 dark:text-stone-600">
-          Lokasi belum diisi.
+          {t("Lokasi belum diisi.")}
         </div>
       ) : (
         <div className="relative">

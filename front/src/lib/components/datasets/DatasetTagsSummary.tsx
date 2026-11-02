@@ -8,6 +8,7 @@ import Card from "@/lib/components/ui/Card";
 import Empty from "@/lib/components/ui/Empty";
 import { H3 } from "@/lib/components/ui/Headings";
 
+import { t } from "@/lib/i18n";
 import type * as types from "@/lib/types";
 
 /**
@@ -29,9 +30,11 @@ export default function DatasetTagsSummary({
     <Card>
       <H3>
         <TagsIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
-        Label
+        {t("Label")}
       </H3>
-      <p className="text-stone-500">Label yang dipakai di rekaman ini.</p>
+      <p className="text-stone-500">
+        {t("Label yang dipakai di rekaman ini.")}
+      </p>
       {isLoading ? (
         <Loading />
       ) : tags.length === 0 ? (
@@ -49,5 +52,5 @@ export default function DatasetTagsSummary({
  * @returns JSX element displaying a message.
  */
 function NoTagsRecorded() {
-  return <Empty>Belum ada label pada rekaman ini.</Empty>;
+  return <Empty>{t("Belum ada label pada rekaman ini.")}</Empty>;
 }

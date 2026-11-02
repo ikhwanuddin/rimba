@@ -24,6 +24,7 @@ import Tag from "@/lib/components/tags/Tag";
 import Button from "@/lib/components/ui/Button";
 import KeyboardKey from "@/lib/components/ui/KeyboardKey";
 
+import { t } from "@/lib/i18n";
 import type { Tag as TagType } from "@/lib/types";
 import { type Color, getTagColor } from "@/lib/utils/tags";
 
@@ -83,7 +84,7 @@ function CreateNewTag({
             className="inline-flex"
             padding="p-1"
           >
-            klik di sini
+            {t("klik di sini")}
           </Button>
         </span>
       </div>
@@ -98,7 +99,7 @@ function NoTagsFound() {
   return (
     <ComboBoxSection>
       <div className="relative py-2 px-4 cursor-default select-none">
-        Label tidak ditemukan.{" "}
+        {t("Label tidak ditemukan.")}{" "}
       </div>
     </ComboBoxSection>
   );

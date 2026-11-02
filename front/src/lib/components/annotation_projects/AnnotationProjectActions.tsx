@@ -7,6 +7,7 @@ import {
 import Alert from "@/lib/components/ui/Alert";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 export default function ProjectActions({
@@ -25,7 +26,7 @@ export default function ProjectActions({
         variant="primary"
         onClick={onDownloadAnnotationProject}
       >
-        <DownloadIcon className="inline-block mr-2 w-5 h-5" /> Unduh
+        <DownloadIcon className="inline-block mr-2 w-5 h-5" /> {t(" Unduh")}
       </Button>
       <DeleteProject
         annotationProject={annotationProject}
@@ -47,13 +48,13 @@ function DeleteProject({
       title={
         <>
           <WarningIcon className="inline-block mr-2 w-8 h-8 text-red-500" />
-          Yakin mau menghapus proyek ini?
+          {t("Yakin mau menghapus proyek ini?")}
         </>
       }
       button={
         <>
           <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-          Hapus proyek
+          {t("Hapus proyek")}
         </>
       }
       mode="text"
@@ -67,19 +68,20 @@ function DeleteProject({
             </h2>
             <div className="flex flex-col gap-2">
               <p>
-                Tindakan ini tidak bisa dibatalkan. Semua anotasi dan jawaban di
-                proyek ini ikut terhapus.
+                {t(
+                  "Tindakan ini tidak bisa dibatalkan. Semua anotasi dan jawaban di proyek ini ikut terhapus.",
+                )}
               </p>
-              <p>Lanjutkan?</p>
+              <p>{t("Lanjutkan?")}</p>
             </div>
             <div className="flex flex-row gap-2 justify-end mt-4">
               <Button mode="outline" variant="primary" onClick={close}>
                 <CloseIcon className="inline-block mr-2 w-5 h-5" />
-                Batal
+                {t("Batal")}
               </Button>
               <Button mode="text" variant="danger" onClick={onDelete}>
                 <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-                Hapus
+                {t("Hapus")}
               </Button>
             </div>
           </>

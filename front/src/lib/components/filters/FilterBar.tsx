@@ -3,6 +3,8 @@ import { useMemo } from "react";
 import type { FilterDef } from "@/lib/components/filters/FilterMenu";
 import { FilterIcon } from "@/lib/components/icons";
 
+import { t } from "@/lib/i18n";
+
 const _emptyFilter = {};
 
 export default function FilterBar<T extends Object>({
@@ -41,13 +43,15 @@ export default function FilterBar<T extends Object>({
   return (
     <div className="flex flex-row items-center">
       {total != null && (
-        <span className="mr-3 text-stone-500">{total} hasil</span>
+        <span className="mr-3 text-stone-500">
+          {total} {t(" hasil")}
+        </span>
       )}
       <div className="flex flex-row items-center space-x-2">
         {withLabel && (
           <span className="mr-2 text-blue-200">
             <FilterIcon className="inline-block mr-1 w-5 h-5" />
-            saringan:
+            {t("saringan:")}
           </span>
         )}
         {Object.entries(filter)

@@ -10,6 +10,7 @@ import Card from "@/lib/components/ui/Card";
 import { H4 } from "@/lib/components/ui/Headings";
 import Tooltip from "@/lib/components/ui/Tooltip";
 
+import { t } from "@/lib/i18n";
 import type { Tag } from "@/lib/types";
 import { type Color, getTagColor } from "@/lib/utils/tags";
 
@@ -35,17 +36,17 @@ export default function AnnotationTagPalette({
         <Tooltip
           tooltip={
             <div className="w-48 text-center">
-              Label yang dipilih di sini otomatis menempel ke kotak baru.
+              {t("Label yang dipilih di sini otomatis menempel ke kotak baru.")}
             </div>
           }
           placement="top"
         >
           <ToolsIcon className="inline-block mr-1 w-5 h-5" />
-          <span className="cursor-help">Palet label</span>
+          <span className="cursor-help">{t("Palet label")}</span>
         </Tooltip>
       </H4>
       <div className="flex flex-row gap-1 w-full">
-        <Tooltip tooltip="Hapus semua label" placement="top">
+        <Tooltip tooltip={t("Hapus semua label")} placement="top">
           <Button onClick={onClearTags} mode="text" variant="danger">
             <DeleteIcon className="w-5 h-5" />
           </Button>

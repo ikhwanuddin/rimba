@@ -11,6 +11,8 @@ import Popover from "@/lib/components/ui/Popover";
 
 import useDebounceSubmit from "@/lib/hooks/forms/useDebounceSubmit";
 
+import { t } from "@/lib/i18n";
+
 function TimeButton({
   time,
   disabled,
@@ -53,7 +55,7 @@ export default function RecordingTime({
         time: z
           .string()
           .regex(/^\d{2}:\d{2}(:\d{2}(\.\d+)?)?$/, {
-            message: "Format jam: hh:mm:ss.ddd",
+            message: t("Format jam: hh:mm:ss.ddd"),
           })
           .nullable()
           .optional(),
@@ -82,7 +84,7 @@ export default function RecordingTime({
     <Popover button={<TimeButton time={time} />}>
       {() => (
         <Card className="bg-stone-100 dark:bg-stone-800">
-          <Group name="time" label="Jam" error={errors.time?.message}>
+          <Group name="time" label={t("Jam")} error={errors.time?.message}>
             <Input
               type="text"
               {...register("time")}
@@ -95,7 +97,7 @@ export default function RecordingTime({
             onClick={() => onChange?.({ time: null })}
           >
             <CloseIcon className="inline-block mr-1 w-5 h-5" />
-            Kosongkan
+            {t("Kosongkan")}
           </Button>
         </Card>
       )}

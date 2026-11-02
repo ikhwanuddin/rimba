@@ -4,6 +4,7 @@ import ListLayout from "@/lib/components/layouts/List";
 import Dialog from "@/lib/components/ui/Dialog";
 import Empty from "@/lib/components/ui/Empty";
 
+import { t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 export default function AnnotationProjectList({
@@ -34,12 +35,12 @@ export default function AnnotationProjectList({
           <Dialog
             key="create"
             mode="text"
-            title="Buat proyek anotasi"
+            title={t("Buat proyek anotasi")}
             width="w-96"
             label={
               <>
-                <AddIcon className="inline-block w-4 h-4 align-middle" /> Buat
-                baru
+                <AddIcon className="inline-block w-4 h-4 align-middle" />{" "}
+                {t(" Buat baru")}
               </>
             }
           >
@@ -50,11 +51,11 @@ export default function AnnotationProjectList({
           <Dialog
             key="import"
             mode="text"
-            title="Impor proyek anotasi"
+            title={t("Impor proyek anotasi")}
             label={
               <>
                 <UploadIcon className="inline-block w-4 h-4 align-middle" />{" "}
-                Impor
+                {t("Impor")}
               </>
             }
           >
@@ -78,9 +79,9 @@ function NoProjects() {
   return (
     <Empty>
       <WarningIcon className="w-16 h-16 text-stone-500" />
-      <p>Belum ada proyek anotasi.</p>
+      <p>{t("Belum ada proyek anotasi.")}</p>
       <p>
-        Untuk membuat proyek baru, klik tombol
+        {t("Untuk membuat proyek baru, klik tombol")}
         <span className="text-emerald-500">
           <AddIcon className="inline-block mr-1 ml-2 w-4 h-4" />
           Create{" "}

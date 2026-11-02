@@ -9,6 +9,7 @@ import AnnotationProjectListBase from "@/lib/components/annotation_projects/Anno
 import { DatasetIcon } from "@/lib/components/icons";
 import Search from "@/lib/components/inputs/Search";
 
+import { t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 export default function AnnotationProjectList({
@@ -43,8 +44,8 @@ export default function AnnotationProjectList({
       }
       AnnotationProjectSearch={
         <Search
-          label="Cari"
-          placeholder="Cari..."
+          label={t("Cari")}
+          placeholder={t("Cari...")}
           value={filter.get("search")}
           onChange={(value) => filter.set("search", value as string)}
           onSubmit={filter.submit}

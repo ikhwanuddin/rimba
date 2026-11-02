@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import type { ReactNode } from "react";
 
+import { t } from "@/lib/i18n";
+
 /**
  * An informational alert component used to display messages to the user.
  *
@@ -40,7 +42,7 @@ export default function Info({
       <span className="sr-only">Info</span>
       <div>
         <span className="font-medium">
-          {title == null ? "Catatan:" : title}
+          {title == null ? t("Catatan:") : title}
         </span>{" "}
         {children}
       </div>

@@ -13,6 +13,7 @@ import TagSearchBarBase, {
 
 import useRecordingTable from "@/lib/hooks/recordings/useRecordingTable";
 
+import { t } from "@/lib/i18n";
 import type { Recording, RecordingFilter, Tag } from "@/lib/types";
 import { type Color } from "@/lib/utils/tags";
 
@@ -124,8 +125,8 @@ export default function RecordingTable({
         <div className="flex flex-row space-x-3 basis-1/2">
           <div className="grow">
             <Search
-              label="Cari"
-              placeholder="Cari berkas..."
+              label={t("Cari")}
+              placeholder={t("Cari berkas...")}
               onChange={onSearchChange}
             />
           </div>

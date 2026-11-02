@@ -16,6 +16,7 @@ import DatasetList from "@/app/components/datasets/DatasetList";
 
 import Hero from "@/lib/components/ui/Hero";
 
+import { t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 export default function Page() {
@@ -31,8 +32,10 @@ export default function Page() {
   return (
     <>
       <Hero
-        text="Rekaman audio"
-        note="File audio yang terdaftar di server, dikelompokkan per kumpulan. Bahan untuk membuat proyek anotasi; belum berisi pekerjaan atau jawaban."
+        text={t("Rekaman audio")}
+        note={t(
+          "File audio yang terdaftar di server, dikelompokkan per kumpulan. Bahan untuk membuat proyek anotasi; belum berisi pekerjaan atau jawaban.",
+        )}
       />
       <DatasetList
         onCreateDataset={goToDatasetDetail}

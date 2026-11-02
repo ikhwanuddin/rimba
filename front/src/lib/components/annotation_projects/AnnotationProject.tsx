@@ -3,6 +3,7 @@ import { type ReactNode } from "react";
 import { AnnotationProjectIcon, CalendarIcon } from "@/lib/components/icons";
 import Button from "@/lib/components/ui/Button";
 
+import { locale } from "@/lib/i18n";
 import type { AnnotationProject as AnnotationProjectType } from "@/lib/types";
 
 function Atom({ label, value }: { label: ReactNode; value: string }) {
@@ -44,7 +45,7 @@ export default function AnnotationProject({
       <div className="flex flex-row py-4">
         <Atom
           label={<CalendarIcon className="w-4 h-4 align-middle" />}
-          value={annotationProject.created_on.toLocaleDateString("id-ID", {
+          value={annotationProject.created_on.toLocaleDateString(locale(), {
             day: "numeric",
             month: "long",
             year: "numeric",

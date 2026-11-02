@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { UploadIcon } from "@/lib/components/icons";
 import { Group, Input, Submit } from "@/lib/components/inputs/index";
 
+import { t } from "@/lib/i18n";
 import { DatasetImportSchema } from "@/lib/schemas";
 import type { DatasetImport } from "@/lib/types";
 
@@ -43,8 +44,8 @@ export default function DatasetImportComponent({
     >
       <Group
         name="dataset"
-        label="Pilih berkas rekaman untuk diimpor"
-        help="Berkas harus berformat AOEF"
+        label={t("Pilih berkas rekaman untuk diimpor")}
+        help={t("Berkas harus berformat AOEF")}
         error={errors.dataset?.message?.toString()}
       >
         <Input
@@ -57,19 +58,19 @@ export default function DatasetImportComponent({
       </Group>
       <Group
         name="audio_dir"
-        label="Folder audio"
-        help="Folder tempat semua berkas audio disimpan"
+        label={t("Folder audio")}
+        help={t("Folder tempat semua berkas audio disimpan")}
         error={errors.audio_dir?.message}
       >
         <Input
           {...register("audio_dir")}
-          placeholder="Path folder audio..."
+          placeholder={t("Path folder audio...")}
           required
         />
       </Group>
       <Submit>
         <UploadIcon className="inline-block mr-2 w-6 h-6 align-middle" />
-        Impor
+        {t("Impor")}
       </Submit>
     </form>
   );

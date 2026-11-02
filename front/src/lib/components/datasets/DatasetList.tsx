@@ -3,6 +3,7 @@ import { AddIcon, UploadIcon, WarningIcon } from "@/lib/components/icons";
 import Dialog from "@/lib/components/ui/Dialog";
 import Empty from "@/lib/components/ui/Empty";
 
+import { t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 import ListLayout from "../layouts/List";
@@ -38,11 +39,11 @@ export default function DatasetList({
         <Dialog
           key="create"
           mode="text"
-          title="Daftarkan rekaman audio"
+          title={t("Daftarkan rekaman audio")}
           label={
             <>
-              <AddIcon className="inline-block w-4 h-4 align-middle" /> Buat
-              baru
+              <AddIcon className="inline-block w-4 h-4 align-middle" />{" "}
+              {t(" Buat baru")}
             </>
           }
         >
@@ -51,10 +52,11 @@ export default function DatasetList({
         <Dialog
           key="import"
           mode="text"
-          title="Impor rekaman audio"
+          title={t("Impor rekaman audio")}
           label={
             <>
-              <UploadIcon className="inline-block w-4 h-4 align-middle" /> Impor
+              <UploadIcon className="inline-block w-4 h-4 align-middle" />{" "}
+              {t(" Impor")}
             </>
           }
         >
@@ -83,9 +85,9 @@ function NoDatasets() {
   return (
     <Empty>
       <WarningIcon className="w-8 h-8 text-stone-500" />
-      <p>Belum ada rekaman audio.</p>
+      <p>{t("Belum ada rekaman audio.")}</p>
       <p>
-        Untuk mendaftarkan rekaman, klik tombol
+        {t("Untuk mendaftarkan rekaman, klik tombol")}
         <span className="text-emerald-500">
           <AddIcon className="inline-block mr-1 ml-2 w-4 h-4" />
           Create{" "}

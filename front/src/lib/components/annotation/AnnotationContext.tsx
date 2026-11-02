@@ -9,6 +9,7 @@ import RecordingTagBar from "@/lib/components/recordings/RecordingTagBar";
 import RecordingTime from "@/lib/components/recordings/RecordingTime";
 import Button from "@/lib/components/ui/Button";
 
+import { t } from "@/lib/i18n";
 import type { Recording, Tag } from "@/lib/types";
 import type { Color } from "@/lib/utils/tags";
 
@@ -75,7 +76,7 @@ export default function AnnotationContext({
         </div>
       </div>
       <RecordingTagBar
-        label="Label berkas"
+        label={t("Label berkas")}
         tags={recording.tags ?? []}
         onClickTag={onTagClick}
         tagColorFn={tagColorFn}

@@ -13,9 +13,9 @@ import api from "@/app/api";
 import UserContext from "@/app/contexts/user";
 
 import type { Progress } from "@/lib/api/annotation_tasks";
+import { locale, t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
-const WEEKDAY = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
 const ANSWERS = [
   { key: "ya", label: "Ya", bar: "bg-emerald-600", dot: "bg-emerald-600" },
   { key: "tidak", label: "Tidak", bar: "bg-stone-400", dot: "bg-stone-400" },
@@ -63,7 +63,7 @@ function Ring({
           {pct}%
         </span>
         <span className="text-xs text-stone-500">
-          {answered} / {total} klip
+          {answered} / {total} {t(" klip")}
         </span>
       </div>
     </div>
@@ -116,16 +116,16 @@ function Activity({ p, isAdmin }: { p: Progress; isAdmin: boolean }) {
     <div className="flex flex-col gap-2">
       <div className="flex items-baseline justify-between">
         <h3 className="text-sm font-semibold text-stone-700 dark:text-stone-300">
-          Klip terjawab per hari (14 hari, WIB)
+          {t("Klip terjawab per hari (14 hari, WIB)")}
         </h3>
         <span className="flex items-center gap-3 text-xs text-stone-500">
           <span className="flex items-center gap-1">
             <span className="h-2.5 w-2.5 rounded-sm bg-emerald-700" />{" "}
-            {isAdmin ? "kamu" : "jawabanmu"}
+            {isAdmin ? t("kamu") : t("jawabanmu")}
           </span>
           <span className="flex items-center gap-1">
             <span className="h-2.5 w-2.5 rounded-sm bg-emerald-200 dark:bg-emerald-900" />{" "}
-            tim
+            {t("tim")}
           </span>
         </span>
       </div>
@@ -134,7 +134,11 @@ function Activity({ p, isAdmin }: { p: Progress; isAdmin: boolean }) {
           <div
             key={p.days[i]}
             className="group relative flex h-full flex-1 flex-col justify-end"
-            title={`${p.days[i]}: ${n} klip (kamu ${p.my_by_day[i]})`}
+            title={t("{day}: {n} klip (kamu {mine})", {
+              day: p.days[i],
+              n,
+              mine: p.my_by_day[i],
+            })}
           >
             <div
               className="flex w-full flex-col justify-end overflow-hidden rounded-t-md bg-emerald-200 dark:bg-emerald-900"
@@ -167,8 +171,10 @@ function Activity({ p, isAdmin }: { p: Progress; isAdmin: boolean }) {
             }
           >
             {i === p.days.length - 1
-              ? "Hari ini"
-              : WEEKDAY[new Date(d + "T00:00:00").getDay()]}
+              ? t("Hari ini")
+              : new Date(d + "T00:00:00").toLocaleDateString(locale(), {
+                  weekday: "short",
+                })}
           </span>
         ))}
       </div>
@@ -203,7 +209,7 @@ function AnswerMix({
         {ANSWERS.map((x) => (
           <span key={x.key} className="flex items-center gap-1.5">
             <span className={`h-2.5 w-2.5 rounded-full ${x.dot}`} />
-            {x.label}{" "}
+            {t(x.label)}{" "}
             <b className="text-stone-900 dark:text-stone-100">
               {answers[x.key] ?? 0}
             </b>
@@ -220,10 +226,10 @@ function Annotators({ byUser }: { byUser: Record<string, number> }) {
   return (
     <div className="flex flex-col gap-2">
       <h3 className="text-sm font-semibold text-stone-700 dark:text-stone-300">
-        Per anotator
+        {t("Per anotator")}
       </h3>
       {rows.length === 0 ? (
-        <p className="text-sm text-stone-500">Belum ada jawaban.</p>
+        <p className="text-sm text-stone-500">{t("Belum ada jawaban.")}</p>
       ) : (
         rows.map(([u, n]) => (
           <div key={u} className="flex items-center gap-3 text-sm">
@@ -243,11 +249,11 @@ function Annotators({ byUser }: { byUser: Record<string, number> }) {
 }
 
 function finishNote(p: Progress) {
-  if (p.remaining === 0) return "semua klip sudah terjawab";
+  if (p.remaining === 0) return t("semua klip sudah terjawab");
   const week = p.by_day.slice(-7).reduce((a, b) => a + b, 0);
-  if (week === 0) return "belum ada jawaban 7 hari terakhir";
+  if (week === 0) return t("belum ada jawaban 7 hari terakhir");
   const days = Math.ceil(p.remaining / (week / 7));
-  return `± ${days} hari lagi pada laju 7 hari terakhir`;
+  return t("± {n} hari lagi pada laju 7 hari terakhir", { n: days });
 }
 
 function ProjectPanel({
@@ -286,10 +292,10 @@ function ProjectPanel({
           className="rounded-lg bg-emerald-700 px-5 py-3 font-bold text-white shadow-sm hover:bg-emerald-800"
         >
           {isAdmin
-            ? "Buka proyek →"
+            ? t("Buka proyek →")
             : p && p.done_by_me > 0
-              ? "Lanjutkan anotasi →"
-              : "Mulai anotasi →"}
+              ? t("Lanjutkan anotasi →")
+              : t("Mulai anotasi →")}
         </a>
       </div>
       {p && (
@@ -297,40 +303,48 @@ function ProjectPanel({
           <div className="flex flex-col items-center gap-6 sm:flex-row">
             <div className="flex flex-col items-center gap-1">
               <Ring pct={pct} answered={answered} total={p.total} />
-              <span className="text-xs text-stone-500">progres tim</span>
+              <span className="text-xs text-stone-500">{t("progres tim")}</span>
             </div>
             <div className="grid w-full flex-1 grid-cols-2 gap-3 lg:grid-cols-4">
               <Stat
                 accent
-                label={isAdmin ? "Jawaban tim" : "Jawabanmu"}
+                label={isAdmin ? t("Jawaban tim") : t("Jawabanmu")}
                 value={isAdmin ? answered : p.done_by_me}
                 note={
                   isAdmin
-                    ? `dari ${p.total} klip`
-                    : `dari ${answered} jawaban tim`
+                    ? t("dari {n} klip", { n: p.total })
+                    : t("dari {n} jawaban tim", { n: answered })
                 }
               />
               <Stat
-                label="Hari ini"
+                label={t("Hari ini")}
                 value={isAdmin ? p.today_total : p.today_by_me}
-                note={isAdmin ? "seluruh tim" : `tim: ${p.today_total}`}
+                note={
+                  isAdmin
+                    ? t("seluruh tim")
+                    : t("tim: {n}", { n: p.today_total })
+                }
               />
               <Stat
-                label="Sisa klip"
+                label={t("Sisa klip")}
                 value={p.remaining}
                 note={finishNote(p)}
               />
               <Stat
-                label="Perlu didiskusikan"
+                label={t("Perlu didiskusikan")}
                 value={unsure}
-                note={isAdmin ? "jawaban tidak yakin" : "jawabanmu tidak yakin"}
+                note={
+                  isAdmin
+                    ? t("jawaban tidak yakin")
+                    : t("jawabanmu tidak yakin")
+                }
               />
             </div>
           </div>
           <Activity p={p} isAdmin={isAdmin} />
           {isAdmin && (
             <div className="grid gap-6 border-t border-stone-100 pt-5 md:grid-cols-2 dark:border-stone-700">
-              <AnswerMix answers={p.answers} title="Komposisi jawaban" />
+              <AnswerMix answers={p.answers} title={t("Komposisi jawaban")} />
               <Annotators byUser={p.by_user} />
             </div>
           )}
@@ -344,7 +358,7 @@ export default function Page() {
   const user = useContext(UserContext);
   const isAdmin = user?.is_superuser === true;
   const { items, isLoading } = useAnnotationProjects({ pageSize: 100 });
-  const today = new Date().toLocaleDateString("id-ID", {
+  const today = new Date().toLocaleDateString(locale(), {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -358,13 +372,14 @@ export default function Page() {
           {today}
         </p>
         <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
-          Halo, {user?.name || user?.username}
+          {t("Halo, ")}
+          {user?.name || user?.username}
         </h1>
       </div>
       {isLoading ? (
-        <p className="text-stone-500">Memuat proyek…</p>
+        <p className="text-stone-500">{t("Memuat proyek…")}</p>
       ) : items.length === 0 ? (
-        <p className="text-stone-500">Belum ada proyek anotasi.</p>
+        <p className="text-stone-500">{t("Belum ada proyek anotasi.")}</p>
       ) : (
         items.map((project) => (
           <ProjectPanel

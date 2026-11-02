@@ -15,6 +15,7 @@ import {
 import SectionTabs from "@/lib/components/navigation/SectionTabs";
 import Tab from "@/lib/components/ui/Tab";
 
+import { t } from "@/lib/i18n";
 import type { AnnotationProject } from "@/lib/types";
 
 export default function AnnotationProjectHeader({
@@ -39,7 +40,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <DatasetIcon className="w-5 h-5 align-middle" />
-          Ringkasan
+          {t("Ringkasan")}
         </Tab>,
         <Tab
           key="annotate"
@@ -51,7 +52,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <EditIcon className="w-5 h-5 align-middle" />
-          Anotasi
+          {t("Anotasi")}
         </Tab>,
         <Tab
           key="tasks"
@@ -63,7 +64,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <TasksIcon className="w-5 h-5 align-middle" />
-          Tambah klip
+          {t("Tambah klip")}
         </Tab>,
         <Tab
           key="tags"
@@ -75,7 +76,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <TagsIcon className="w-5 h-5 align-middle" />
-          Label
+          {t("Label")}
         </Tab>,
       ].filter(() => isAdmin)}
     />

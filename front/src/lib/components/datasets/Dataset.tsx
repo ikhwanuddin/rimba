@@ -7,6 +7,7 @@ import {
 } from "@/lib/components/icons";
 import Button from "@/lib/components/ui/Button";
 
+import { locale } from "@/lib/i18n";
 import type { Dataset as DatasetType } from "@/lib/types";
 
 export function Atom({ label, value }: { label: ReactNode; value: ReactNode }) {
@@ -52,7 +53,7 @@ export default function Dataset({
         />
         <Atom
           label={<CalendarIcon className="w-4 h-4 align-middle" />}
-          value={dataset.created_on.toLocaleDateString("id-ID", {
+          value={dataset.created_on.toLocaleDateString(locale(), {
             day: "numeric",
             month: "long",
             year: "numeric",

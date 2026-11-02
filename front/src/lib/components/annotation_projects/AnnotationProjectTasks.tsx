@@ -5,6 +5,7 @@ import * as icons from "@/lib/components/icons";
 import * as inputs from "@/lib/components/inputs";
 import * as ui from "@/lib/components/ui";
 
+import { t } from "@/lib/i18n";
 import type * as types from "@/lib/types";
 
 export default function AnnotationProjectTasks(props: {
@@ -39,13 +40,14 @@ export default function AnnotationProjectTasks(props: {
     <div className="flex flex-col gap-8">
       <ui.H2>
         <icons.TasksIcon className="inline-block mr-2 w-5 h-5 align-middle" />
-        Tambah klip
+        {t("Tambah klip")}
       </ui.H2>
       <div className="flex flex-row gap-8">
         <div className="flex flex-col gap-y-6 max-w-prose">
           <p className="max-w-prose text-stone-500">
-            Di sini klip ditambahkan ke proyek anotasi: pilih kumpulan rekaman,
-            saring berkasnya bila perlu, lalu atur cara memotong klip.
+            {t(
+              "Di sini klip ditambahkan ke proyek anotasi: pilih kumpulan rekaman, saring berkasnya bila perlu, lalu atur cara memotong klip.",
+            )}
           </p>
           <SelectDataset DatasetSearch={props.DatasetSearch} />
           {props.dataset != null && (
@@ -94,8 +96,10 @@ function SelectDataset({ DatasetSearch }: { DatasetSearch: JSX.Element }) {
   return (
     <ui.Card>
       <div>
-        <ui.H3 className="text-lg">Pilih rekaman audio</ui.H3>
-        <p className="text-stone-500">Pilih kumpulan rekaman sumber klip.</p>
+        <ui.H3 className="text-lg">{t("Pilih rekaman audio")}</ui.H3>
+        <p className="text-stone-500">
+          {t("Pilih kumpulan rekaman sumber klip.")}
+        </p>
       </div>
       {DatasetSearch}
     </ui.Card>
@@ -125,17 +129,18 @@ function SelectRecordings({
   return (
     <ui.Card>
       <div>
-        <ui.H3 className="text-lg">Pilih berkas</ui.H3>
+        <ui.H3 className="text-lg">{t("Pilih berkas")}</ui.H3>
         <p className="text-stone-500">
-          Pilih berkas yang akan dipotong jadi klip. Bisa disaring dan diambil
-          sebagian.
+          {t(
+            "Pilih berkas yang akan dipotong jadi klip. Bisa disaring dan diambil sebagian.",
+          )}
         </p>
       </div>
       <div className="flex flex-col gap-4">
         <inputs.Group
           name="recording-filter"
-          label="Saring berkas"
-          help="Ambil sebagian berkas lewat saringan."
+          label={t("Saring berkas")}
+          help={t("Ambil sebagian berkas lewat saringan.")}
         >
           <div className="flex flex-row gap-2 items-center">
             <div className="grow">
@@ -152,7 +157,7 @@ function SelectRecordings({
               mode="text"
               button={
                 <>
-                  Tambah saringan{" "}
+                  {t("Tambah saringan")}{" "}
                   <icons.FilterIcon className="inline-block w-4 h-4 stroke-2" />
                 </>
               }
@@ -161,8 +166,8 @@ function SelectRecordings({
         </inputs.Group>
         <inputs.Group
           name="subsample"
-          label="Ambil sebagian berkas"
-          help="Batas jumlah berkas; diambil acak, semua kalau kosong."
+          label={t("Ambil sebagian berkas")}
+          help={t("Batas jumlah berkas; diambil acak, semua kalau kosong.")}
         >
           <div className="inline-flex gap-3 items-center w-full">
             <inputs.Toggle
@@ -172,7 +177,7 @@ function SelectRecordings({
             <inputs.Input
               className="grow"
               type="number"
-              placeholder="Maksimum jumlah berkas"
+              placeholder={t("Maksimum jumlah berkas")}
               value={subsample ? maxRecordings : undefined}
               onChange={(event) =>
                 onSetMaxRecordings?.(parseInt(event.target.value))
@@ -213,15 +218,17 @@ function ExtractClips({
   return (
     <ui.Card>
       <div>
-        <ui.H3>Pemotongan klip</ui.H3>
+        <ui.H3>{t("Pemotongan klip")}</ui.H3>
         <p className="text-stone-500">
-          Atur cara memotong klip dari berkas terpilih.
+          {t("Atur cara memotong klip dari berkas terpilih.")}
         </p>
       </div>
       <inputs.Group
         name="clip"
-        label="Potong jadi klip"
-        help="Nyalakan untuk memotong berkas jadi klip pendek; matikan untuk memakai seluruh berkas sebagai satu klip."
+        label={t("Potong jadi klip")}
+        help={t(
+          "Nyalakan untuk memotong berkas jadi klip pendek; matikan untuk memakai seluruh berkas sebagai satu klip.",
+        )}
       >
         <inputs.Toggle isSelected={shouldClip} onChange={onToggleClip} />
       </inputs.Group>
@@ -229,8 +236,8 @@ function ExtractClips({
         <>
           <inputs.Group
             name="clipLength"
-            label="Panjang klip"
-            help="Panjang tiap klip, dalam detik."
+            label={t("Panjang klip")}
+            help={t("Panjang tiap klip, dalam detik.")}
           >
             <inputs.Input
               type="number"
@@ -242,8 +249,8 @@ function ExtractClips({
           </inputs.Group>
           <inputs.Group
             name="overlap"
-            label="Tumpang tindih"
-            help="Tumpang tindih antar klip, dalam detik."
+            label={t("Tumpang tindih")}
+            help={t("Tumpang tindih antar klip, dalam detik.")}
           >
             <inputs.Input
               type="number"
@@ -254,8 +261,8 @@ function ExtractClips({
           </inputs.Group>
           <inputs.Group
             name="subsample"
-            label="Ambil sebagian klip"
-            help="Batas klip per berkas; diambil acak, semua kalau kosong."
+            label={t("Ambil sebagian klip")}
+            help={t("Batas klip per berkas; diambil acak, semua kalau kosong.")}
           >
             <div className="inline-flex gap-3 items-center w-full">
               <inputs.Toggle
@@ -265,7 +272,7 @@ function ExtractClips({
               <inputs.Input
                 className="grow"
                 type="number"
-                placeholder="Maksimum klip per berkas"
+                placeholder={t("Maksimum klip per berkas")}
                 value={subsampleClip ? maxClipsPerRecording : undefined}
                 onChange={(e) => onSetMaxClips?.(e.target.valueAsNumber)}
                 required={subsampleClip}
@@ -294,32 +301,33 @@ function ReviewClips({
 }) {
   return (
     <ui.Card>
-      <ui.H3>Ringkasan</ui.H3>
+      <ui.H3>{t("Ringkasan")}</ui.H3>
       {dataset == null ? (
-        <p className="text-stone-500">Pilih kumpulan rekaman dulu.</p>
+        <p className="text-stone-500">{t("Pilih kumpulan rekaman dulu.")}</p>
       ) : isLoading ? (
         <ui.Loading />
       ) : (
         <>
           <ul className="list-disc list-inside">
             <li>
-              Rekaman terpilih:{" "}
+              {t("Rekaman terpilih:")}{" "}
               <span className="text-emerald-500">{dataset.name}</span>
             </li>
             <li>
-              Berkas terpilih:{" "}
+              {t("Berkas terpilih:")}{" "}
               <span className="text-emerald-500">{numRecordings}</span>
             </li>
             <li>
-              Klip yang ditambahkan:{" "}
+              {t("Klip yang ditambahkan:")}{" "}
               <span className="font-bold text-emerald-500">{numClips}</span>
             </li>
           </ul>
           <p className="text-stone-500">
-            Kalau pilihan sudah pas, klik tombol di bawah untuk menambahkan klip
-            ke proyek.
+            {t(
+              "Kalau pilihan sudah pas, klik tombol di bawah untuk menambahkan klip ke proyek.",
+            )}
           </p>
-          <ui.Button onClick={onAdd}>Tambahkan klip</ui.Button>
+          <ui.Button onClick={onAdd}>{t("Tambahkan klip")}</ui.Button>
         </>
       )}
     </ui.Card>

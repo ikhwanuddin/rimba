@@ -7,6 +7,7 @@ import TagSearchBarBase, {
   type TagSearchBarProps,
 } from "@/lib/components/tags/TagSearchBar";
 
+import { t } from "@/lib/i18n";
 import type { Tag } from "@/lib/types";
 import { type Color, getTagColor } from "@/lib/utils/tags";
 
@@ -33,7 +34,7 @@ const _emptyTags: Tag[] = [];
  */
 export default function RecordingTagBar({
   tags = _emptyTags,
-  label = "Label",
+  label = t("Label"),
   disabled = false,
   canClose = true,
   onClickTag,
@@ -83,7 +84,7 @@ export default function RecordingTagBar({
         ))}
         {tags?.length === 0 && (
           <span className="text-sm text-stone-400 dark:text-stone-600">
-            Belum ada label
+            {t("Belum ada label")}
           </span>
         )}
         {!disabled && (

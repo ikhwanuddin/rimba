@@ -4,6 +4,7 @@ import Card from "@/lib/components/ui/Card";
 import { H3 } from "@/lib/components/ui/Headings";
 import MetricBadge from "@/lib/components/ui/MetricBadge";
 
+import { t } from "@/lib/i18n";
 import type { Dataset } from "@/lib/types";
 
 export default function DatasetOverview({
@@ -26,7 +27,7 @@ export default function DatasetOverview({
   return (
     <Card>
       <div className="flex flex-row justify-between">
-        <H3>Ringkasan rekaman</H3>
+        <H3>{t("Ringkasan rekaman")}</H3>
       </div>
       <div className="flex flex-row gap-2 justify-around">
         <MetricBadge
@@ -34,20 +35,20 @@ export default function DatasetOverview({
           icon={
             <RecordingsIcon className="inline-block w-8 h-8 text-blue-500" />
           }
-          title="Berkas audio"
+          title={t("Berkas audio")}
           value={dataset.recording_count}
         />
         <MetricBadge
           onClick={onClickDatasetIssues}
           icon={<IssueIcon className="inline-block w-8 h-8 text-amber-500" />}
-          title="Masalah metadata"
+          title={t("Masalah metadata")}
           value={numIssues}
           isLoading={isLoading}
         />
         <MetricBadge
           onClick={onClickDatasetMissing}
           icon={<WarningIcon className="inline-block w-8 h-8 text-red-500" />}
-          title="Berkas hilang"
+          title={t("Berkas hilang")}
           value={numMissing}
           isLoading={isLoading}
         />
