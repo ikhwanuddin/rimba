@@ -1,4 +1,4 @@
-"""Way Canguk fork: build the logo files (bird singing a waveform, forest-green disc,
+"""Way Canguk fork: build the logo files (bird singing three sound arcs under a blue sky,
 MAARU-style bouncy condensed capitals). Text is converted to outlines so no font is
 needed at run time. Font: Oswald (SIL Open Font License), fetched on demand.
 
@@ -60,12 +60,11 @@ def wordmark(x=225, y=140, size=58):
     return sub + big
 
 
-mark = f'{S.CLIP}<g clip-path="url(#c)">{S.mark(5)}</g>'
+mark = f'{S.CLIP}<g clip-path="url(#c)">{S.mark()}</g>'
 full = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200">'
         f'{mark}{wordmark()}</svg>\n')
-icon = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">{mark}</svg>\n'
 (OUT_PUBLIC / "waycanguk_logo.svg").write_text(full)
-(OUT_PUBLIC / "waycanguk_icon.svg").write_text(icon)
-(OUT_PUBLIC / "favicon.svg").write_text(icon)
-(OUT_APP / "icon.svg").write_text(icon)
+(OUT_PUBLIC / "waycanguk_icon.svg").write_text(S.svg(S.mark()))
+(OUT_PUBLIC / "favicon.svg").write_text(S.svg(S.favicon_mark()))
+(OUT_APP / "icon.svg").write_text(S.svg(S.favicon_mark()))
 print("wrote logo, icon, favicon")
