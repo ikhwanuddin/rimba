@@ -48,7 +48,7 @@ function UserMenu({ user, onLogout }: { user?: User; onLogout?: () => void }) {
     <Menu as="div" className="relative">
       <Menu.Button className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700">
         <UserCircleIcon className="h-5 w-5" />
-        {user?.username}
+        {user?.name || user?.username}
         <ChevronDownIcon className="h-4 w-4" />
       </Menu.Button>
       <Transition

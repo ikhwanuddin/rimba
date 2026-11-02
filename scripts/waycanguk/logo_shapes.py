@@ -14,10 +14,12 @@ INK = "#1A1A1A"        # sound arcs, small text
 BRANCH = "#5B3A1E"
 WHITE = "#FFFFFF"
 
-# songbird facing right, ~100x100 box, beak tip at (91, 38)
-BIRD = ("M91 38 L80 35 C80 27 73 21.5 66 22 C58.5 22.5 54.5 28.5 53.5 35 "
+# songbird facing right, ~100x100 box; beak a little longer and deeper than a plain
+# wedge so it still reads at 36 px (tip at (94, 37)). beak() keeps (91, 38) as the
+# anchor for the sound arcs.
+BIRD = ("M94 37 L80 33.5 C80 27 73 21.5 66 22 C58.5 22.5 54.5 28.5 53.5 35 "
         "C44 36 33 40 25 46 L7 52.5 L11 57 L26 55.5 C33 64.5 44 69 56 67.5 "
-        "C70 65.5 78.5 55.5 79.5 42.5 Z")
+        "C70 65.5 78.5 55.5 79.8 43 Z")
 BIRD_LEGS = "M55 66 L52 79 M62 65 L62 79"
 
 CLIP = '<defs><clipPath id="c"><circle cx="100" cy="100" r="96"/></clipPath></defs>'
