@@ -20,7 +20,7 @@ export default function AnnotationProjectTags({
     <div className="flex flex-col gap-4 p-4">
       <H2>
         <TagsIcon className="inline-block mr-2 w-8 h-8 align-middle" />
-        Project Tags
+        Label proyek
       </H2>
       <p className="text-stone-500">
         <span className="font-bold text-emerald-500">Tags</span> provide meaning
@@ -32,7 +32,7 @@ export default function AnnotationProjectTags({
       </Info>
       <div className="grid grid-cols-2 gap-y-4 gap-x-14">
         <div className="col-span-2 md:col-span-1">
-          <H3>Add Tags</H3>
+          <H3>Tambah label</H3>
           <small className="text-stone-500">
             Use the search bar below to find tags for the project. Select a tag
             to add.
@@ -43,7 +43,7 @@ export default function AnnotationProjectTags({
           </small>
         </div>
         <div className="flex flex-col col-span-2 gap-2 md:col-span-1">
-          <H3>Selected tags</H3>
+          <H3>Label terpilih</H3>
           <p>
             <span className="font-bold text-blue-500">
               {(annotationProject.tags ?? []).length.toLocaleString()}

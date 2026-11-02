@@ -14,7 +14,7 @@ const ClipAnnotationSpectrogram = memo(
   }) {
     return (
       <Card className="w-full">
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row flex-wrap gap-4">
           {props.ViewportToolbar}
           {props.AnnotationControls}
           {props.Player}

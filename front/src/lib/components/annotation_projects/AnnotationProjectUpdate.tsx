@@ -17,7 +17,7 @@ export default function AnnotationProjectUpdateComponent({
   return (
     <Card>
       <div className="px-4 sm:px-0">
-        <H3>Project Details</H3>
+        <H3>Detail proyek</H3>
       </div>
       <div className="mt-6 border-t border-stone-300 dark:border-stone-700">
         {isLoading ? (
@@ -26,7 +26,7 @@ export default function AnnotationProjectUpdateComponent({
           <dl className="divide-y divide-stone-500">
             <div className="py-6 px-4 sm:px-0">
               <Description
-                name="Name"
+                name="Nama"
                 value={annotationProject.name}
                 onChange={(name) => onChangeAnnotationProject?.({ name })}
                 type="text"
@@ -35,7 +35,7 @@ export default function AnnotationProjectUpdateComponent({
             </div>
             <div className="py-6 px-4 sm:px-0">
               <Description
-                name="Description"
+                name="Deskripsi"
                 value={annotationProject.description}
                 onChange={(description) =>
                   onChangeAnnotationProject?.({ description })
@@ -46,7 +46,7 @@ export default function AnnotationProjectUpdateComponent({
             </div>
             <div className="py-6 px-4 sm:px-0">
               <Description
-                name="Annotation Instructions"
+                name="Petunjuk anotator"
                 value={annotationProject.annotation_instructions ?? ""}
                 onChange={(annotation_instructions) =>
                   onChangeAnnotationProject?.({ annotation_instructions })
@@ -57,7 +57,7 @@ export default function AnnotationProjectUpdateComponent({
             </div>
             <div className="py-6 px-4 sm:px-0">
               <Description
-                name="Created On"
+                name="Dibuat"
                 value={annotationProject.created_on}
                 type="text"
               />

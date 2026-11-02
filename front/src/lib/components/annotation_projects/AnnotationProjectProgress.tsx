@@ -52,9 +52,9 @@ export default function ProjectProgress({
   return (
     <Card>
       <div className="flex flex-row justify-between items-center">
-        <H3>Annotation Progress</H3>
+        <H3>Progres anotasi</H3>
         <Button mode="text" variant="primary" onClick={onAddTasks}>
-          <AddIcon className="inline-block mr-2 w-5 h-5" /> Add tasks
+          <AddIcon className="inline-block mr-2 w-5 h-5" /> Tambah klip
         </Button>
       </div>
       {isLoading ? (
@@ -83,9 +83,8 @@ function NoTasks() {
   return (
     <Empty>
       <p>
-        No annotation tasks have been created for this project. To begin
-        annotating, click the{" "}
-        <span className="inline text-emerald-500">Add tasks</span> button above.
+        Proyek ini belum punya klip. Tambahkan lewat tombol{" "}
+        <span className="inline text-emerald-500">Tambah klip</span> di atas.
       </p>
     </Empty>
   );
@@ -119,7 +118,7 @@ function ProgressReport({
       <div className="flex flex-row gap-2 justify-around">
         <MetricBadge
           icon={<EditIcon className="inline-block w-8 h-8 text-blue-500" />}
-          title="Remaining"
+          title="Belum dijawab"
           value={missing}
           isLoading={isLoading}
           onClick={onClickPending}
@@ -128,7 +127,7 @@ function ProgressReport({
           icon={
             <NeedsReviewIcon className="inline-block w-8 h-8 text-red-500" />
           }
-          title="Need Review"
+          title="Perlu ditinjau"
           value={needReview}
           isLoading={isLoading}
           onClick={onClickReview}
@@ -137,7 +136,7 @@ function ProgressReport({
           icon={
             <CompleteIcon className="inline-block w-8 h-8 text-emerald-500" />
           }
-          title="Completed"
+          title="Selesai"
           value={completed}
           isLoading={isLoading}
           onClick={onClickCompleted}
@@ -146,7 +145,7 @@ function ProgressReport({
           icon={
             <VerifiedIcon className="inline-block w-8 h-8 text-amber-500" />
           }
-          title="Verified"
+          title="Diverifikasi"
           value={verified}
           isLoading={isLoading}
           onClick={onClickVerified}
@@ -154,7 +153,7 @@ function ProgressReport({
       </div>
       <div className="mt-4">
         <div className="mb-2 text-stone-500">
-          Total tasks: {annotationTasks.length}
+          Total klip: {annotationTasks.length}
         </div>
         <ProgressBar
           total={annotationTasks.length}

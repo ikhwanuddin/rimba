@@ -38,10 +38,11 @@ export default function DatasetList({
         <Dialog
           key="create"
           mode="text"
-          title="Create Dataset"
+          title="Daftarkan rekaman audio"
           label={
             <>
-              <AddIcon className="inline-block w-4 h-4 align-middle" /> Create
+              <AddIcon className="inline-block w-4 h-4 align-middle" /> Buat
+              baru
             </>
           }
         >
@@ -50,11 +51,10 @@ export default function DatasetList({
         <Dialog
           key="import"
           mode="text"
-          title="Import a Dataset"
+          title="Impor rekaman audio"
           label={
             <>
-              <UploadIcon className="inline-block w-4 h-4 align-middle" />{" "}
-              Import
+              <UploadIcon className="inline-block w-4 h-4 align-middle" /> Impor
             </>
           }
         >

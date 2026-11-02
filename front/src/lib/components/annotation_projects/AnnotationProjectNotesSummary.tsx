@@ -18,7 +18,7 @@ export default function ProjectNotesSummary({
     <Card>
       <H3>
         <IssuesIcon className="inline-block mr-2 w-5 h-5" />
-        Project Issues
+        Masalah proyek
       </H3>
       {isLoading ? <Loading /> : <IssuesSummary {...props} />}
     </Card>
@@ -78,7 +78,7 @@ function NoIssues() {
   return (
     <Empty>
       <CheckIcon className="w-8 h-8 text-emerald-500" />
-      Currently, there are no issues in this project.
+      Tidak ada masalah tercatat.
     </Empty>
   );
 }

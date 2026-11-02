@@ -51,7 +51,7 @@ export default function ProjectTagsSummary({
       <div className="flex flex-row justify-between items-center">
         <H4 className="inline-flex items-center">
           <TagsIcon className="inline-block mr-2 w-5 h-5" />
-          Project Tags
+          Label proyek
           <Help>
             Here you can see the tags used in the project and their respective
             frequencies. &quot;Clip Count&quot; represent the number of clips
@@ -61,7 +61,7 @@ export default function ProjectTagsSummary({
           </Help>
         </H4>
         <Button mode="text" variant="primary" onClick={onAddTags}>
-          <AddIcon className="inline-block mr-2 w-5 h-5" /> Add Tags
+          <AddIcon className="inline-block mr-2 w-5 h-5" /> Tambah label
         </Button>
       </div>
       {isLoading ? (
@@ -76,11 +76,7 @@ export default function ProjectTagsSummary({
 }
 
 function NoTags() {
-  return (
-    <Empty>
-      No tags registered for this project. Add some tags to start annotating.
-    </Empty>
-  );
+  return <Empty>Belum ada label di proyek ini.</Empty>;
 }
 
 function TagCounts({
@@ -137,9 +133,11 @@ function TagCounts({
   return (
     <div className="flex flex-col gap-2 w-full">
       <div>
-        There are{" "}
-        <span className="font-bold text-blue-500">{counts.length}</span> tags
-        registered for this project.
+        Ada{" "}
+        <span className="font-bold text-emerald-700 dark:text-emerald-400">
+          {counts.length}
+        </span>{" "}
+        label di proyek ini.
       </div>
       <ListSearch
         limit={limit}
@@ -299,7 +297,7 @@ function TagTable({
           </th>
           <th scope="col" className="py-2 w-20">
             <Button padding="p-0" mode="text" onClick={onSortByClip}>
-              Clips
+              Klip
               {sortBy == "clip" ? (
                 <DescendingIcon className="inline-block ml-2 w-5 h-5" />
               ) : sortBy == "-clip" ? (
@@ -311,7 +309,7 @@ function TagTable({
           </th>
           <th scope="col" className="py-2 w-20">
             <Button padding="p-0" mode="text" onClick={onSortBySoundEvent}>
-              Sound Events
+              Kotak
               {sortBy == "soundEvent" ? (
                 <DescendingIcon className="inline-block ml-2 w-5 h-5" />
               ) : sortBy == "-soundEvent" ? (

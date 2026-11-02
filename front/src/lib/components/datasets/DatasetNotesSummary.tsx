@@ -24,7 +24,7 @@ export default function DatasetNotesSumary({
     <Card>
       <H3>
         <NotesIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
-        Notes and Issues
+        Catatan dan masalah
       </H3>
       {isLoading ? <Loading /> : <IssuesSummary {...props} />}
     </Card>
@@ -94,7 +94,7 @@ function NoIssues() {
   return (
     <div>
       <CheckIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
-      There are no issues
+      Tidak ada masalah
     </div>
   );
 }

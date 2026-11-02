@@ -34,11 +34,12 @@ export default function AnnotationProjectList({
           <Dialog
             key="create"
             mode="text"
-            title="Create Annotation Project"
+            title="Buat proyek anotasi"
             width="w-96"
             label={
               <>
-                <AddIcon className="inline-block w-4 h-4 align-middle" /> Create
+                <AddIcon className="inline-block w-4 h-4 align-middle" /> Buat
+                baru
               </>
             }
           >
@@ -49,11 +50,11 @@ export default function AnnotationProjectList({
           <Dialog
             key="import"
             mode="text"
-            title="Import annotation project"
+            title="Impor proyek anotasi"
             label={
               <>
                 <UploadIcon className="inline-block w-4 h-4 align-middle" />{" "}
-                Import
+                Impor
               </>
             }
           >
@@ -77,7 +78,7 @@ function NoProjects() {
   return (
     <Empty>
       <WarningIcon className="w-16 h-16 text-stone-500" />
-      <p>No annotation project exist yet!</p>
+      <p>Belum ada proyek anotasi.</p>
       <p>
         To create a new project, click on the
         <span className="text-emerald-500">

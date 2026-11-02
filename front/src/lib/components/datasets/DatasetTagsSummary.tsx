@@ -29,11 +29,9 @@ export default function DatasetTagsSummary({
     <Card>
       <H3>
         <TagsIcon className="inline-block mr-2 w-6 h-6 text-emerald-500" />
-        Tags
+        Label
       </H3>
-      <p className="text-stone-500">
-        Tags used in this dataset and their respective frequencies.
-      </p>
+      <p className="text-stone-500">Label yang dipakai di rekaman ini.</p>
       {isLoading ? (
         <Loading />
       ) : tags.length === 0 ? (
@@ -51,9 +49,5 @@ export default function DatasetTagsSummary({
  * @returns JSX element displaying a message.
  */
 function NoTagsRecorded() {
-  return (
-    <Empty>
-      No tags used in this dataset. Edit the recordings metadata to add tags.
-    </Empty>
-  );
+  return <Empty>Belum ada label pada rekaman ini.</Empty>;
 }

@@ -39,7 +39,7 @@ export default function AnnotationProjectTasks(props: {
     <div className="flex flex-col gap-8">
       <ui.H2>
         <icons.TasksIcon className="inline-block mr-2 w-5 h-5 align-middle" />
-        Add Tasks
+        Tambah klip
       </ui.H2>
       <div className="flex flex-row gap-8">
         <div className="flex flex-col gap-y-6 max-w-prose">
@@ -96,7 +96,7 @@ function SelectDataset({ DatasetSearch }: { DatasetSearch: JSX.Element }) {
   return (
     <ui.Card>
       <div>
-        <ui.H3 className="text-lg">Select Dataset</ui.H3>
+        <ui.H3 className="text-lg">Pilih rekaman audio</ui.H3>
         <p className="text-stone-500">
           Choose a dataset from which to source recordings.
         </p>

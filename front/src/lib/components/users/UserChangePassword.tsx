@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 import useActiveUser from "@/app/hooks/api/useActiveUser";
@@ -10,11 +11,11 @@ import type { User } from "@/lib/types";
 
 const schema = z
   .object({
-    password: z.string(),
+    password: z.string().min(8, "Minimal 8 karakter"),
     password2: z.string(),
   })
   .refine((data) => data.password === data.password2, {
-    message: "Passwords do not match",
+    message: "Kata sandi tidak sama",
     path: ["password2"],
   });
 
@@ -35,14 +36,17 @@ export default function UserChangePassword(props: { user: User }) {
   } = useActiveUser({ user: props.user });
 
   const handleChangePassword = (data: FormData) => {
-    updateUser({ password: data.password });
+    updateUser(
+      { password: data.password },
+      { onSuccess: () => toast.success("Kata sandi diganti.") },
+    );
   };
 
   return (
     <form onSubmit={handleSubmit(handleChangePassword)}>
       <div className="mb-3">
         <Group
-          label="Password"
+          label="Kata sandi baru"
           name="password"
           error={errors.password?.message}
         >
@@ -51,7 +55,7 @@ export default function UserChangePassword(props: { user: User }) {
       </div>
       <div className="mb-3">
         <Group
-          label="Confirm Password"
+          label="Ulangi kata sandi baru"
           name="password2"
           error={errors.password2?.message}
         >
@@ -59,7 +63,7 @@ export default function UserChangePassword(props: { user: User }) {
         </Group>
       </div>
       <div>
-        <Input type="submit" value="Change" />
+        <Input type="submit" value="Simpan" />
       </div>
     </form>
   );

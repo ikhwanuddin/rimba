@@ -97,14 +97,16 @@ export default function ClipAnnotationSpectrogram({
       }
       ViewportBar={simple ? undefined : <ViewportBar viewport={viewport} />}
       AnnotationControls={
-        <AnnotationControls
-          mode={annotationState.mode}
-          geometryType={annotationState.geometryType}
-          onDraw={annotationState.enableDrawing}
-          onDelete={annotationState.enableDeleting}
-          onSelect={annotationState.enableSelecting}
-          onSelectGeometryType={annotationState.setGeometryType}
-        />
+        simple ? undefined : (
+          <AnnotationControls
+            mode={annotationState.mode}
+            geometryType={annotationState.geometryType}
+            onDraw={annotationState.enableDrawing}
+            onDelete={annotationState.enableDeleting}
+            onSelect={annotationState.enableSelecting}
+            onSelectGeometryType={annotationState.setGeometryType}
+          />
+        )
       }
       Canvas={
         <ClipAnnotationCanvas

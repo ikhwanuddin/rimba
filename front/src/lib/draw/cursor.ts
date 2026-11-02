@@ -12,12 +12,14 @@ export function drawCursor(
     buffer?: number;
   } = {},
 ) {
+  if (position.time === 0 && position.freq === 0) return;
   const y = scaleFreqToViewport(position.freq, viewport, ctx.canvas.height);
   const x = scaleTimeToViewport(position.time, viewport, ctx.canvas.width);
 
   setBorderStyle(ctx, {
-    borderColor: "black",
+    borderColor: "white",
     borderWidth: 1,
+    borderAlpha: 0.6,
     borderDash: [10, 5],
   });
 
@@ -32,17 +34,13 @@ export function drawCursor(
   ctx.stroke();
 
   setFontStyle(ctx, {
-    fontColor: "black",
+    fontColor: "white",
     textBaseline: "bottom",
-    fontSize: 14,
+    fontSize: 13,
   });
-  ctx.fillText(`${position.freq.toFixed(2)} Hz`, x + buffer, y - buffer);
-  const height = ctx.measureText(
-    `${position.freq.toFixed(2)} Hz`,
-  ).emHeightAscent;
-  ctx.fillText(
-    `${position.time.toFixed(5)} s`,
-    x + buffer,
-    y - buffer - height,
-  );
+  const label = `${(position.freq / 1000).toFixed(1)} kHz · ${position.time.toFixed(2)} s`;
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "rgba(0,0,0,0.75)";
+  ctx.strokeText(label, x + buffer, y - buffer);
+  ctx.fillText(label, x + buffer, y - buffer);
 }

@@ -36,7 +36,7 @@ export default function DatasetTabs({ dataset }: { dataset: Dataset }) {
           onClick={() => router.push(`/datasets/detail/?${params.toString()}`)}
         >
           <DatasetIcon className="w-4 h-4 align-middle" />
-          Overview
+          Ringkasan
         </Tab>,
         <Tab
           key="recordings"
@@ -46,7 +46,7 @@ export default function DatasetTabs({ dataset }: { dataset: Dataset }) {
           }
         >
           <RecordingsIcon className="w-4 h-4 align-middle" />
-          Recordings
+          Berkas audio
         </Tab>,
       ]}
     />

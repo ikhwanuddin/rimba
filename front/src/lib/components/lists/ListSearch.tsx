@@ -37,12 +37,12 @@ export default function ListSearch({
   return (
     <div className="inline-flex gap-2 justify-between items-center w-full">
       <div className="grow">
-        <InputGroup name="search" label="Search">
+        <InputGroup name="search" label="Cari">
           <Search onChange={(value) => onChangeSearch?.(value as string)} />
         </InputGroup>
       </div>
       <div className="w-24">
-        <InputGroup name="limit" label="Show Max">
+        <InputGroup name="limit" label="Tampilkan">
           <Select
             selected={{ id: limit, label: limit, value: limit }}
             onChange={(value) => onChangeLimit?.(value as number)}

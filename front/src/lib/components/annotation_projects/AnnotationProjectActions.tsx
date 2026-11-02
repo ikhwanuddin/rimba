@@ -25,7 +25,7 @@ export default function ProjectActions({
         variant="primary"
         onClick={onDownloadAnnotationProject}
       >
-        <DownloadIcon className="inline-block mr-2 w-5 h-5" /> Download
+        <DownloadIcon className="inline-block mr-2 w-5 h-5" /> Unduh
       </Button>
       <DeleteProject
         annotationProject={annotationProject}
@@ -53,7 +53,7 @@ function DeleteProject({
       button={
         <>
           <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-          Delete Project
+          Hapus proyek
         </>
       }
       mode="text"

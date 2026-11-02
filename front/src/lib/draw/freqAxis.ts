@@ -7,7 +7,7 @@ import {
   setBorderStyle,
   setFontStyle,
 } from "@/lib/draw/styles";
-import { getTicks, parseNum, selectResolution } from "@/lib/draw/timeAxis";
+import { getTicks } from "@/lib/draw/timeAxis";
 import type { Interval } from "@/lib/types";
 
 function drawFreqTick(
@@ -33,13 +33,17 @@ function drawFreqTick(
   ctx.moveTo(0, y);
   ctx.lineTo(length, y);
   ctx.stroke();
-  if (label != null) {
-    ctx.save();
-    ctx.translate(length, y);
-    ctx.rotate(-Math.PI / 2);
-    setFontStyle(ctx, { fontColor: color, textBaseline: "bottom" });
-    ctx.fillText(label, 2, 0);
-    ctx.restore();
+  if (label != null && y > 14 && y < ctx.canvas.height - 8) {
+    // Way Canguk fork: horizontal labels with an outline, readable on any spectrogram
+    setFontStyle(ctx, {
+      fontColor: color,
+      textBaseline: "middle",
+      fontSize: 12,
+    });
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "rgba(0,0,0,0.7)";
+    ctx.strokeText(label, length + 3, y);
+    ctx.fillText(label, length + 3, y);
   }
 }
 
@@ -52,19 +56,19 @@ export default function drawTimeAxis(
   const { height } = canvas;
   const { min, max } = interval;
   const range = max - min;
-  const { mayorTickStep, minorTickStep, digits } = selectResolution(
-    height,
-    interval,
-  );
+  // Way Canguk fork: a major tick every 0.5, 1, 2, 5 or 10 kHz, at least 40 px apart
+  const mayorTickStep =
+    [500, 1000, 2000, 5000, 10000, 20000].find(
+      (step) => (height * step) / range >= 40,
+    ) ?? 50000;
+  const minorTickStep = mayorTickStep / 5;
   const mayorTicks = getTicks(interval, mayorTickStep);
   const minorTicks = getTicks(interval, minorTickStep);
 
   mayorTicks.forEach((freq) => {
     const y = (height * (max - freq)) / range;
     drawFreqTick(ctx, y, {
-      // Its best to display frequencies in kHz to get a cleaner axis
-      // Hence the division by 1000 and 3 digits removed
-      label: parseNum(freq / 1000, digits - 3),
+      label: `${parseFloat((freq / 1000).toFixed(1))} kHz`,
       ...style,
       ...MAYOR_TICK_STYLE,
     });

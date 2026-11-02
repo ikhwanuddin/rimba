@@ -161,7 +161,9 @@ function Activity({ p, isAdmin }: { p: Progress; isAdmin: boolean }) {
               "flex-1 text-center text-[10px] " +
               (i === p.days.length - 1
                 ? "font-bold text-emerald-700 dark:text-emerald-300"
-                : "text-stone-400")
+                : "text-stone-400") +
+              // on a phone only every other day is labelled
+              ((p.days.length - 1 - i) % 2 === 1 ? " invisible sm:visible" : "")
             }
           >
             {i === p.days.length - 1

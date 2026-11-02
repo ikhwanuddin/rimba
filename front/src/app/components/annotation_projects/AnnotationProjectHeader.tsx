@@ -39,7 +39,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <DatasetIcon className="w-5 h-5 align-middle" />
-          Overview
+          Ringkasan
         </Tab>,
         <Tab
           key="annotate"
@@ -51,7 +51,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <EditIcon className="w-5 h-5 align-middle" />
-          Annotate
+          Anotasi
         </Tab>,
         <Tab
           key="tasks"
@@ -63,7 +63,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <TasksIcon className="w-5 h-5 align-middle" />
-          Tasks
+          Tambah klip
         </Tab>,
         <Tab
           key="tags"
@@ -75,7 +75,7 @@ export default function AnnotationProjectHeader({
           }}
         >
           <TagsIcon className="w-5 h-5 align-middle" />
-          Tags
+          Label
         </Tab>,
       ].filter(() => isAdmin)}
     />

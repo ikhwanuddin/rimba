@@ -22,7 +22,7 @@ export default function DatasetActions({
     <div className="flex flex-row gap-2 justify-center">
       {onDownloadDataset != null ? (
         <Button mode="text" variant="primary" onClick={onDownloadDataset}>
-          <DownloadIcon className="inline-block mr-2 w-5 h-5" /> Download
+          <DownloadIcon className="inline-block mr-2 w-5 h-5" /> Unduh
         </Button>
       ) : null}
       <DeleteDataset dataset={dataset} onDeleteDataset={onDeleteDataset} />
@@ -48,7 +48,7 @@ function DeleteDataset({
       button={
         <>
           <DeleteIcon className="inline-block mr-2 w-5 h-5" />
-          Delete Dataset
+          Hapus rekaman
         </>
       }
       mode="text"

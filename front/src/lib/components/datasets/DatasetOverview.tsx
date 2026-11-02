@@ -26,7 +26,7 @@ export default function DatasetOverview({
   return (
     <Card>
       <div className="flex flex-row justify-between">
-        <H3>Dataset Overview</H3>
+        <H3>Ringkasan rekaman</H3>
       </div>
       <div className="flex flex-row gap-2 justify-around">
         <MetricBadge
@@ -34,20 +34,20 @@ export default function DatasetOverview({
           icon={
             <RecordingsIcon className="inline-block w-8 h-8 text-blue-500" />
           }
-          title="Recordings"
+          title="Berkas audio"
           value={dataset.recording_count}
         />
         <MetricBadge
           onClick={onClickDatasetIssues}
           icon={<IssueIcon className="inline-block w-8 h-8 text-amber-500" />}
-          title="Metadata Issues"
+          title="Masalah metadata"
           value={numIssues}
           isLoading={isLoading}
         />
         <MetricBadge
           onClick={onClickDatasetMissing}
           icon={<WarningIcon className="inline-block w-8 h-8 text-red-500" />}
-          title="Missing Files"
+          title="Berkas hilang"
           value={numMissing}
           isLoading={isLoading}
         />

@@ -19,28 +19,25 @@ export default function UserProfile(props: { user: User }) {
       <div className="inline-flex items-end px-4 sm:px-0">
         <UserIcon className="w-12 h-12 text-stone-500" />
         <h3 className="text-base font-semibold leading-7 text-stone-900 dark:text-stone-200">
-          Your Profile
+          Profil kamu
         </h3>
       </div>
       <p className="text-stone-500">
-        Manage your public profile information here. Please note that this
-        information is visible to other users. Your username is used for
-        authentication, so ensure it&apos;s memorable.
+        Nama tampil di bagian atas halaman. Nama pengguna dipakai untuk masuk
+        dan tidak bisa diubah di sini.
       </p>
       <div className="mt-6 border-t border-stone-300 dark:border-stone-700">
         <dl className="divide-y divide-stone-500">
           <div className="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <Description
-              name="Username"
+              name="Nama pengguna"
               value={user.username}
-              onChange={(username) => updateUser({ username })}
               type="text"
-              editable
             />
           </div>
           <div className="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <Description
-              name="Name"
+              name="Nama"
               value={user.name ?? ""}
               onChange={(name) => updateUser({ name })}
               type="text"
@@ -57,7 +54,7 @@ export default function UserProfile(props: { user: User }) {
             />
           </div>
         </dl>
-        <Dialog mode="text" title="Change Password" label={"Change password"}>
+        <Dialog mode="text" title="Ganti kata sandi" label={"Ganti kata sandi"}>
           {() => <UserChangePassword user={user} />}
         </Dialog>
       </div>

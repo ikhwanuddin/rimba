@@ -82,7 +82,7 @@ export function EditableDescriptionData<T extends string | number | Date>({
           onClick={() => setEditing(true)}
           className="ml-2 text-sm underline text-stone-500"
         >
-          <EditIcon className="inline-block w-5 h-5 text-blue-500" />
+          <EditIcon className="inline-block w-5 h-5 text-emerald-700 dark:text-emerald-400" />
         </button>
       </DescriptionData>
     );

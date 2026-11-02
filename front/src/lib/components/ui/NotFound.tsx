@@ -3,20 +3,20 @@ import Button from "@/lib/components/ui/Button";
 
 export default function NotFound({ onGoHome }: { onGoHome?: () => void }) {
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
-      <div className="mb-4 stroke-rose-500">
+    <div className="flex flex-col gap-3 justify-center items-center min-h-[70vh]">
+      <div className="stroke-stone-400">
         <NoIcon
-          className="inline-block ms-2 stroke-inherit"
-          width={256}
-          height={256}
+          className="inline-block stroke-inherit"
+          width={96}
+          height={96}
         />
       </div>
-      <p className="mb-4 text-3xl">Page Not Found</p>
-      <p>Sorry, we could not find the page you were looking for.</p>
-      <div className="mb-4">
-        <Button mode="text" onClick={onGoHome}>
-          Return Home
-        </Button>
+      <p className="text-2xl font-semibold">Halaman tidak ditemukan</p>
+      <p className="text-stone-500">
+        Alamat ini tidak ada atau sudah dipindah.
+      </p>
+      <div>
+        <Button onClick={onGoHome}>Kembali ke Beranda</Button>
       </div>
     </div>
   );

@@ -191,8 +191,23 @@ export default function AnnotatorView({
         ) : null}
       </div>
       {showHelp && (
-        <div className="whitespace-pre-line rounded-md border border-emerald-200 bg-emerald-50 p-4 text-stone-800 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200">
-          {annotationProject.annotation_instructions}
+        <div className="flex flex-col gap-1 rounded-md border border-emerald-200 bg-emerald-50 p-4 text-stone-800 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200">
+          {annotationProject.annotation_instructions
+            ?.split("\n")
+            .map((line, i) =>
+              line.trim() === "" ? (
+                <div key={i} className="h-2" />
+              ) : /^[A-Z][A-Z ]+\b/.test(line) ? (
+                <p
+                  key={i}
+                  className="font-bold text-emerald-800 dark:text-emerald-300"
+                >
+                  {line}
+                </p>
+              ) : (
+                <p key={i}>{line}</p>
+              ),
+            )}
         </div>
       )}
       {task == null ? (
@@ -337,38 +352,40 @@ function AnswerPanel({
   const labelText = labels.length > 0 ? labels.join(" / ") : "(tanpa label)";
 
   return (
-    <div className="flex flex-col gap-4 rounded-lg border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
-      <p className="text-lg">
-        Apakah suara di dalam kotak adalah{" "}
-        <span className="font-bold">{labelText}</span>?
-      </p>
-      <div className="flex flex-row flex-wrap gap-3">
-        {ANSWERS.map((a) => (
-          <button
-            key={a.value}
-            type="button"
-            disabled={busy}
-            onClick={() => handleAnswer(a.value)}
-            className={classNames(
-              "min-w-36 rounded-lg px-6 py-3 text-lg font-bold shadow-sm disabled:opacity-50 focus:outline-none focus:ring-4 focus:ring-emerald-300",
-              a.className,
-              answer === a.value &&
-                "ring-4 ring-offset-2 ring-stone-900 dark:ring-stone-100",
-            )}
-          >
-            {a.label}{" "}
-            <kbd className="ml-1 rounded bg-black/15 px-1.5 text-sm font-normal">
-              {a.hotkey}
-            </kbd>
-          </button>
-        ))}
+    <>
+      {/* the question and the answer buttons stay pinned to the bottom of the window */}
+      <div className="sticky bottom-0 z-[60] -mx-1 flex flex-col gap-3 rounded-lg border border-stone-200 bg-white/95 p-4 shadow-[0_-6px_16px_-8px_rgba(0,0,0,0.25)] backdrop-blur dark:border-stone-700 dark:bg-stone-800/95">
+        <p className="text-lg">
+          Apakah suara di dalam kotak adalah{" "}
+          <span className="font-bold">{labelText}</span>?
+        </p>
+        <div className="flex flex-row flex-wrap items-center gap-3">
+          {ANSWERS.map((a) => (
+            <button
+              key={a.value}
+              type="button"
+              disabled={busy}
+              onClick={() => handleAnswer(a.value)}
+              className={classNames(
+                "min-w-32 rounded-lg px-5 py-2.5 text-lg font-bold shadow-sm disabled:opacity-50 focus:outline-none focus:ring-4 focus:ring-emerald-300",
+                a.className,
+                answer === a.value &&
+                  "ring-4 ring-offset-2 ring-stone-900 dark:ring-stone-100",
+              )}
+            >
+              {a.label}{" "}
+              <kbd className="ml-1 rounded bg-black/15 px-1.5 text-sm font-normal">
+                {a.hotkey}
+              </kbd>
+            </button>
+          ))}
+          <p className="text-sm text-stone-500 dark:text-stone-400">
+            Spasi = putar/jeda.
+            {answer ? ` Jawaban tersimpan: "${answer}".` : ""}
+          </p>
+        </div>
       </div>
-      <p className="text-sm text-stone-500">
-        Spasi = putar/jeda. Jawaban tersimpan dan klip berikutnya langsung
-        terbuka.
-        {answer ? ` Jawaban tersimpan: "${answer}".` : ""}
-      </p>
-      <div className="flex flex-col gap-2 border-t border-stone-200 pt-3 dark:border-stone-700">
+      <div className="flex flex-col gap-2 rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800">
         <button
           type="button"
           className="w-fit text-sm text-emerald-700 underline dark:text-emerald-300"
@@ -410,6 +427,6 @@ function AnswerPanel({
           </div>
         </details>
       </div>
-    </div>
+    </>
   );
 }

@@ -26,7 +26,7 @@ export default function ProgressBar({
       )}
     >
       <div
-        className="flex flex-row items-center justify-center h-4 bg-blue-600 dark:bg-blue-400 text-blue-100 dark:text-blue-900"
+        className="flex flex-row items-center justify-center h-4 bg-stone-400 dark:bg-stone-500 text-white"
         style={{ width: `${remainingPerc}%` }}
       >
         {remainingPerc >= 10 ? `${remainingPerc.toPrecision(3)}%` : ""}
