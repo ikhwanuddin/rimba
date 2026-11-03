@@ -81,7 +81,7 @@ export default function ClipAnnotationSpectrogram({
         <Player
           audio={audio}
           samplerate={data.clip.recording.samplerate}
-          wide={simple}
+          wide
           onChangeSpeed={(speed) =>
             audioSettings.dispatch({ type: "setSpeed", speed })
           }

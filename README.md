@@ -94,7 +94,7 @@ back when a project needs them.
 Each release has a wheel with the front end built in:
 
 ```bash
-uv tool install --python 3.12 https://github.com/ikhwanuddin/rimba/releases/download/v0.7.1/rimba-0.7.1-py3-none-any.whl
+uv tool install --python 3.12 https://github.com/ikhwanuddin/rimba/releases/download/v0.7.2/rimba-0.7.2-py3-none-any.whl
 RIMBA_DATA_DIR=~/rimba-data rimba
 ```
 

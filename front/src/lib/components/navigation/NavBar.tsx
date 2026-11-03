@@ -32,7 +32,7 @@ function NavLink({
     <a
       href={href}
       className={classnames(
-        "rounded-md px-2 py-2 text-sm font-semibold sm:px-3",
+        "rounded-md px-1.5 py-2 text-sm font-semibold sm:px-3",
         active
           ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100"
           : "text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700",
@@ -51,7 +51,7 @@ function UserMenu({ user, onLogout }: { user?: User; onLogout?: () => void }) {
     "group flex w-full items-center rounded-md px-3 py-2 text-sm text-stone-700 dark:text-stone-200";
   return (
     <Menu as="div" className="relative">
-      <Menu.Button className="inline-flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold sm:px-3 text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700">
+      <Menu.Button className="inline-flex items-center gap-1 rounded-md px-1.5 py-2 text-sm font-semibold sm:px-3 text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700">
         <UserCircleIcon className="h-5 w-5" />
         <span className="hidden max-w-[12rem] truncate sm:inline">
           {user?.name || user?.username}
@@ -121,7 +121,7 @@ function ManageMenu({ active }: { active: boolean }) {
     <Menu as="div" className="relative">
       <Menu.Button
         className={classnames(
-          "inline-flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold sm:px-3",
+          "inline-flex items-center gap-1 rounded-md px-1.5 py-2 text-sm font-semibold sm:px-3",
           active
             ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100"
             : "text-stone-700 hover:bg-stone-200 dark:text-stone-300 dark:hover:bg-stone-700",

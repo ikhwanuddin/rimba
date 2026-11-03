@@ -109,6 +109,7 @@ function Inner({
       Player={
         withPlayer ? (
           <Player
+            wide
             audio={audio}
             samplerate={recording.samplerate}
             onChangeSpeed={(speed) =>

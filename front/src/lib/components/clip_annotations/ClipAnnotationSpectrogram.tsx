@@ -14,12 +14,17 @@ const ClipAnnotationSpectrogram = memo(
   }) {
     return (
       <Card className="w-full">
-        <div className="flex flex-row flex-wrap gap-4">
-          {props.ViewportToolbar}
-          {props.AnnotationControls}
-          {props.Player}
-          {props.SettingsMenu}
-        </div>
+        {(props.ViewportToolbar ||
+          props.AnnotationControls ||
+          props.SettingsMenu) && (
+          <div className="flex flex-row flex-wrap gap-4 items-center">
+            {props.ViewportToolbar}
+            {props.AnnotationControls}
+            {props.SettingsMenu}
+          </div>
+        )}
+        {/* RIMBA: the player gets its own row, as wide as the spectrogram */}
+        {props.Player}
         {props.Canvas}
         {props.ViewportBar}
         {props.SelectedSoundEvent}
