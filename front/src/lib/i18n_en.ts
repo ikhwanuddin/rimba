@@ -1,5 +1,10 @@
 /* RIMBA: English interface texts, keyed by the Indonesian text in the code (see i18n.ts). */
 const EN: Record<string, string> = {
+  // player (0.7)
+  Spasi: "Space",
+  "putar/jeda": "play/pause",
+  "Ulang terus": "Loop",
+  "Kecepatan putar": "Playback speed",
   // theme (0.6)
   "Mode tampilan": "Appearance",
   Terang: "Light",
@@ -152,7 +157,6 @@ const EN: Record<string, string> = {
 
   // annotator page
   "Apakah suara di dalam kotak adalah": "Is the sound in the box a",
-  "Spasi = putar/jeda.": "Space = play/pause.",
   'Jawaban tersimpan: "{a}".': 'Answer saved: "{a}".',
   "Kamu sudah menjawab {mine} · sisa proyek {left} dari {total}":
     "You have answered {mine} · project left {left} of {total}",

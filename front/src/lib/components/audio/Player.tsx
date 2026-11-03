@@ -32,6 +32,8 @@ import {
 
 import type { SpeedOption } from "@/lib/hooks/settings/useAudioSettings";
 
+import { t } from "@/lib/i18n";
+
 const COMMON_BUTTON_CLASSES =
   "focus:outline-none focus:ring-4 focus:ring-emerald-500/50 rounded-full";
 
@@ -51,7 +53,11 @@ export default function Player({
   onSeek,
   onToggleLoop,
   onChangeSpeed,
+  wide = false,
 }: {
+  /** RIMBA: full-width player (detection validation) with a big play button,
+   * the time on both sides of a long track and the Space shortcut shown. */
+  wide?: boolean;
   currentTime: number;
   startTime?: number;
   endTime: number;
@@ -66,11 +72,20 @@ export default function Player({
   onChangeSpeed?: (speed: number) => void;
 }) {
   return (
-    <div className="flex flex-row gap-2 items-center px-2 max-w-max rounded-md border border-stone-300 bg-stone-100 dark:border-stone-600 dark:bg-stone-700">
+    <div
+      className={classNames(
+        "flex flex-row gap-2 items-center rounded-md border border-stone-300 bg-stone-100 dark:border-stone-600 dark:bg-stone-700",
+        wide ? "w-full gap-3 py-1.5 pl-1.5 pr-3" : "px-2 max-w-max",
+      )}
+    >
       <button
         type="button"
+        title={t("Putar/jeda") + " (" + t("Spasi") + ")"}
+        aria-label={t("Putar/jeda")}
         className={classNames(
-          "text-stone-600 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200",
+          wide
+            ? "flex shrink-0 justify-center items-center w-9 h-9 text-white bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500"
+            : "text-stone-600 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200",
           COMMON_BUTTON_CLASSES,
         )}
         onClick={() => {
@@ -93,6 +108,9 @@ export default function Player({
             !loop,
         })}
         onClick={() => onToggleLoop?.()}
+        title={t("Ulang terus")}
+        aria-label={t("Ulang terus")}
+        aria-pressed={loop}
       >
         <LoopIcon className="w-5 h-5" />
       </button>
@@ -103,14 +121,32 @@ export default function Player({
         maxValue={endTime}
         step={0.01}
         onChange={(value) => onSeek?.(value as number)}
+        wide={wide}
       />
       <SelectSpeed
         speed={speed}
         onChange={(value) => onChangeSpeed?.(value)}
         options={speedOptions}
+        wide={wide}
       />
+      {wide && (
+        // keyboard hint; hidden on touch screens, where there is no Space key
+        <span className="hidden shrink-0 gap-1.5 items-center pl-3 text-xs whitespace-nowrap border-l sm:flex border-stone-300 text-stone-600 dark:border-stone-500 dark:text-stone-300 [@media(hover:none)]:!hidden">
+          <kbd className="py-px px-1.5 font-sans text-[11px] font-semibold bg-white rounded border border-b-2 border-stone-300 text-stone-700 dark:bg-stone-800 dark:border-stone-500 dark:text-stone-200">
+            {t("Spasi")}
+          </kbd>
+          {t("putar/jeda")}
+        </span>
+      )}
     </div>
   );
+}
+
+/** RIMBA: short time for the wide player, e.g. 0:03.4 */
+function shortTime(seconds?: number): string {
+  const s = seconds ?? 0;
+  const m = Math.floor(s / 60);
+  return `${m}:${(s - 60 * m).toFixed(1).padStart(4, "0")}`;
 }
 
 /** Taken from https://stackoverflow.com/a/25279399 */
@@ -137,7 +173,9 @@ function SelectSpeed({
   speed,
   onChange,
   options,
+  wide = false,
 }: {
+  wide?: boolean;
   speed: number;
   onChange: (value: number) => void;
   options: SpeedOption[];
@@ -156,6 +194,7 @@ function SelectSpeed({
         floatingAs={Fragment}
       >
         <Listbox.Button
+          title={t("Kecepatan putar")}
           className={classNames(
             COMMON_BUTTON_CLASSES,
             "text-stone-600 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200",
@@ -163,6 +202,11 @@ function SelectSpeed({
           )}
         >
           <SpeedIcon className="w-5 h-5" />
+          {wide && (
+            <span className="ml-0.5 text-xs font-semibold tabular-nums">
+              {options.find((o) => o.value === speed)?.label ?? `${speed}x`}
+            </span>
+          )}
           <span className="flex absolute inset-y-0 right-0 items-center pr-1 pointer-events-none">
             <ExpandIcon className="w-5 h-5" aria-hidden="true" />
           </span>
@@ -250,7 +294,10 @@ function PlayerThumb({
  * @component
  * @param {AriaSliderProps} props - Component properties.
  */
-function PlayerSlider(props: AriaSliderProps) {
+function PlayerSlider({
+  wide = false,
+  ...props
+}: AriaSliderProps & { wide?: boolean }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   let numberFormatter = useNumberFormatter({ style: "decimal" });
   const state = useSliderState({ ...props, numberFormatter });
@@ -259,6 +306,40 @@ function PlayerSlider(props: AriaSliderProps) {
     state,
     trackRef,
   );
+  const track = (
+    <div className="py-1 w-full cursor-pointer" {...trackProps} ref={trackRef}>
+      <div className="w-full h-1 rounded-full bg-stone-300 dark:bg-stone-900">
+        <span
+          className="relative h-1 bg-emerald-600 rounded-full dark:bg-emerald-200"
+          style={{
+            width: `${Math.min(state.getThumbPercent(0), 100)}%`,
+          }}
+        />
+        <PlayerThumb
+          index={0}
+          state={state}
+          trackRef={trackRef}
+          name={"currentTime"}
+        />
+      </div>
+    </div>
+  );
+  if (wide)
+    return (
+      <div
+        {...groupProps}
+        className="flex flex-row flex-1 gap-3 items-center min-w-0 text-xs tabular-nums text-stone-700 dark:text-stone-200"
+      >
+        <VisuallyHidden>
+          <label {...labelProps}>{props.label}</label>
+        </VisuallyHidden>
+        <output {...outputProps}>{shortTime(state.getThumbValue(0))}</output>
+        {track}
+        <output className="hidden sm:inline">
+          {shortTime(props.maxValue)}
+        </output>
+      </div>
+    );
   return (
     <div {...groupProps} className="ml-2 w-36">
       {props.label && (
@@ -272,26 +353,7 @@ function PlayerSlider(props: AriaSliderProps) {
           <output>{secondsToTimeStr(props.maxValue)}</output>
         </div>
       )}
-      <div
-        className="py-1 w-full cursor-pointer"
-        {...trackProps}
-        ref={trackRef}
-      >
-        <div className="w-full h-1 rounded-full bg-stone-900">
-          <span
-            className="relative h-1 bg-emerald-600 rounded-full dark:bg-emerald-200"
-            style={{
-              width: `${Math.min(state.getThumbPercent(0), 100)}%`,
-            }}
-          />
-          <PlayerThumb
-            index={0}
-            state={state}
-            trackRef={trackRef}
-            name={"currentTime"}
-          />
-        </div>
-      </div>
+      {track}
     </div>
   );
 }

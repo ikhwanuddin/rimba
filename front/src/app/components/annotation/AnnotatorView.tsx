@@ -388,17 +388,16 @@ function AnswerPanel({
               )}
             >
               {t(a.label)}{" "}
-              <kbd className="ml-1 rounded bg-black/15 px-1.5 text-sm font-normal">
+              <kbd className="ml-1 rounded bg-black/15 px-1.5 text-sm font-normal [@media(hover:none)]:hidden">
                 {a.hotkey}
               </kbd>
             </button>
           ))}
-          <p className="text-sm text-stone-500 dark:text-stone-400">
-            {t("Spasi = putar/jeda.")}
-            {answer
-              ? " " + t('Jawaban tersimpan: "{a}".', { a: t(answer) })
-              : ""}
-          </p>
+          {answer && (
+            <p className="text-sm text-stone-500 dark:text-stone-400">
+              {t('Jawaban tersimpan: "{a}".', { a: t(answer) })}
+            </p>
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-2 rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800">

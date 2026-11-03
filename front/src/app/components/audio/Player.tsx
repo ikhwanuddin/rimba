@@ -10,7 +10,9 @@ export default function Player({
   audio,
   samplerate,
   onChangeSpeed,
+  wide,
 }: {
+  wide?: boolean;
   audio: AudioController;
   samplerate: number;
   onChangeSpeed?: (speed: number) => void;
@@ -33,6 +35,7 @@ export default function Player({
       onSeek={audio.seek}
       onToggleLoop={audio.toggleLoop}
       onChangeSpeed={onChangeSpeed}
+      wide={wide}
     />
   );
 }

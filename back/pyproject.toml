@@ -1,6 +1,6 @@
 [project]
 name = "rimba"
-version = "0.6.0"
+version = "0.7.0"
 description = "RIMBA: Rainforest Identification and Monitoring through Bioacoustic Analysis. Bioacoustic annotation built on Whombat."
 authors = [
   { name = "Rifqi Ikhwanuddin" },
