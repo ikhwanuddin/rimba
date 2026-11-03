@@ -21,6 +21,8 @@ export type PaginationController = {
   numPages: number;
   /** The number of items per page. */
   pageSize: number;
+  /** The total number of items (RIMBA: for the "1–10 of 37" summary). */
+  total?: number;
   /** Sets the current page number. */
   setPage: (page: number) => void;
   /** Sets the number of items per page. */

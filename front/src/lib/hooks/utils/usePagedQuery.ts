@@ -75,6 +75,7 @@ export default function usePagedQuery<T, S extends Object>({
       page,
       numPages,
       pageSize: size,
+      total: query.data?.total,
       setPage: (page) => {
         if (page >= 0 && page < numPages) {
           setPage(page);

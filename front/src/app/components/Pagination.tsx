@@ -14,6 +14,7 @@ export default function Pagination({
       page={pagination.page}
       numPages={pagination.numPages}
       pageSize={pagination.pageSize}
+      total={pagination.total}
       hasNextPage={pagination.hasNextPage}
       hasPrevPage={pagination.hasPrevPage}
       onNextPage={pagination.nextPage}

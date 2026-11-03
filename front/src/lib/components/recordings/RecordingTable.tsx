@@ -166,6 +166,7 @@ export default function RecordingTable({
         onPrevPage={props.onPrevPage}
         onSetPage={props.onSetPage}
         pageSize={props.pageSize}
+        total={numRecordings}
         onSetPageSize={props.onSetPageSize}
       />
     </div>

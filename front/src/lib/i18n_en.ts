@@ -5,6 +5,15 @@ const EN: Record<string, string> = {
   "putar/jeda": "play/pause",
   "Ulang terus": "Loop",
   "Kecepatan putar": "Playback speed",
+  // pagination (0.8)
+  "Halaman {p} dari {n}": "Page {p} of {n}",
+  "Total: {n}": "Total: {n}",
+  "{a}–{b} dari {n}": "{a}–{b} of {n}",
+  Halaman: "Pages",
+  "Per halaman": "Per page",
+  Semua: "All",
+  "Halaman sebelumnya": "Previous page",
+  "Halaman berikutnya": "Next page",
   // theme (0.6)
   "Mode tampilan": "Appearance",
   Terang: "Light",
@@ -422,7 +431,6 @@ const EN: Record<string, string> = {
   "Punya label": "Has label",
   "Ada masalah": "Has issues",
   Tampilkan: "Show",
-  "Per halaman:": "Per page:",
   "Tulis catatan": "Write a note",
   "Tulis catatannya, lalu pilih simpan sebagai catatan atau masalah.":
     "Write the note, then save it as a note or an issue.",

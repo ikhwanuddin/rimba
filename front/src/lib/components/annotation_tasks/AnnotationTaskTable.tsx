@@ -68,7 +68,18 @@ export default function AnnotationTaskTable({
           <Table table={table} />
         </div>
       </div>
-      <Pagination {...annotationTasks.pagination} />
+      <Pagination
+        page={annotationTasks.pagination.page}
+        numPages={annotationTasks.pagination.numPages}
+        pageSize={annotationTasks.pagination.pageSize}
+        total={annotationTasks.total}
+        hasNextPage={annotationTasks.pagination.hasNextPage}
+        hasPrevPage={annotationTasks.pagination.hasPrevPage}
+        onNextPage={annotationTasks.pagination.nextPage}
+        onPrevPage={annotationTasks.pagination.prevPage}
+        onSetPage={annotationTasks.pagination.setPage}
+        onSetPageSize={annotationTasks.pagination.setPageSize}
+      />
     </div>
   );
 }
