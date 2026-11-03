@@ -197,7 +197,7 @@ function SelectSpeed({
           title={t("Kecepatan putar")}
           className={classNames(
             COMMON_BUTTON_CLASSES,
-            "text-stone-600 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200",
+            "text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100",
             "flex flex-row items-center w-full pr-7",
           )}
         >
